@@ -1,0 +1,119 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Instalación de SQL</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="install-sql"
+                  title="Instalación de SQL"
+                  environment="web"
+                  feedback-link="https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues">
+    
+      <google-codelab-step label="Requerimientos para instalar SQL developer" duration="0">
+        <p class="image-container"><img alt="test" src="img\\1b33fe1970399118.jpg"></p>
+<ul>
+<li>Windows 10 TH1 1507 o una versión superior / Windows Server 2016 o una versión posterior</li>
+<li>.NET Framework</li>
+<li>Mínimo: 1GB de RAM / Se recomienda: 4GB de RAM</li>
+<li>6GB de espacio disponible en el disco</li>
+<li>Procesador mínimo: x64: 1,4 GHz / Procesador recomendado: x64 2.0 GHZ o superior</li>
+</ul>
+<aside class="special"><p> Nota: Si su equipo no pose los componentes mínimos se le recomienda instalar la versión de <strong>SQL Express</strong>. Que es muy similar a la instalación de SQL Developer que se desarrolla en esta guía. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Descargar SQL Developer" duration="0">
+        <p>En el siguiente enlace puede enontrar el sitio web para descargar SQL server: <a href="https://www.microsoft.com/es-es/sql-server/sql-server-downloads" target="_blank">Link de descarga de SQL Server</a>. En nuestro caso vamos a seleccionar la versión de <strong>Desarrolador</strong>, que es la que sale en la imagen abajo a la izquierda.(Haga clic en <strong>Descargar ahora</strong>).</p>
+<p class="image-container"><img alt="test" src="img\\427f120f721f2e64.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalación de SQL Developer" duration="0">
+        <p>Ejecute el instalador:</p>
+<p class="image-container"><img alt="test" src="img\\35508047f32ec44f.PNG"></p>
+<p>Esto ejecutará la interfaz de instalación, en esta seleccione el tipo de instalación <strong>Básica</strong>:</p>
+<p class="image-container"><img alt="test" src="img\\71587b3c5e42cb03.PNG"></p>
+<p>Esto mostrara una ventana de idioma de insterfaz de usuario, selecione <strong>Sí</strong> (Esto solo sucede si no posee inglés):</p>
+<p class="image-container"><img alt="test" src="img\\f30e436602f9a89d.PNG"></p>
+<p>A continuación leea los terminos y condiciones, luego presione el botón <strong>Aceptar</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\952c09e8c9d544f.PNG"></p>
+<p>Se recomienda dejar la carpeta por defecto para la instalción y luego presionar <strong>Instalar</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\7b7a7201f0533d9b.PNG"></p>
+<p>Espere a que se instalen todos los archivos...</p>
+<p class="image-container"><img alt="test" src="img\\5f25b512e647b439.PNG"></p>
+<p>Se mostrará la pagina donde podrá confirmar que todo se instalo correctamente. Aquí seleccione la opción <strong>Instalar SSMS</strong>, la cual nos dirigirá al sitio web para descargar SSMS.</p>
+<p class="image-container"><img alt="test" src="img\\cbacac370ae25fdb.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Descarga de SMSS" duration="0">
+        <h2 is-upgraded>SQL Server Management Studio (SSMS)</h2>
+<p>El siguiente enlace nos muestra donde podemos descargar SSMS (el cual es el mismo al que nos dirige el paso anterior): <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15#download-ssms" target="_blank">Link de SSMS</a>. Aquí nos vamos a Downland SSMS y buscamos donde dice <strong>Free Downland for SQL Server Management Studio (SSMS)</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\f1f951a1e3c4bf9f.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalación de SSMS" duration="0">
+        <p>Ejecute el instalador:</p>
+<p class="image-container"><img alt="test" src="img\\14d8b6ef1f010f0e.PNG"></p>
+<p>Dejar la carpeta de instalación por defecto y presionar <strong>Install</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\61e0332c9a6a9b7b.PNG"></p>
+<p>Espere a que se instalen todos los archivos...</p>
+<p class="image-container"><img alt="test" src="img\\20961311ed95ab52.PNG"></p>
+<p>Al finalizar le mostrará que todo se instalo correctamente, solamente presione <strong>Close</strong> y el programa estará listo para usar.</p>
+<p class="image-container"><img alt="test" src="img\\af2fd40b9e32f6e6.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Abrir SSMS" duration="0">
+        <p>Ya esta todo listo para usar, por lo que podemos buscar la aplicación escribiendo <strong>SQL</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\69352e5af497e6d3.jpeg"></p>
+<p>Se abrirá SSMS, selecione <strong>Connet</strong> y nuestro programa estará listo para que comencemos aprender.</p>
+<p class="image-container"><img alt="test" src="img\\894bf1202eb7944b.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Autores" duration="0">
+        <p>Autores:<br><strong>Versión 1:</strong> Brian Darwin Carranza Campos (00136020@uca.edu.sv)<br><strong>Responsables:</strong> Erick Varela Guzmán (evarela@uca.edu.sv), Douglas Hernández Torres (dohernandez@uca.edu.sv), Correspondencia: evarela@uca.edu.sv</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 1, 2022.</p>
+<p><img alt="test" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

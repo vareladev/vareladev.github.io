@@ -1,0 +1,163 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Modelo Relacional y Normalizado</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="laboratorio-02"
+                  title="Modelo Relacional y Normalizado"
+                  environment="web"
+                  feedback-link="http://google.com">
+    
+      <google-codelab-step label="Modelo Relacional" duration="3">
+        <p>Tras ser postulado por Edgar Frank Codd en 1970, el modelo relacional se estableció rápidamente como un paradigma importante en los modelos de bases de datos, actualmente, el más utilizado en la gestión de datos dinámicos. La principal idea en la que se basa este modelo es el uso de <strong>relaciones</strong>. Consiste en el almacenamiento de datos en tablas compuestas por filas ( <strong>tuplas</strong>) y columnas ( <strong>campos o atributos</strong>). Es más sencillo de comprender para el usuario con poca experiencia y brinda algunas ventajas como:</p>
+<ul>
+<li>Evita la duplicidad de registros.</li>
+<li>Garantiza la integridad referencial.</li>
+<li>Facilita el proceso de normalización. Es importante resaltar que el modelo relacional puede obtenerse de la conversión del <strong>modelo entidad-relación</strong>, eso sí, si el mismo fue bien planteado desde el principio.Cambiando la notación y aplicando ciertas reglas, el proceso de conversión no debería representar mucha dificultad.</li>
+</ul>
+<p class="image-container"><img alt="test" src="img\\ed0d36bef68f0518.jpg"></p>
+<aside class="special"><p> De forma general, puede decirse que el modelo E-R es una técnica de diseño de bases de datos. Por su parte el modelo relacional es una formalización teórica de las bases de datos relacionales.  </p>
+</aside>
+<p>Los 3 aspectos más importantes al realizar la conversión:</p>
+<ul>
+<li>Atributos clave</li>
+<li>Cardinalidad</li>
+<li>Entidades fuertes y débiles</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conversión Entidad-Relación a Relacional" duration="3">
+        <p>Una vez abstraída la información en el modelo E-R, proceder a su conversión al modelo relacional puede pensarse en un modelo en la que toda la información, de entidades y relaciones, sea representada mediante <strong>tablas</strong>. Para esto, es necesario aplicar ciertas reglas de transformación.</p>
+<p><strong>Para este laboratorio nos auxiliaremos del diagrama entidad relación que es desarrollado en base a una Librería, que es un ejemplo del Laboratorio 1 y es el siguiente:</strong></p>
+<p class="image-container"><img alt="test" src="img\\dc3301cf2ae1f98e.png"></p>
+<p>Para el siguiente diagrama se desarrollará lo siguiente:</p>
+<ul>
+<li>Diagrama Modelo Relacional</li>
+<li>Diagrama Relacional Normalizado</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entidades Fuertes" duration="5">
+        <p>Las entidades fuertes son las que no dependen de ninguna otra para existir. Cada columna representará un atributo y cada <strong>tupla</strong> (fila) representará una entidad en particular.</p>
+<p class="image-container"><img alt="test" src="img\\67997545c7981e78.png"></p>
+<p>Los atributos se mantienen, incluyendo las claves primarias. Es recomendable renombrarlos para evitar ambigüedades con otras tablas que tengas atributos similares, precio (por ejemplo una tabla Profesor que también tienen nombre y teléfonos) aunque no es absolutamente necesario para estos casos. Las claves primarias van siempre al principio.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conversión 1:N" duration="8">
+        <p>Cuando se tiene una situación 1:N, la entidad del lado que tiene la <strong>N</strong> obtiene una copia de la <strong>clave primaria</strong> de la otra entidad como atributo de sí misma, como en el siguiente ejemplo.</p>
+<p class="image-container"><img alt="test" src="img\\708769c609da2107.png"></p>
+<p>Como puede apreciarse, el <strong>código del libro</strong> pasa también como campo de la tabla Ejemplar, a este campo se le conoce como <strong>llave o clave foránea</strong>. La relación desaparece visualmente, pero la cardinalidad se mantiene. Tiene sentido que esto ocurra, ya que un ejemplar, es una copia de un libro en específico.</p>
+<aside class="special"><p> Las claves foráneas representan una relación directa con alguna entidad específica en otra tabla. En este caso, puede saberse de qué libro es cierto ejemplar observando el código de libro (FK).  </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conversión N:N" duration="8">
+        <p>Para este caso, la relación se vuelve una tabla que tendrá su propia clave primaria y las claves primarias de las dos entidades involucradas, pero como claves foráneas. Además de estas, pueden agregarse atributos que se consideren necesarios. Para este caso se añadieron los campos de <strong>fecha de préstamo y de devolución</strong>, ya que aportan información importante.</p>
+<p class="image-container"><img alt="test" src="img\\cbc455eef63c0af9.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conversión 1:1" duration="8">
+        <p class="image-container"><img alt="test" src="img\\886889b927b367f8.png"></p>
+<p>Usualmente la más sencilla, aunque tiene algunos casos especiales <img alt="test" src="img\\3bfa0a88ffb81784.png"><img alt="test" src="img\\66be5d86e640a276.png"></p>
+<p>Aunque los últimos dos casos no son muy comunes, es importante conocerlos</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Normalización" duration="15">
+        <p>Se dice que una base de datos está normalizada si está libre deambigüedades e inconsistencias, es decir, permite tener un conjunto adecuado de relaciones.</p>
+<p>Si se ha diseñado correctamente el diagrama de la base desdeel principio, el proceso de normalización se facilita en gran medida. Este proceso se lleva a cabo aplicando una serie dereglas conocidas como <strong>formas normales</strong>.</p>
+<p class="image-container"><img alt="test" src="img\\3d1e1883e15805a1.png"></p>
+<aside class="special"><p> Se dice que una base de datos está en su &#34;N forma normal&#34; si todas sus tablas cumplen con las reglas de esa N forma normal  </p>
+</aside>
+<p><strong>Primera forma normal</strong></p>
+<p>La principal característica de esta forma se resume en que &#34;cada intersección de fila y columna contiene exactamente un valor del dominio aplicable (y nada más)&#34;. Es decir, no se permite almacenar <strong>grupos de valores</strong> para un solo registro. Usualmente esto ocurre cuando se han definido atributos multivaluados</p>
+<p class="image-container"><img alt="test" src="img\\32563c362530f9bb.png"></p>
+<p>Como puede observarse, de esta forma pueden almacenarse cualquier cantidad de teléfonos para un usuario, sin necesidad de guardarlo directamente como un grupo.</p>
+<p><strong>Segunda forma normal</strong></p>
+<p>Como requisito, las tablas deben cumplir con la primera forma normal. Esta forma dice que todos los atributos que no son parte de la llave primaria, deben depender de toda la llave primaria y no solo parte de ella.</p>
+<p>Visto de otra forma, si un atributo (no primario) está siendo redundante en los datos que almacena (se aplican a varios registros) probablemente está queriendo actuar de forma independiente y se deba formar una nueva tabla. Las tablas resultantes de esta forma suelen llamarse tablas <strong>catálogo.</strong></p>
+<p>Retomando el ejemplo para explicar esta situación:</p>
+<p class="image-container"><img alt="test" src="img\\9695819d3d087bb7.png"></p>
+<p>Como puede apreciarse en el ejemplo, si se necesita registrar más libros de la editorial Booket la tabla empezará a tener datos repetidos, al igual que con otras editoriales. Visto de otro modo, este campo puede actuar de forma independiente como una tabla.</p>
+<p>Separando la editorial como una tabla y relacionando esta nueva tabla con una clave foránea, se resuelve el problema de redundancia</p>
+<p class="image-container"><img alt="test" src="img\\4b02a0cb926dd00f.png"><img alt="test" src="img\\a9b3c10cacf0f599.png"></p>
+<p><strong>Tercera forma normal</strong></p>
+<p>Una tabla está en tercera forma normal si no existe ninguna dependencia transitiva entre los atributos que no son clave. Además debe cumplir también con la 2FN. Un ejemplo sencillo se da en el siguiente caso, donde se tiene una tabla de eventos y el lugar donde se realizará cada uno.</p>
+<p class="image-container"><img alt="test" src="img\\a0b08c764cd4e49e.png"></p>
+<p>La 3F falla debido a que la dirección de local depende directamente del local y éste último no es un atributo clave. Esto puede llevar a problemas de actualización donde nada impide tener diferentes direcciones para el mismo local. Esto se resuelve fácilmente creando una nueva tabla que contenga este registro dependiente.</p>
+<p class="image-container"><img alt="test" src="img\\d3a7d5be24d9c41c.png"></p>
+<p>La idea final de la 3FN es separar los grupos de datos que tengan dependencias transitivas a tablas separadas e identificar cada grupo con una llave, tal como se ha logrado en el ejemplo anterior.</p>
+<p class="image-container"><img alt="test" src="img\\97e20024955e2d06.png"></p>
+<aside class="special"><p> Prestar atención a la dirección de las relaciones obtenidas de la 1FN y 2FN. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio práctico" duration="0">
+        <p>Suponga que una importante compañía aérea le ha encargado el diseño de su base de datos. Realice el desarrollo de la solución tal como lo hicimos en el ejemplo (paso a paso). La descripción del escenario es el siguiente: Una importante compañía aérea necesita una base de datos para registrar la información de sus vuelos.</p>
+<p>Los vuelos están caracterizados por una fecha y los aeropuertos de origen y destino, de cada aeropuerto es importante almacenar el nombre y la ciudad y país donde está ubicado. Notar que cada vuelo tiene relación con dos aeropuertos, uno funciona como origen y el otro como destino.</p>
+<p>Cada vuelo es realizado por un avión. Los aviones tienen una matrícula que los identifica, el fabricante, un modelo e información sobre su capacidad (número máximo de pasajeros).</p>
+<p>Los pasajeros para poder realizar una reserva, deben registrar su nombre, pasaporte, la fecha de nacimiento, un correo electrónico y el país de origen (nacionalidad). Registrados estos datos, la reserva se podrá registrar, en cada reserva se almacena el precio del servicio, la fecha en que fue realizada la transacción y el tipo de reserva (económica, ejecutiva, primera clase.</p>
+<p>Opcionalmente, un cliente puede incluir servicios extra en cada reserva, como, por ejemplo: wifi satelital, seguros, maletas extra, transporte de mascotas, entre otros. De cada servicio extra, interesa almacenar el nombre del servicio y su precio.</p>
+<p><strong>Solución Ejercicio Practico</strong></p>
+<p class="image-container"><img alt="test" src="img\\b31ef025f5810503.jpeg"></p>
+<p><strong>Tarea de Laboratorio 2</strong></p>
+<p>Tomando como base la <strong>solución</strong> del diagrama E-R obtenido del ejercicio realizado de la primera guía (compañía aérea), realizar su conversión:</p>
+<ul>
+<li>Diagrama Modelo Relacional</li>
+<li>Diagrama Relacional Normalizado (aplicar las 3 formas normales)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sobre los autores de esta guía práctica" duration="0">
+        <p>Autores:<br><strong>Versión 1:</strong> Emerson Gamaliel Nolasco (00215316@uca.edu.sv), Kevin Enmanuel Velásquez (00018616@uca.edu.sv)<br><strong>Versión 2:</strong> Fátima Adriana Renderos (00064018@uca.edu.sv)<br><strong>Versión 3:</strong> Brian Darwin Carranza Campos (00136020@uca.edu.sv), Fátima Adriana Renderos (00064018@uca.edu.sv)<br><strong>Responsables:</strong> Erick Varela Guzmán (evarela@uca.edu.sv), Douglas Hernández Torres (dohernandez@uca.edu.sv), Correspondencia: evarela@uca.edu.sv</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 3, 2022.</p>
+<p><img alt="test" src="img\\3ce5f87b634ef405.jpeg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

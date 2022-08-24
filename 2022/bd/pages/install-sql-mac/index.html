@@ -1,0 +1,110 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Instalando SQL Server en Mac OS con Docker</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="install-sql-mac"
+                  title="Instalando SQL Server en Mac OS con Docker"
+                  environment="web"
+                  feedback-link="https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues">
+    
+      <google-codelab-step label="Instalador (Docker)" duration="0">
+        <p>Ir a a la página oficial de Docker: <a href="https://docs.docker.com/desktop/mac/install/" target="_blank">Página oficial de Docker</a></p>
+<p>Seleccionar y descargar el instalador compatible con el tipo de procesador que el dispositivo tenga. Puedes verificar el tipo de procesador en la opción &#34;acerca de esta MAC&#34;.</p>
+<p class="image-container"><img alt="test" src="img\\e9387e8d40b58f5b.png"></p>
+<p>Instalar Docker, puedes verificar las instrucciones de instalación en el mismo sitio web. La instalación requerirá que verifiques tu usuario y contraseña.</p>
+<p class="image-container"><img alt="test" src="img\\403d996aa69bfdf6.png"></p>
+<p>Al finalizar la instalación, abrir Docker. La primera vez, se solicitarán permisos para ejecutar la aplicación</p>
+<p class="image-container"><img alt="test" src="img\\4a2bbccefd152786.png"></p>
+<p>El entorno inicial de Docker debería verse así</p>
+<p class="image-container"><img alt="test" src="img\\e4d552358fac938c.png"></p>
+<p>Ahora, es necesario dirigirse a la página web hubdocker desde el siguiente enlace: <a href="https://hub.docker.com/" target="_blank">Link hubdocker</a>, en esta página se encuentra la colección de contenedores del servicio Docker en su última versión.</p>
+<p class="image-container"><img alt="test" src="img\\2ac38ff24b0a53bb.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Microsoft SQL Server" duration="0">
+        <p>En el buscador de hubdocker colocar: &#34;Microsoft SQL Server&#34;Copiar la cadena de descarga que aparece en la derecha.</p>
+<pre><code language="language-javascript" class="language-javascript"> docker pull mcr.microsoft.com/mssql/server 
+</code></pre>
+<p class="image-container"><img alt="test" src="img\\393e99368ebf8c10.png"></p>
+<p>Abrir una terminal del sistema operativo y pegar la cadena que se copió en el paso anterior, ejecutar y esperar a que la descarga del contenedor finalice <img alt="test" src="img\\43dc9514f9432ab4.png"></p>
+<p class="image-container"><img alt="test" src="img\\886d0e5bbbcd9414.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Verificar instalación" duration="0">
+        <p>Para verificar la instalación ir al gestor de Docker, y en la pestaña &#34;images&#34; debe mostrarse en la lista un elemento</p>
+<p class="image-container"><img alt="test" src="img\\45f992f3c8d84fd.png"></p>
+<p>Regresar a la terminal en donde se deberá ejecutar la siguiente cadena de código:</p>
+<pre><code language="language-javascript" class="language-javascript"> docker run -e &#34;ACCEPT_EULA=Y&#34; -e &#34;SA_PASSWORD=ESCRIBIR_TU_CONTRASEÑA&#34; -p 1433:1433 --name sqlserver_uca -d ID_DE_CONTENEDOR 
+</code></pre>
+<aside class="special"><p><strong>Importante:</strong></p>
+<p>En la opción &#34;SA_PASSWORD&#34;, cambiar el valor por tu propia contraseña, por reglas de SQL Server, la contraseña debe contener al menos 8 caracteres, por lo que se sugiere que guardes la contraseña en caso de que sea olvidada</p>
+<p>En la opción &#34;-d&#34;, ir al gestor de docker y copiar el id del contenedor del SQL Server</p>
+</aside>
+<p class="image-container"><img alt="test" src="img\\d6dbc467966bce18.png"></p>
+<p class="image-container"><img alt="test" src="img\\f83cf444d24bafb4.png"></p>
+<p>Al ejecutar la cadena, el resultado debería ser como el siguiente</p>
+<p class="image-container"><img alt="test" src="img\\5a826636cf5ae84a.png"></p>
+<p>Para verificar el resultado exitoso de la operación anterior, ir al gestor Docker, luego en la pestaña &#34;containers apps&#34; verificar que existe un elemento llamado &#34;slqserver_uca&#34; con el estado &#34;running&#34;</p>
+<p class="image-container"><img alt="test" src="img\\52d9819c787f37f1.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Descargar Azure Data Studio" duration="0">
+        <p>Ahora se debe descargar el cliente que vamos a utilizar para acceder a SQL Server, para ello, ir al sitio web: <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Download and install Azure Data Studio</a></p>
+<p class="image-container"><img alt="test" src="img\\12cdcda13edfeb96.png"></p>
+<p>Descomprimir el archivo zip y ejecutar Azure Data Studio</p>
+<p class="image-container"><img alt="test" src="img\\47762268594459c9.png"></p>
+<p>En Azure Data Studio, ir a la opción &#34;Connections&#34;</p>
+<p class="image-container"><img alt="test" src="img\\1da8dfb8789da531.png"></p>
+<p>En la ventana emergente, definir la información para poder conectarse al motor de SQL Server</p>
+<p class="image-container"><img alt="test" src="img\\43f24cb39d5c3dff.png"></p>
+<p>Para confirmar que nos hemos conectado exitosamente al motor de SQL Server, podemos ir al directorio &#34;database&#34;, luego &#34;system database&#34;, y verificar que existan las siguientes 4 bases de datos por defecto.</p>
+<p class="image-container"><img alt="test" src="img\\b9f2b97495b0f7ae.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Autores" duration="0">
+        <p>Autores:<br><strong>Versión 1:</strong> Brian Darwin Carranza Campos (00136020@uca.edu.sv), Douglas Hernández Torres (dohernandez@uca.edu.sv)<br><strong>Responsables:</strong> Erick Varela Guzmán (evarela@uca.edu.sv), Douglas Hernández Torres (dohernandez@uca.edu.sv), Correspondencia: evarela@uca.edu.sv</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 1, 2022.</p>
+<p><img alt="test" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

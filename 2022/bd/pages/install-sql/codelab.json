@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-13T08:50:36-06:00",
+  "id": "install-sql",
+  "duration": 0,
+  "title": "Instalación de SQL",
+  "summary": "Guia de instalacion de Sql Server",
+  "source": "InstallSQL.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "instalacion"
+  ],
+  "tags": [
+    "guide",
+    "install",
+    "web"
+  ],
+  "feedback": "https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues",
+  "url": "install-sql"
+}

@@ -1,0 +1,27 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-05-16T15:53:09-06:00",
+  "id": "laboratorio-03",
+  "duration": 30,
+  "title": "Definición de SQL, DDL y DML",
+  "summary": "Definición de SQL, DDL y DML",
+  "source": "Laboratorio03.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "sql",
+    "ddl",
+    "dml"
+  ],
+  "tags": [
+    "guide",
+    "web"
+  ],
+  "feedback": "https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues",
+  "url": "laboratorio-03"
+}

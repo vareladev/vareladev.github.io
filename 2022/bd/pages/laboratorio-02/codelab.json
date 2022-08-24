@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-20T16:06:49-06:00",
+  "id": "laboratorio-02",
+  "duration": 50,
+  "title": "Modelo Relacional y Normalizado",
+  "summary": "Modelo Relacional y Normalizado",
+  "source": "Laboratorio02.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "relacional",
+    "normalizado"
+  ],
+  "tags": [
+    "guide",
+    "web"
+  ],
+  "feedback": "http://google.com",
+  "url": "laboratorio-02"
+}

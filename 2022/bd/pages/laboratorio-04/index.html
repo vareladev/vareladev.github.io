@@ -1,0 +1,144 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Consultas simples con SELECT y Joins</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="laboratorio-04"
+                  title="Consultas simples con SELECT y Joins"
+                  environment="web"
+                  feedback-link="https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues">
+    
+      <google-codelab-step label="Consultas SQL (SELECT)" duration="0">
+        <p> La sentencia SELECT es una sentencia DML (Lenguaje de Manipulación de Datos) utilizada para seleccionar datos de una base de datos, es también conocida como consulta de selección.  </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Estructura del SELECT" duration="0">
+        <p> La sintaxis básica de una consulta de selección es la siguiente:  </p>
+<pre><code>SELECT [CAMPOS] FROM [TABLA] [WHERE[CONDICION]];
+</code></pre>
+<p> En donde [CAMPOS] son los atributos o columnas que se desean extraer de la [TABLA] que se especifique y [WHERE] es opcional, esta condición será utilizada más adelante.  Consideremos la siguiente base de datos:  <img alt="test" src="img\\5ce59f3730d80950.jpg">  Si se quiere extraer solamente el nombre y apellido de la tabla USUARIO se hace de la siguiente manera:  </p>
+<pre><code>SELECT nombre, apellido FROM usuario;
+</code></pre>
+<p> Dando como resultado:  <img alt="test" src="img\\e189c83aac90b541.jpg">  Si se desea extraer todos los campos de una tabla se utiliza * de la siguiente manera:  </p>
+<pre><code>SELECT * FROM usuario;
+</code></pre>
+<p> Esta instrucción devolverá todos los registros y todos los campos que la tabla posea.  </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ALIAS (AS)" duration="0">
+        <p> En muchos casos es necesario asignar un nombre a alguna columna o tabla, cuando se le asigna un alias a una columna el nombre de la columna cambia en el resultado, mientras que cuando se usa el alias en la tabla este sirve para identificar campos que tengan el mismo nombre en distintas tablas. Por ejemplo se desea extraer todos los nombres de la tabla AUTOR y todos los nombres de la tabla USUARIO, pero que al mostrarse se llamen Nombres de Autores y Nombres de Usuarios; <em>¿Qué problema habría si se quita el alias a las tablas?  </em></p>
+<pre><code>SELECT u.nombre as &#34;Nombre usuario&#34;, a.nombre as &#34;Nombre autor&#34; FROM usuario as u, autor as a;
+</code></pre>
+<p><em>¿Por qué el resultado de esta consulta está lleno de duplicidad?  </em></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cláusula condicional WHERE" duration="0">
+        <p> Esta cláusula devuelve un subconjunto de los registros de una tabla que cumplan con dicha condición.  </p>
+<pre><code>SELECT * FROM LIBRO WHERE npaginas = 300;
+</code></pre>
+<p> Esta consulta devuelve los registros de la tabla LIBRO que cumplan la condición de tener 300 páginas.  Otros operadores que se pueden usar en la cláusula WHERE:  <img alt="test" src="img\\343fa26958ef6517.jpg">  Además de estos operadores lógicos se disponen otros adicionales:  </p>
+<h2 is-upgraded>BETWEEN </h2>
+<p> Indica un intervalo de valores:  </p>
+<pre><code>SELECT * FROM LIBRO WHERE npaginas BETWEEN 1 AND 500;
+</code></pre>
+<p> Esta instrucción devuelve los registros de la tabla LIBRO que tengan entre 1 a 500 páginas.  </p>
+<h2 is-upgraded>LIKE </h2>
+<p>Sirve para comparar patrones de texto:  </p>
+<pre><code>SELECT * FROM autor WHERE nombre LIKE &#39;1%&#39;;
+</code></pre>
+<p> Devuelve todos los autores cuyo nombre comience con &#34;L&#34;.  <a href="https://www.w3schools.com/sql/sql_wildcards.asp" target="_blank">Lista de patrones de texto</a>  </p>
+<h2 is-upgraded>IN </h2>
+<p> Sirve para comparar con una lista de valores fijos:  </p>
+<pre><code>SELECT num, calle, direccion
+FROM direccion
+WHERE ciudad IN (&#39;Sevilla&#39;, &#39;Córdoba&#39;, &#39;Huelva&#39;, &#39;Cádiz&#39;)
+</code></pre>
+<h2 is-upgraded>IS NULL/ IS NOT NULL </h2>
+<p> Devuelve los registros que sean o no sean nulos. Este operador lógico se verá más adelante cuando se trabajen los JOINS.  </p>
+<h2 is-upgraded>Operadores lógicos </h2>
+<p> Sirven para componer expresiones y filtrar aún más los registros de una tabla.  <img alt="test" src="img\\98ab5db74299fa0e.jpg">  </p>
+<pre><code>SELECT * FROM Libro WHERE npaginas &gt; 550 AND titulo LIKE &#39;a%&#39;;
+</code></pre>
+<p> Esta consulta devuelve los registros de la tabla libro que tengan más de 550 páginas y el título comience con la letra a.  </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Consultas entre tablas JOIN" duration="0">
+        <p> Se pueden generar consultas en las cuales es necesario obtener datos de varias tablas relacionadas entre sí. La forma básica de hacerlo es utilizando la cláusula condicional WHERE también conocido como INNER JOIN implícito:   </p>
+<pre><code>SELECT l.titulo FROM libro as l, ejemplar as e
+WHERE l.codigo = e.codigo_libro;
+</code></pre>
+<p>  A continuación se verán los principales tipos de JOINS. Imágenes cortesía de Steve Stedman.  </p>
+<h2 is-upgraded>INNER JOIN </h2>
+<p><img alt="test" src="img\\d2befe18451ea111.jpg">   Esta consulta obtiene lo mismo que el JOIN implícito  </p>
+<h2 is-upgraded>LEFT JOIN </h2>
+<p><img alt="test" src="img\\a47f26ec518477fb.jpg">  El resultado de esta consulta contiene todos los registros de la relación izquierda (primera tabla indicada) y aquellos de la tabla derecha que cumplen la condición, para los demás aparecerá en los campos correspondientes un NULL.  </p>
+<h2 is-upgraded>RIGHT JOIN </h2>
+<p><img alt="test" src="img\\881fcbe2db97a4f8.jpg">  Es análogo al LEFT JOIN, pero devolviendo todos los registros de la relación derecha (segunda tabla que aparece), y únicamente aquellos de la tabla izquierda que cumplen la condición del JOIN. Y aquellos sin equivalente en la parte izquierda tendrán en los campos correspondientes a dicha tabla un NULL.  </p>
+<h2 is-upgraded>TWO INNER JOINS </h2>
+<p class="image-container"><img alt="test" src="img\\9333225c2ec51b3e.jpg">  </p>
+<h2 is-upgraded>EJEMPLOS </h2>
+<p><strong>Ejemplo 1:</strong> Mostrar los libros que no han sido prestados en los últimos 6 meses.  </p>
+<pre><code>SELECT l.titulo,p.fecha_prestamo FROM libro as l 
+INNER JOIN Ejemplar as e ON l.codigo = e.codigo_libro 
+INNER JOIN Prestamo as p ON e.codigo = p.codigo_ejemplar
+WHERE fecha_prestamo NOT BETWEEN CAST(&#39;2018-12-12&#39; AS DATE) AND CAST(&#39;2019-05-05&#39; AS DATE);
+</code></pre>
+<p><strong>Ejemplo 2:</strong> Mostrar que libros ha prestado el usuario Sara.  </p>
+<pre><code>SELECT u.nombre AS Usuario, L.titulo AS Libro FROM Usuario as U INNER JOIN Prestamo P
+ON U.codigo = P.codigo_usuario INNER JOIN Ejemplar E
+ON E.codigo = P.codigo_ejemplar INNER JOIN Libro as L
+ON L.codigo = E.codigo_libro WHERE U.nombre=&#39;Daniel&#39;;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="EJERCICIOS" duration="0">
+        <p><img alt="test" src="img\\1e16a54c89e72672.png">     <strong>Ejercicio 1.</strong>  Los clientes VIP tienen acceso a una serie de servicios adicionales en los distintos aeropuertos que visitan, por lo que se solicita que defina la lista de clientes VIP.  El criterio de evaluación consiste en verificar que el promedio de las reservas realizadas por un cliente sea mayor a 1799.00.  En la evaluación se debe tener en cuenta todos los servicios extra que incluyan los clientes en las reservas.  <strong>Restricción :</strong> El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).  <strong>Resultado esperado:  </strong><img alt="test" src="img\\67a52c7da3997219.jpg">    <strong>Ejercicio 2.</strong>  Cada reserva tiene una fecha en la que fue realizada, una solicitud del departamento de finanzas del consorcio requiere la ganancia del mes de abril de 2021, pero los datos deben estar organizados por días. Como parte de la solicitud, se requiere que la fecha sea mostrada en un formato especial (ver imagen de vista esperada).  Para calcular el valor de una reserva se debe tomar en cuenta tanto el precio de la reserva como la suma de todos los servicios extras incluidos.  <strong>Restricción :</strong> El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).  <strong>Sugerencia :</strong> Investigar sobre la instrucción CONVERT y su utilización en la instrucción SELECT.  <strong>Sección del resultado esperado (El resultado contiene más filas)  </strong><img alt="test" src="img\\6e9ffc6bcd5c9b26.jpg">     <strong>Ejercicio 3.</strong>  La legislación internacional exige incluir un impuesto que depende de la clase seleccionada para cada reserva, la distribución actual impone los siguientes porcentajes:  <img alt="test" src="img\\1d90be3992658628.jpg">  Por lo que se requiere mostrar las reservas realizadas, pero incluyendo el precio de cada reserva más el impuesto aplicado según la clase. Se deben mostrar los siguientes campos: el id de la reserva, la fecha, el id de la clase, el nombre de la clase, el total de la reserva sin impuesto aplicado y el total con el impuesto aplicado. Debe recordar que el total de la reserva se define a partir del precio de la reserva más la suma de todos los servicios extras incluidos.  <strong>Restricciones :</strong> El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).  <strong>Sugerencia :</strong> Investigar sobre la instrucción CASE y su utilización en la instrucción SELECT.  <strong>Nota :</strong> El total de cada reserva se calcula de la siguiente forma: costo de la reserva + (suma de todos los servicios extra contratados). Tener en cuenta que no todas las reservas incluyen servicios extras.   <strong>Sección del resultado esperado (el resultado contiene más filas):  </strong><img alt="test" src="img\\4147c0c633107700.jpg">   </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sobre los autores de esta guía práctica" duration="0">
+        <p> Autores:    <strong>Versión 1:</strong>      Emerson Gamaliel Nolasco (00215316@uca.edu.sv), Kevin Enmanuel Velásquez (00018616@uca.edu.sv)      <strong>Versión 2:</strong>      Fátima Adriana Renderos (00064018@uca.edu.sv)        <strong>Versión 3:</strong>      Karla Marielos Aguilar (00078913@uca.edu.sv), Alejandra Mabel Marroquín (00007415@uca.edu.sv)        <strong>Responsables:</strong>  Erick Varela Guzmán (evarela@uca.edu.sv), Douglas Hernández Torres (dohernandez@uca.edu.sv), Correspondencia: evarela@uca.edu.sv  Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.  Versión de este documento: Versión 3, 2022.  <img alt="test" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

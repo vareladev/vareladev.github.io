@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-06-20T16:42:58-06:00",
+  "id": "laboratorio-05",
+  "duration": 16,
+  "title": "Procedimientos Almacenados y Funciones",
+  "summary": "Procedimientos almacenados y Funciones",
+  "source": "..\\markdowns\\Laboratorio05.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "procedimientosalmacenadosyfunciones"
+  ],
+  "tags": [
+    "guide",
+    "web"
+  ],
+  "feedback": "https://github.com/01-2022-Bases-de-datos-UCA/Codelabs/issues",
+  "url": "laboratorio-05"
+}
