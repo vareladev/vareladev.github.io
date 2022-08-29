@@ -1,0 +1,229 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Introducción a Oracle</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="laboratorio-01"
+                  title="Introducción a Oracle"
+                  environment="web"
+                  feedback-link="https://github.com/vareladev/vareladev.github.io/issues">
+    
+      <google-codelab-step label="Objetivos" duration="0">
+        <ul>
+<li>Conocer las herramientas para la administración de base de datos (Oracle SQL Developer y SQL Plus).</li>
+<li>Crear de manera correcta una base de datos en ambos clientes SQL Developer y SQL Plus.</li>
+<li>Verificar y gestionar los servicios de Oracle.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Herramientas" duration="0">
+        <p>Para esta práctica se utilizarán las siguientes herramientas:</p>
+<h2 is-upgraded>Oracle DB 19C</h2>
+<p><img alt="image" title="Oracle version" class="img-aside" src="img\\15acb62807df37ae.png"> Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle Corporation. <strong>Oracle Database 19c</strong> es la versión actual a largo plazo, que además proporciona el nivel más alto de estabilidad de la versión y el plazo más largo para asistencia y corrección de errores.</p>
+<h2 is-upgraded>SQL Developer</h2>
+<p><img alt="image" title="SQL icon" class="icon-aside" src="img\\cfc75cbeeb55ec4b.png"> Es una interfaz gráfica de usuario gratuita que permite a los usuarios y administradores de bases de datos realizar sus tareas con menos clicks y pulsaciones de teclas. SQL Developer es una herramienta de productividad cuyo objetivo principal es ayudar al usuario final a   ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+<h2 is-upgraded>SQL Plus</h2>
+<p><img alt="image" title="SQL icon" class="icon-aside" src="img\\462f49df761300e0.png"> Es un programa de línea de comandos de Oracle que puede ejecutar comandos SQL y PL/SQL de forma interactiva o mediante un script. SQL*Plus opera como una herramienta relativamente simple con una interfaz de líneas de comando básica. Los programadores y los administradores de bases de datos (DBA&#39;s) lo usan de forma muy común como interfaz fundamental en la mayoría de las instalaciones de software de Oracle.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p>En esta guía se pretende dar una introducción a lo que es el mundo de Oracle y más específicamente lo que se refiere a sus clientes para la administración de la base de datos (SQL Developer y Plus). Dando un repaso sobre las características y ventajas que estos clientes poseen y además explicando paso a paso la gestión de los servicios de Oracle, así como también la creación de nuevas conexiones (bases de datos).</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Servicios" duration="0">
+        <p>Un servicio es un pequeño programa que normalmente se inicia cuando se carga el sistema operativo Windows. Los usuarios no interactúan directamente con los servicios como lo hacen con los programas regulares porque se ejecutan en segundo plano (no se ven) y no proporcionan una interfaz de usuario normal.</p>
+<p>Windows puede usar los servicios para controlar muchas cosas, como imprimir, compartir archivos, comunicarse con dispositivos Bluetooth, buscar actualizaciones de software, alojar un sitio web; en este caso se encargan de gestionar ciertos parámetros de Oracle DB.</p>
+<p class="image-container"><img alt="image" title="Services screenshot" src="img\\55f34430bf2ecd54.png"></p>
+<p>En la ventana verás el nombre de cada uno, una breve descripción de las funciones que realiza, su estado y el tipo de inicio. El tipo de inicio indica el comportamiento del servicio cuando arranca el sistema operativo. Existen cinco tipos:</p>
+<ul>
+<li>Automático, que se inicia con cada arranque del sistema.</li>
+<li>Automático (inicio retrasado), espera a que el sistema operativo se haya cargado y se inicia automáticamente.</li>
+<li>Manual, se inicia cuando una aplicación lo necesita.</li>
+<li>Manual (desencadenar inicio). El servicio sólo se iniciará si no hay demasiados servicios en ejecución.</li>
+<li>Deshabilitado, el servicio no se puede iniciar.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Características y Ventajas de los Clientes" duration="0">
+        <p>Ambos clientes nos brindan características propias interesantes y además ventajas entre los mencionados anteriormente en los cuales cabe destacar los puntos que se muestran continuación:</p>
+<h2 is-upgraded>SQL Developer</h2>
+<ul>
+<li>Crear conexiones.</li>
+<li>Creación y mantenimiento de objetos.</li>
+<li>Ejecutar, editar y depurar PL/SQL.</li>
+<li>Ejecutar y crear informes.</li>
+<li>Visor de Data Modeler.</li>
+</ul>
+<h2 is-upgraded>SQL Plus</h2>
+<ul>
+<li>Escribir, editar y ejecutar comandos SQL y bloques PL/SQL.</li>
+<li>Dar formato a los resultados de las consultas.</li>
+<li>Visualizar las estructuras de las tablas y copiar datos entre bases de datos.</li>
+<li>Ejecutar comandos y operaciones de entrada/salida (introducción, presentación y manipulación de variables).</li>
+</ul>
+<h2 is-upgraded>Ventajas</h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>SQL Developer</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>SQL Plus</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Cuenta con interfaz gráfica (GUI)</p>
+</td><td colspan="1" rowspan="1"><p>Cuando queremos usar SHELL para acceder a la base de datos en la plataforma UNIX (como hacer algunas operaciones en segundo plano, tareas de tiempo, etc.), SQLPLUS es la única opción en este momento.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Brinda diversas herramientas para la creación de diagramas</p>
+</td><td colspan="1" rowspan="1"><p>SQL Plus es una herramienta que viene con Oracle, siempre que la base de datos esté instalada. Por lo tanto, si se llegara a presentar inconvenientes al momento de iniciar sesión con el SQL Developer, al ser independientes entre sí, se podría ingresar del SQL Plus sin ningún problema</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Permite trabajar con múltiples conexiones simultáneamente</p>
+</td><td colspan="1" rowspan="1"><p>---------</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conexión a SQL Developer" duration="0">
+        <p>En Oracle una <strong>nueva conexión</strong> es equivalente a una base de datos para otros gestores ya conocidos, en este caso para crear una nueva conexión basta con darle click en el botón como la figura 1 lo indica. Otra forma es dar click derecho donde dice &#34;Oracle Conexiones&#34; y luego a &#34;Nueva Conexión a bases de datos&#34;</p>
+<p class="image-container"><img alt="image" title="GUI Screenshot" src="img\\cf8f7754615ee665.png"></p>
+<p>Al crear la conexión se nos desplegara una ventana en el cual se nos muestra unos campos vacíos los cuales serán configurados de la siguiente manera:</p>
+<p class="image-container"><img alt="image" title="GUI Screenshot" src="img\\2367dbaaf3e6b947.png"></p>
+<ol type="1">
+<li>Asignación del nombre de la nueva base de datos.</li>
+<li>Usuario de administración de la nueva base de datos.</li>
+<li>Contraseña del usuario.</li>
+<li>Rol asignado al usuario de la base de datos.</li>
+<li>Nombre del host, al ser una conexión local se coloca &#34;localhost&#34;.</li>
+<li>Nombre de la instancia donde se ejecutará la nueva base de datos.</li>
+<li>Prueba la conexión a la nueva base de datos.</li>
+<li>Muestra el estado de conexión.</li>
+<li>Valida y crea la conexión previamente configurada.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio" duration="0">
+        <p>Crear una base de datos a partir de un archivo proporcionado</p>
+<ol type="1">
+<li>Asignarle una conexión al archivo .sql.</li>
+</ol>
+<p class="image-container"><img alt="image" title="GUI Screenshot" src="img\\b5e0392d18ca2c7d.png"></p>
+<ol type="1" start="2">
+<li>Seleccionar la base de datos.</li>
+</ol>
+<p class="image-container"><img alt="image" title="GUI Screenshot" src="img\\a47d83edd8c2fbe6.png"></p>
+<ol type="1" start="3">
+<li>Se seleccionan las sentencias sql a ejecutar para crear la base de datos.</li>
+</ol>
+<p class="image-container"><img alt="image" title="GUI Screenshot" src="img\\fb8560063805fddd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conexión a SQL Plus" duration="0">
+        <p>Al abrir la consola de SQL Plus o cualquier otro tipo de consola de nuestro sistema operativo Windows, basta con ingresar el nombre del usuario con acceso a la base de datos y el rol al mismo tiempo. Como, por ejemplo: &#34;sys as sysdba&#34; (Ver imagen).</p>
+<p class="image-container"><img alt="image" title="Console screenshot" src="img\\ce866fe090a5372b.png"></p>
+<p>Luego de haber ingresado con el usuario respectivo de manera correcta, se puede ejecutar cualquier sentencia sql, en este caso para el ejemplo: &#34;SELECT * FROM FACTURADETALLE&#34;.</p>
+<p class="image-container"><img alt="image" title="Console screenshot" src="img\\7c53decb98aebaad.png"></p>
+<aside class="special"><p><strong>Nota:</strong> Siempre que se modifique la base de datos y estamos seguros de los cambios que se han realizado, es recomendable confirmar la transacción a través de un <strong>commit</strong>, Oracle gestiona muchas actividades en memoria, confirmar la transacción permite guardar los cambios en disco. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de diagrama de una base de datos" duration="0">
+        <p>Para generar un diagrama en SQL Developer hay que seguir la siguiente ruta de acceso Archivo &gt; Data Modeler &gt; Importar &gt; Diccionario de Datos, el cual se verá reflejado de la siguiente manera:</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\9e8587b50a1551cd.png"></p>
+<p>Se selecciona la base de datos con la cual se está trabajando y se da click en siguiente</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\d4543bc75dbc4d73.png"></p>
+<p>En este paso se utiliza el filtro y se coloca &#34;sys&#34;, luego realizamos la búsqueda y marcamos la casilla con la opción &#34;SYS&#34; y se da click en siguiente.</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\f21721780402ddf9.png"></p>
+<p>En esta ventana se seleccionan todas las tablas que se desean incluir en el diagrama y luego se da en la opción de siguiente.</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\b48e221c0e8bd418.png"></p>
+<p>Aquí se muestra la cantidad de tablas seleccionadas previamente, solo se da click en siguiente para que ver el diagrama generado.</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\b88bda48f7b0bdc7.png"></p>
+<p>Ya teniendo el diagrama creado, procedemos a dar click derecho en el espacio en blanco y seleccionamos la opción de &#34;Imprimir Diagrama&#34; y luego escoges el tipo de archivo que queremos, en nuestro caso será tipo imagen.</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\30150788a3b90ae7.png"></p>
+<p>Y por último proceden agregan un nombre y lo guardan en su lugar de preferencia.</p>
+<p class="image-container"><img alt="image" title="GUI screenshot" src="img\\95bfcf2e13727dba.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejemplos" duration="0">
+        <h2 is-upgraded>Ejercicio 1</h2>
+<p>Mostrar la lista de libros disponibles y ordenados de manera alfabética</p>
+<h2 is-upgraded>Ejercicio 2</h2>
+<p>Mostrar la lista de libros que no tengan asignado ningún autor.</p>
+<h2 is-upgraded>Diagrama relacional para los ejemplos</h2>
+<p class="image-container"><img alt="image" title="Diagram" src="img\\8aad30b8d2cfeb1c.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actividad evaluada" duration="0">
+        <p>Realizar los ejercicios que sean asignados por su instructor, las indicaciones sobre esta actividad se van a definir en las sesiones de laboratorio.</p>
+<h2 is-upgraded>Ejercicio 1</h2>
+<p>Mostrar el top 5 de los autores más populares en la primera quincena de enero de 2018. (NOTA: la popularidad de un libro se define en cuantas veces se ha vendido). Vista esperada (vista completa):</p>
+<p class="image-container"><img alt="image" title="Result" src="img\\d1ae12ed41369f81.png"></p>
+<h2 is-upgraded>Ejercicio 2</h2>
+<p>Mostrar el detalle de cada factura, incluir el nombre del cliente, el título de libro, el precio y la cantidad comprada. Vista esperada (vista parcial).</p>
+<p class="image-container"><img alt="image" title="Result" src="img\\94f492ae4f5fc11c.png"></p>
+<h2 is-upgraded>Ejercicio 3</h2>
+<p>Mostrar la lista de facturas con el precio total resultante de realizar el siguiente cálculo. Vista esperada (vista parcial).</p>
+<p class="image-container"><img alt="image" title="Result" src="img\\a35e2e4776830869.png"></p>
+<h2 is-upgraded>Ejercicio 4</h2>
+<p>Definir la lista de clientes frecuentes del mes. Para ello, es necesario definir la cantidad de libros que cada cliente ha comprado, un cliente se considera frecuente si ha comprado 10 o más libros. Vista esperada (vista completa):</p>
+<p class="image-container"><img alt="image" title="Result" src="img\\6f47a7a425525b75.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sobre los autores de esta guía de laboratorio." duration="0">
+        <p><strong>Autores</strong></p>
+<p><strong>Versión 1:</strong> Ismael Chicas Garcia (00036818@uca.edu.sv), Oscar Rivas Borjas (00005218@uca.edu.sv), Erick Varela Guzmán (evarela@uca.edu.sv).</p>
+<p><strong>Versión 2:</strong> Josué Cortez (00402918@uca.edu.sv)</p>
+<p><strong>Correspondencia:</strong> Erick Varela Guzmán (evarela@uca.edu.sv)</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 2, Agosto 2022.</p>
+<p><img alt="License" title="License" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

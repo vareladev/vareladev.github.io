@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-08-28T20:43:19-06:00",
+  "id": "laboratorio-01",
+  "duration": 0,
+  "title": "Introducción a Oracle",
+  "summary": "Introducción a Oracle",
+  "source": ".\\2022\\adb\\markdowns\\Laboratorio01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "introducciónaoracle"
+  ],
+  "tags": [
+    "guide",
+    "web"
+  ],
+  "feedback": "https://github.com/vareladev/vareladev.github.io/issues",
+  "url": "laboratorio-01"
+}
