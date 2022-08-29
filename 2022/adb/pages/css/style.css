@@ -1,0 +1,34 @@
+.img-aside {
+    float: left;
+    margin: 0.15rem;
+    width: 10rem;
+    height: 4rem;
+}
+
+.icon-aside {
+    float: left;
+    margin: 0.15rem;
+    width: 5rem;
+    height: 6rem;
+}
+
+p {
+    text-align: justify;
+}
+
+table {
+    margin: 1rem;
+}
+
+tbody {
+    width: 100%;
+}
+
+td {
+    width: 50%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
