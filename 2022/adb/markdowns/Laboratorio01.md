@@ -109,7 +109,8 @@ Al crear la conexión se nos desplegara una ventana en el cual se nos muestra un
 9. Valida y crea la conexión previamente configurada.
 
 ## Ejercicio
-Crear una base de datos a partir de un archivo proporcionado
+Crear una base de datos a partir del banco de datos proporcionado
+[Script del banco de datos](../files/laboratorio01/banco_datos.sql)
 
 1. Asignarle una conexión al archivo .sql.
 
