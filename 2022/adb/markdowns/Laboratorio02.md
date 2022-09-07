@@ -241,7 +241,7 @@ Sintaxis:
     END;
 ```
 
-### Actividad práctica.
+## Actividad práctica.
 
 ### Ejercicio 1.
 
@@ -291,14 +291,12 @@ La siguiente figura muestra el resultado al ejecutar el procedimiento almacenado
 
 <aside class="positive">
 <b>Nota:</b>
-<ol>
-<li>
-Si se desea verificar el formato del resultado de una forma más amigable, es
-</li>
-<li>
+<p>
+Si se desea verificar el formato del resultado de una forma más amigable, es <br>
 posible utilizar herramientas online como:
-</li>
-<A HREF="https://jsonformatter.curiousconcept.com/">https://jsonformatter.curiousconcept.com/</A>
+</p>
+
+<a href="https://jsonformatter.curiousconcept.com/">https://jsonformatter.curiousconcept.com/</a>
 </aside>
 
 ![image](./img/laboratorio02/Picture9.png "Solution Ej3.1")
@@ -309,11 +307,14 @@ posible utilizar herramientas online como:
 
 ## Sobre los autores de esta guía práctica
 
-Autores:  
+**Autores:**  
+
   **Versión 1:**
-Fátima Adriana Renderos (00064018@uca.edu.sv), Madeline Abigail Clará (00146318@uca.edu.sv), Erick Varela Guzmán (evarela@uca.edu.sv)      
+Fátima Adriana Renderos (00064018@uca.edu.sv), Madeline Abigail Clará (00146318@uca.edu.sv), Erick Varela Guzmán (evarela@uca.edu.sv)
+
   **Versión 2:** 
 Brian Darwin Carranza Campos (00136020@uca.edu.sv), Alejandro Ernesto Cerón (00040116@uca.edu.sv)
+
   **Responsables:**
 Erick Varela Guzmán (evarela@uca.edu.sv), 
 Correspondencia: evarela@uca.edu.sv
