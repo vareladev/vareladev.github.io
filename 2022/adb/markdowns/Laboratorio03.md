@@ -51,6 +51,7 @@ Como sabemos, Oracle guarda los datos de manera lógica en un tablespace y  fís
 
 ## Tablespace
 Duration: 0:30:00
+
 La estructura lógica está formada por los tablespace y los objetos de un esquema de la base de  datos (tablas, vistas, índices…) 
 
 <img src="img/laboratorio03/Tablespace2.png" width="500">
