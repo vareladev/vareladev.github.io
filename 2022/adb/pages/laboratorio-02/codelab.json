@@ -3,12 +3,12 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2022-09-07T17:34:33-06:00",
+  "updated": "2022-11-15T13:22:30-06:00",
   "id": "laboratorio-02",
   "duration": 11,
   "title": "PL/SQL",
   "summary": "PL/SQL",
-  "source": "laboratorio02.md",
+  "source": "..\\markdowns\\Laboratorio02.md",
   "theme": "",
   "status": [
     "published"

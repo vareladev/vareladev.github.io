@@ -3,12 +3,12 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2022-09-02T14:41:36-06:00",
+  "updated": "2022-11-15T13:22:30-06:00",
   "id": "laboratorio-01",
   "duration": 0,
   "title": "Introducción a Oracle",
   "summary": "Introducción a Oracle",
-  "source": ".\\2022\\adb\\markdowns\\Laboratorio01.md",
+  "source": "..\\markdowns\\Laboratorio01.md",
   "theme": "",
   "status": [
     "published"
