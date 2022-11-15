@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-11-15T12:47:05-06:00",
+  "id": "laboratorio-04",
+  "duration": 78,
+  "title": "Auditoría en Oracle",
+  "summary": "Laboratorio sobre Administración de alamacenamiento y usuarios",
+  "source": "..\\markdowns\\Laboratorio04.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "auditorias."
+  ],
+  "tags": [
+    "guide.",
+    "web"
+  ],
+  "feedback": "https://github.com/vareladev/vareladev.github.io/issues",
+  "url": "laboratorio-04"
+}

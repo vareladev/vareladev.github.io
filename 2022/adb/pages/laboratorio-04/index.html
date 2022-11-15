@@ -1,0 +1,273 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Auditoría en Oracle</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="laboratorio-04"
+                  title="Auditoría en Oracle"
+                  environment="web"
+                  feedback-link="https://github.com/vareladev/vareladev.github.io/issues">
+    
+      <google-codelab-step label="Objetivos" duration="1">
+        <ul>
+<li>Aprender a activar la auditoría en ORACLE.</li>
+<li>Dominar las vistas donde se almacena la información de auditoría.</li>
+<li>Conocer la forma de auditar:</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Herramientas" duration="1">
+        <p>Para esta práctica se hará uso de estas herramientas:</p>
+<h2 is-upgraded>Oracle DB 19c</h2>
+<p class="image-container"><img alt="imagen" class="img-aside" src="img\\f9287a70b891f477.png"></p>
+<p>Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle Corporation. Oracle Database 19c es la versión actual a largo plazo, que además proporciona el nivel más alto de estabilidad de la versión y el plazo más largo para asistencia y corrección de errores.</p>
+<h2 is-upgraded>SQL Developer</h2>
+<p><img alt="sql" class="icon-aside" src="img\\2c2e6469048b0f6d.png"> Es una interfaz gráfica de usuario gratuita que permite a los usuarios y administradores de bases de datos realizar sus tareas con menos clicks y pulsaciones de teclas. SQL Developer es una herramienta de productividad cuyo objetivo principal es ayudar al usuario final a ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Introducción" duration="1">
+        <p>Esta guía pretende explorar una serie de buenas prácticas de auditoría, así como la importancia que ésta tiene en el servidor de bases de datos, añadiendo una nueva capa de seguridad que ayuda a prevenir e identificar sucesos o actividades inusuales y sospechosas, además de explicar de manera practica el cómo utilizar las herramientas de auditoría que Oracle nos proporciona.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Activación de la auditoría en Oracle" duration="5">
+        <p><strong>Ventajas:</strong></p>
+<ul>
+<li>Dispondremos de información de las operaciones del sistema.</li>
+<li>Protegeremos mejor nuestro sistema.</li>
+<li>Podemos prevenir ataques y detectar posibles intrusos.</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li>Mayor consumo de recursos del sistema.</li>
+</ul>
+<p>Oracle, por defecto no trae activada la auditoría (Hasta la versión 11g), aunque la emplea en algunas actividades de esta (auditoría obligatoria): el encendido y apagado, conexiones como sysdba y sysoper. Para activar la auditoría estándar en Oracle, necesitamos cambiar el parámetro Audit_trail del init.ora (por defecto <em>&#34;none&#34;</em>), podemos ver el estado de este parámetro con el comando <em>&#34;show parameter audit&#34;</em>.</p>
+<p class="image-container"><img alt="sql" src="img\\12711a68d073d2fd.png"></p>
+<p>El comando para activar la auditoría en oracle es el siguiente:</p>
+<p class="image-container"><img alt="sql" src="img\\64ea5df73bad03c8.png"></p>
+<p>Las modificaciones del archivo init.ora requieren el reinicio de la base de datos para que surjan efecto, así que reiniciaremos para aplicar los cambios.</p>
+<p class="image-container"><img alt="sql" src="img\\e70ad718528b63fa.png"></p>
+<pre><code>También podemos activar la auditoría de operaciones de usuarios con privilegios de
+sistema, para ello hacemos lo siguiente:
+
+SQL&gt; ALTER SYSTEM SET audit_sys_operations=true SCOPE=SPFILE;
+
+</code></pre>
+<p>Los valores más comunes que podemos asignar al parámetro audit_trail son los siguientes:</p>
+<ul>
+<li>none: La auditoría está desactivada.</li>
+<li>db: La auditoría está activada con todos y guarda los registros en la tabla SYS.AUD$ (tablespace SYSTEM por defecto).</li>
+<li>os: La auditoría está activada, con todos los registros guardados directamente en el sistema operativo (en un directorio y archivos concretos), está opción depende del sistema operativo.</li>
+<li>db, extended: La auditoría está activada los datos se almacenarán en la taba SYS.AUD$. Además, se escribirán los valores correspondientes en las columnas SqlText y SqlBind de la tabla SYS.AUD$.</li>
+<li>xml: activa la auditoría de la base de datos, los sucesos serán escritos en ficheros XML del sistema operativo.</li>
+<li>xml, extended: activa la auditoría de la base de datos, los registros serán escritos en el formato XML del sistema operativo, además se incluirán los valores de SqlText y SqlBind.</li>
+</ul>
+<p>Para esta práctica vamos a usar el tipo de auditoría db.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Activación de la auditoría en Oracle" duration="30">
+        <p>Las vistas del diccionario de datos nos muestran información útil de nuestro sistema, a nosotros nos interesan las vistas con relación a la auditoría, que principalmente son:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Vista</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Descripcion</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>&lt;ALL_AUDIT_POLICIES&gt;</strong></p>
+</td><td colspan="1" rowspan="1"><p>Define las políticas en las tablas y vistas accesibles al usuario actual.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>&lt;ALL_AUDIT_POLICY_COLUMNS&gt;</strong></p>
+</td><td colspan="1" rowspan="1"><p>Define las políticas de auditoría en las tablas y vistas accesibles para el usuario actual.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>ALL_DEF_AUDIT_OPTS</strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista las opciones por defecto de auditoría que serán aplicadas a los objetos que se crean.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>AUDIT_ACTIONS </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista las acciones que pueden ser auditadas.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_AUDIT_EXISTS</strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista las entradas auditadas producidas por AUDIT NOT EXISTS.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_AUDIT_OBJECT</strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista los registros de auditoría de todos los objetos del sistema.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_AUDIT_POLICIES </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista toda la información sobre las políticas de auditoría del sistema.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_AUDIT_SESSION </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista todos los registros que conciernen a CONNECT y DISCONNECT.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>BDA_AUDIT_STATEMENT </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista los registros auditados que conciernen a GRANT, REVOKE, AUDIT, NOAUDIT y ALTER SYSTEM de toda la base de datos.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_COMMON_AUDIT_TRAIL </strong></p>
+</td><td colspan="1" rowspan="1"><p>Combina los logs estándares con los exhaustivos, incluye SYS y los registros obligatorios escritos en formato XML.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_FGA_AUDIT_TRAIL </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista los registros completos de una auditoría.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_OBJ_AUDIT_OPTS </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe las opciones de auditoría en todos los objetos.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_PRIV_AUDIT_OPTS </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe los privilegios de sistema actuales que estan siendo auditados por algún usuario.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>DBA_STMT_AUDIT_OPTS </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe todas las opciones de auditoría actuales de todo el sistema y por usuario.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_AUDIT_OBJECT </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista los registros auditados para sentencias que conciernen objetos accesibles para el usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_AUDIT_POLICIES </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe exhaustivamente las columnas de políticasde auditoría en las tablas y vistas accesibles por el usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_AUDIT_SESSION </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista todos los registros de auditoría relacionados a conexiones y desconexiones del usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_AUDIT_STATEMENT </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista todos los registros relacionados con lassentencias GRANT, REVOKE, AUDIT, NOAUDIT y ALTER SYSTEM emitidas por el usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_AUDIT_TRAIL </strong></p>
+</td><td colspan="1" rowspan="1"><p>Lista todas las entradas de auditoría estándares de la tabla AUD$ sobre el usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>USER_OBJ_AUDIT_OPTS </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe las opciones de auditoría en todos los objetos que posee el usuario actual.             </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>STMT_AUDIT_OPTION_MAP </strong></p>
+</td><td colspan="1" rowspan="1"><p>Describe información sobre los tipos de códigos de auditoría             </p>
+</td></tr>
+</table>
+<p>Hay bastantes vistas más, para verlas todas podemos usar esta sentencia : <em>SELECT view_name FROM dba_views WHERE view_name LIKE ‘%AUDIT%&#39; ORDER BY view_name;</em></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Auditar los inicios de sesión de la base de datos" duration="10">
+        <p>Para auditar los inicios de sesión de la base de datos usaremos la sentencia &#34;AUDIT SESSION&#34; (la cual podemos filtrar por usuarios de la siguiente forma <em>&#34;AUDIT SESSION BY usuario1, usuario2;&#34;</em> Al igual que el comando AUDIT tenemos el comando NOAUDIT para desactivarla política de auditoría previamente activada.</p>
+<p class="image-container"><img alt="sql" src="img\\5d33d03bd484a7af.png"></p>
+<p><strong>Ejercicio 1</strong></p>
+<ul>
+<li>En SQL Developer o Sql PLUS, iniciar sesión con el usuario SYS y crear los siguientes usuarios *Usuario 1:</li>
+<li>Usuario: &#34;admin&#34; (ejemplo admin00091610) Password: elegido por el estudiante Tablespace por defecto: USERS Cuota: 10M Tablespace tempora: TEMP</li>
+<li>Usuario 2: Usuario: &#34;aux&#34; (ejemplo aux00091610) Password: elegido por el estudiante Tablespace por defecto: USERS Cuota: 10M Tablespace tempora: TEMP</li>
+<li>Asignar los siguientes privilegios: Crear sesión a ambos usuarios Crear tablas al usuario admin</li>
+<li>Activar la auditoria de sesión para los usuarios creados en el punto 1.</li>
+<li>Sin cerrar la conexión del usuario SYS (la utilizaremos más adelante), iniciar una conexión con el usuario admin creado en el punto 1.</li>
+<li>Verificar desde la conexión del usuario SYS la vista dba_audit_trail.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\5d6c82973c091376.png"></p>
+<ul>
+<li>Verificar desde la conexión del usuario admin el de la siguiente instrucción:</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\67053a6d961e37c3.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Auditar instrucciones DDL." duration="10">
+        <p>Pongámonos en la situación que por ejemplo vamos a auditar todas las sentencias que creen una tabla, para este ejemplo vamos a auditar las acciones CREATE TABLE del usuario que creamos en el ejercicio 1.</p>
+<p><strong>Ejercicio 2</strong></p>
+<ul>
+<li>En la conexión del usuario SYS: auditar la creación de tablas al usuario admin.</li>
+<li>En la conexión del usuario admin, crear el siguiente modelo de datos.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\8c63ca38a91bd46f.png"></p>
+<ul>
+<li>Insertar datos en las tablas principales.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\85fa31bb3e91cab7.png"></p>
+<ul>
+<li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\53f0c6a082ba270c.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Auditar acciones sobre objetos." duration="10">
+        <p>Con esta posibilidad tendremos mayor control sobre la actividad de los usuarios que han interactuado con un objeto específico de la base de datos, vamos a ver como se audita una tabla.</p>
+<p><strong>Ejercicio 3.</strong></p>
+<ul>
+<li>En la conexión del usuario SYS: Auditar por acceso las acciones con resultado exitoso o no, de las consultas SELECT, INSERT, DELETE y UPDATE sobre las tablas ESCRITOR, OBRA; OBRAXESCRITOR.</li>
+<li>Desde la conexión del usuario admin, otorgar los siguientes permisos al usuario aux: <em>SELECT sobre las tablas OBRA y ESCRITORSELECT, INSERT, DELETE y UPDATE sobre la tabla OBRAXESCRITOR.</em></li>
+<li>Iniciar una conexión con el usuario aux y consultar las tablas OBRA, ESCRITOR y OBRAXESCRITOR.</li>
+<li>En la conexión del usuario aux, insertar los siguientes datos en la tabla OBRAXESCRITOR:</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\3e415327f85fef1b.png"></p>
+<ul>
+<li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\8773fffc967f1e29.png"></p>
+<ul>
+<li>En la conexión del usuario SYS, auditar todas las acciones sobre la tabla OBRA:</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\20e7587d2b6275fe.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Gestionar registros de Auditoría" duration="10">
+        <p>Para gestionar los registros de auditoría de Oracle debemos tener claro que cualquier usuario que se conecte con privilegios de administrador puede borrar estos archivos, aunque es &#34;visible&#34; que han sido borrados siempre que tengamos activado el parámetro audit_sys_operations=true</p>
+<p><strong>Protegiendo los registros de auditoría.</strong></p>
+<p class="image-container"><img alt="sql" src="img\\dee5730ed9b60b51.png"></p>
+<p><strong>Eliminando registros de auditoría</strong></p>
+<p class="image-container"><img alt="sql" src="img\\e3272ac58a1867c5.png"></p>
+<p><strong>Gestión del almacenamiento</strong></p>
+<p>Un administrador de bases de datos debe tener en cuenta que el tamaño de la tabla AUD$ (como hemos dicho antes) puede aumentar mucho, depende de dos factores:</p>
+<ul>
+<li>Número de opciones de auditoría activadas.</li>
+<li>Frecuencia con la que se producen esas auditorias.</li>
+</ul>
+<p class="image-container"><img alt="sql" src="img\\accc22b490bee15.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sobre los autores de esta guía práctica" duration="0">
+        <p><strong>Autores:</strong></p>
+<p><strong>Versión 1:</strong> Diana Cristina Sánchez Muñoz (00188618@uca.edu.sv), Carlos Francisco Estévez Lemus (00120218@uca.edu.sv), Fernando Josué Vásquez Hernández (00179118@uca.edu.sv), Erick Varela Guzmán (evarela@uca.edu.sv).</p>
+<p><strong>Versión 2:</strong> Fatima Adriana Renderos Laínez (00064018@uca.edu.sv)</p>
+<p><strong>Responsables:</strong> Erick Varela Guzmán (evarela@uca.edu.sv) .</p>
+<p><strong>Correspondencia:</strong> evarela@uca.edu.sv</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 2, 2022.</p>
+<p><img alt="test" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
