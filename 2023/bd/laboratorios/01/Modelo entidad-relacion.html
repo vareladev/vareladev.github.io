@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia 1 - Modelo entidad-relación</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="modelo-entidad---relación">Modelo Entidad - Relación</h1>
+<blockquote>
+<p><em>Laboratorio #1</em></p>
+<ul>
+<li><em>Bases de datos</em></li>
+<li><em>Modelo Entidad - Relación</em></li>
+</ul>
+</blockquote>
+<h2 id="bases-de-datos">1. Bases de datos</h2>
+<p>Es una colección de datos relacionados. Estos se almacenan con el objetivo que diferentes programas y/o usuarios puedan acceder a ellos posteriormente.</p>
+<p>Una base de datos tiene las siguientes propiedades implícitas:</p>
+<ul>
+<li>
+<p>Representa algún aspecto del mundo real, en ocasiones llamada <em>minimundo o universo de discurso (UoD)</em>. Las modificaciones del <em>minimundo</em> se reflejan en la base de datos.</p>
+</li>
+<li>
+<p>Es un conjunto de datos lógicamente coherente, con cierto significado. Una colección aleatoria de datos no puede considerarse propiamente como una base de datos.</p>
+</li>
+<li>
+<p>Se diseña, construye y alimenta con datos para un propósito específico. Está dirigida a un grupo de usuarios y tienen ciertas aplicaciones que interesan a los usuarios.</p>
+</li>
+</ul>
+<p>Suelen representarse como contenedores cilíndricos.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img1.PNG?raw=true" alt="enter image description here"></p>
+<p>Ejemplo: Base de datos de expedientes de alumnos de la UCA<br>
+<strong>¿Puede ocuparse un archivo de texto como base de datos?</strong></p>
+<h2 id="dbms">2. DBMS</h2>
+<p>DBMS significa Database Management System, o Sistema de Gestión de Bases de Datos (SGBD) en español, y es un software que facilita el proceso de <em>definición, construcción, manipulación</em> y <em>el compartir</em> bases de datos entre varios usuarios y/o aplicaciones.</p>
+<ul>
+<li>
+<p><strong>Definir</strong> una base de datos implica especificar los tipos de datos, estructuras y restricciones de los datos a almacenar.</p>
+</li>
+<li>
+<p><strong>Construir</strong> es el proceso que consiste en la carga de los datos en algún medio de almacenamiento que es controlado por el DBMS.</p>
+</li>
+<li>
+<p><strong>Manipulación</strong> de la base de datos incluye funciones como recuperar datos específicos a través de consultas, actualizar el valor de la información y generar reportes de los datos.</p>
+</li>
+<li>
+<p><strong>Compartir</strong> la base de datos permite múltiples usuarios y programas acceder a ella de manera simultánea.</p>
+</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img2.png?raw=true" alt="enter image description here"></p>
+<p>Otras funciones importantes de un DBMS <em>son la protección y el mantenimiento</em> de la base. <strong>Protegerla</strong> contra un mal funcionamiento de hardware o software, y contra acceso malicioso o no autorizado. En cuanto al <strong>mantenimiento</strong>, es una característica que le permite al sistema evolucionar a medida cambian los requerimientos.</p>
+<p>Algunos de los DBMS más populares en la industria son:</p>
+<p>Oracle RDBMS, Microsoft SQL Server,PostgreSQL, MySQL, MongoDB, etc.</p>
+<p>Ahora la pregunta es <em>¿Cómo diseño mi base de datos?</em></p>
+<h2 id="modelo-entidad-relación">3. Modelo Entidad-Relación</h2>
+<p>El modelado conceptual es una fase muy importante en el diseño de una base de datos exitosa. Esto se hace por medio del <strong>modelo Entidad-Relación</strong>, el cuál describe los datos como <em>entidades, relaciones y atributos</em>. El principal objetivo es ilustrar como las entidades se relacionan entre sí en un sistema.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img3.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="elementos-del-modelo-entidad-relación">Elementos del Modelo Entidad-Relación</h3>
+<p><strong>Entidad:</strong> representa una <em>cosa u objeto</em> del mundo real con existencia independiente. Una entidad puede ser un objeto con existencia física, conocida como <strong>entidad concreta</strong> (por ejemplo: una persona, un carro, una casa, etc.) o un objeto con existencia conceptual, conocida como <strong>entidad abstracta</strong> (por ejemplo: un puesto de trabajo, una asignatura, un préstamo, etc.).</p>
+<p><strong>Atributos:</strong> son las características que definen o identifican a una entidad. Estas pueden ser muchas pero el diseñador solo utiliza o implementa las que considere <strong>más relevantes.</strong> Los tipos de atributos son: simples, compuestos, monovaluados, multivaluados, derivados y nulos.</p>
+<p><strong>Relación:</strong> describe cierta dependencia entre entidades o permite la asociación de las mismas. Esta también puede tener atributos cuando la cardinalidad es M:N (esto se explicará a detalle en otra sesión).</p>
+<h3 id="simbología-de-elementos.">Simbología de elementos.</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img4.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="el-concepto-de-minimundo">El concepto de minimundo</h3>
+<p>Al diseñar una base de datos para un escenario del mundo real, puede ser complicado identificar como <em>se relacionan las entidades</em>, es por eso que como diseñadores de BBDD, se debe definir ciertas <strong>reglas</strong> y <strong>restricciones</strong>, y eso sería definir el minimundo. Por ejemplo, para el escenario de “préstamo y devolución de libros de una biblioteca”, se pueden restringir o permitir algunas cosas como: “Un usuario solo puede prestar máximo 5 libros”, “Todo libro tiene que estar en un estante, pero puede haber estantes vacíos”, “Puede haber usuarios registrados que nunca hayan prestado un libro”, etc.</p>
+<h3 id="diagramas-er">Diagramas ER</h3>
+<p>Se utilizará una herramienta llamada <a href="http://Draw.io">Draw.io</a>, el cual es un sitio web que cuenta con los elementos necesarios para facilitar la realización de diversos tipos de diagrama, incluyendo el Entidad-Relación, y además es gratuito. <a href="http://Draw.io">Draw.io</a>.</p>
+<blockquote>
+<p>El modelo ER es la base para el diseño exitoso de la base de datos,<br>
+pero más adelante se mostrará otro modelo y técnicas para mejorar el diseño de la base de datos.</p>
+</blockquote>
+<h3 id="ejemplo-práctico-–-inscripción-de-materias">Ejemplo práctico – Inscripción de materias</h3>
+<p>Para la inscripción de materias la Universidad (UCA) necesita llevar un registro de la información de cada estudiante, como nombre, fecha de nacimiento, id estudiantil, dirección y teléfonos.</p>
+<p>Se llevará el registro del docente que impartirá cada materia, y se necesitan tomar los siguientes datos: nombre, fecha de nacimiento, dirección, teléfono y carne de identidad única. Para cada materia se llevarán registros del nombre y el código.</p>
+<p>Es indispensable llevar un registro del año y el ciclo en que se impartirá dicha materia.</p>
+<h3 id="tips">TIPS:</h3>
+<ol>
+<li>
+<p>Cada entidad debe poseer un <strong>atributo clave</strong> que la diferencie del resto de entidades del mismo tipo.</p>
+</li>
+<li>
+<p>Debemos incluir tantos atributos como sea necesario para cumplir los <strong>requerimientos del sistema</strong>, siempre y cuando aporten un valor a la base de datos.</p>
+</li>
+<li>
+<p>Todos los elementos de un diagrama ER se unen con otros por medio de <strong>líneas rectas</strong>. Ya sean atributos a entidades, atributos compuestos a sus componentes o entidades a relaciones.</p>
+</li>
+</ol>
+<h2 id="restricciones-estructurales">4. Restricciones Estructurales</h2>
+<h3 id="atributos-clave">Atributos clave</h3>
+<p>En el diagrama anterior se puede observar que hay ciertos atributos subrayados, esto significa que es un <em><strong>atributo clave</strong></em>. Al pensar, por ejemplo, en la entidad ALUMNO (Carné, Nombres, Apellidos, Edad, Carrera), su representación en el modelo ER sería así:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img5.png?raw=true" alt="enter image description here"></p>
+<p>Y visto en forma de tabla sería así</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img6.PNG?raw=true" alt="enter image description here"></p>
+<p>Seguramente notó que los campos en rojo son datos repetidos, pero, si observan, ningún valor del atributo <em>Carné</em> se repite, y tampoco debería hacerlo, pues es el <em><strong>atributo clave</strong></em> o, dicho de otra manera, el <strong>identificador único</strong> para cada alumno. Por ejemplo, para las personas salvadoreñas mayores de edad, el atributo clave sería el DUI.</p>
+<blockquote>
+<p><strong>NOTA</strong>: Hay entidades que pueden tener más de un atributo que pueden funcionar como atributo clave.</p>
+</blockquote>
+<p>Las restricciones estructurales son <strong>herramientas conceptuales</strong> que ayudan a responder preguntas que pueden surgir durante el diseño de la base de datos. Por ejemplo, al relacionar las entidades <em>ALUMNO y MATERIA</em>, uno se podría preguntar: ¿Un alumno puede cursar muchas materias?, ¿Una materia puede ser cursada por muchos alumnos?, ¿Puede un alumno no cursar ninguna materia y seguir siendo alumno?, etc.</p>
+<h2 id="restricciones-de-cardinalidad">5. Restricciones de cardinalidad</h2>
+<p>Se refiere al número máximo de ocurrencias que una entidad puede tener con otra entidad con la cual esté relacionada. Los posibles tipos de cardinalidad son <strong>1:1, 1:N, N:1, M:N</strong> (también conocido como <strong>N:N</strong>).</p>
+<h3 id="uno-a-uno-11">Uno a Uno (1:1)</h3>
+<p>En este ejemplo particular, <em>DIRIGE</em> representa la relación de las entidades <em>EMPLEADO y DEPARTAMENTO</em>, indicando que, en algún punto, un empleado puede administrar máximo un departamento, y que un departamento solo puede tener un administrador. También cabe destacar, que no necesariamente todos los empleados serán administradores de algún departamento.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img7.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="uno-a-muchos-1n">Uno a muchos (1:N)</h3>
+<p>En este ejemplo, un departamento puede gestionar varios proyectos, pero cada proyecto solo puede ser gestionado por un departamento.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img8.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="muchos-a-uno-n1">Muchos a uno (N:1)</h3>
+<p>Aquí se indica que un empleado puede trabajar únicamente para un departamento, pero un departamento puede tener varios empleados. Si observamos, este en realidad es muy similar al anterior, pero en el sentido contrario.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img9.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="muchos-a-muchos-mn">Muchos a muchos (M:N)</h3>
+<p>Aquí se indica que un empleado puede trabajar en muchos proyectos y que en un proyecto pueden trabajar varios empleados.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img10.PNG?raw=true" alt="enter image description here"></p>
+<h2 id="restricciones-de-participación">6. Restricciones de participación</h2>
+<p>Específica si la existencia de una entidad depende de un tipo de relación con otra entidad. Se denomina <em><strong>participación total</strong></em> cuando cada ocurrencia de la entidad A participa, al menos, en una relación de R con una ocurrencia de la entidad B. Por el contrario, cuando existe, al menos, una ocurrencia de A que <strong>NO</strong> PARTICIPA en alguna relación R con una ocurrencia de la entidad B, se le conoce como <em><strong>participación parcial</strong></em>.</p>
+<p>Observe el siguiente ejemplo para comprender mejor:</p>
+<h3 id="ejemplo">Ejemplo:</h3>
+<p>En la universidad todos los estudiantes activos reciben materias de sus carreras. Al haber cursado la materia y al haber cumplido ciertos requisitos, estos pueden impartir dicha materia como instructores.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img11.PNG?raw=true" alt="enter image description here"></p>
+<h3 id="participación-total">Participación total:</h3>
+<p>Toda ocurrencia de un estudiante activo debe participar en el tipo de relación RECIBE con alguna materia, ya que no tiene sentido que exista un estudiante que NO reciba una materia.</p>
+<h3 id="participación-parcial">Participación parcial:</h3>
+<p>con respecto a la relación IMPARTE, no todo estudiante imparte una materia, o, dicho de otra forma, existe al menos un estudiante que NO imparta una materia, y por tanto se considera como participación parcial.</p>
+<h2 id="mínimos-y-máximos">7. Mínimos y máximos</h2>
+<p>En una relación entre dos entidades los mínimos representan la participación (total o parcial) y los máximos la cardinalidad (1:1, 1:N, N:1, N:N).</p>
+<p>Los mínimos pueden tomar los valores cero o uno (0 o 1), mientras que los máximos pueden ser uno o muchos (1 o N). Por último, la cardinalidad se obtiene <em>cruzando</em> los valores máximos.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img12.PNG?raw=true" alt="enter image description here"></p>
+<p>¿Cómo encontrar estos valores? Existen dos preguntas que facilitan esta tarea.</p>
+<h3 id="min-participación">MIN (participación)</h3>
+<p>¿<strong>Tiene</strong> A que estar relacionado con algún B? (nótese que <em>tiene</em> demuestra <em>obligación</em>)</p>
+<ul>
+<li>
+<p><strong>Sí: min = 1</strong> | Participación total <img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img13.PNG?raw=true" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>No: min = 0 |</strong> Participación parcial <img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img14.PNG?raw=true" alt="enter image description here"></p>
+</li>
+</ul>
+<h3 id="max-cardinalidad">MAX (cardinalidad)</h3>
+<p>¿<strong>Puede</strong> A estar relacionado con más de un B? (nótese que <em>puede</em> demuestra <em>elección</em>)</p>
+<ul>
+<li>
+<p><strong>Sí: max = N</strong></p>
+</li>
+<li>
+<p><strong>No: max = 1</strong></p>
+</li>
+</ul>
+<h2 id="entidades-fuertes-y-débiles">8. Entidades fuertes y débiles</h2>
+<p>En una relación entre dos entidades (A y B) decimos que la entidad B es débil con respecto a la entidad A, si la entidad B depende de que exista A primero. Las entidades débiles se representan con un doble rectángulo.</p>
+<p>Ocupe el siguiente ejemplo para asimilarlo mejor: “Un cliente solicita un préstamo”. Para solicitar el préstamo, el cliente tuvo que existe primero. Un préstamo no se puede asignar al vacío, es por eso que el préstamo existe cuando el cliente lo solicita.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img15.PNG?raw=true" alt="enter image description here"></p>
+<p>También existe una pregunta que nos facilita identificar entidades débiles o fuertes. Si se coloca sobre la entidad A y se pregunta <strong>¿Necesita existir B para que exista A?</strong></p>
+<ul>
+<li>
+<p><strong>SÍ</strong>: A es débil con respecto a B</p>
+</li>
+<li>
+<p><strong>NO:</strong> A es fuerte con respecto a B</p>
+</li>
+</ul>
+<p>Ahora se coloca sobre la entidad B y se hace la misma pregunta.</p>
+<ul>
+<li>
+<p><strong>SÍ:</strong> B es débil con respecto a A.</p>
+</li>
+<li>
+<p><strong>NO:</strong> B es fuerte con respecto a A.</p>
+</li>
+</ul>
+<h2 id="entidad-relación-extendido">9. Entidad-Relación Extendido</h2>
+<p>También conocido como Entidad-Relación Ajustado, surge, por supuesto, del modelo Entidad-Relación presentado anteriormente, con la diferencia que, para este, se debe definir las</p>
+<p><strong>restricciones estructurales e identificar entidades fuertes y débiles.</strong></p>
+<p>Así se vería el ER extendido del ejemplo de la biblioteca:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img16.png?raw=true" alt="enter image description here"></p>
+<p>Analizando algunas cosas que el diagrama anterior representa:</p>
+<ul>
+<li>
+<p>Si un escritor está en mi BD significa que tengo AL MENOS UN libro de ese escritor. No tendría lógica tener registrado un escritor del cual no tengo ningún libro.</p>
+</li>
+<li>
+<p>En nuestra BD pueden existir usuarios que NUNCA hayan prestado un libro.</p>
+</li>
+<li>
+<p>Igualmente pueden existir libros que NUNCA hayan sido prestados por alguien.</p>
+</li>
+</ul>
+<h2 id="ejercicio-práctico">10. Ejercicio práctico</h2>
+<p>Realice el desarrollo de la solución tal como lo hicimos en el ejemplo (paso a paso). La descripción del escenario es el siguiente: suponga que una importante compañía de cruceros de lujo le pide realizar una base de datos para registrar la información de sus procesos más importantes.</p>
+<p>Cada viaje que la compañía realiza está caracterizado por una fecha, el nombre del capitán que dirigirá el viaje, la duración en horas y los puertos marítimos de origen y destino, de cada puerto marítimo es importante almacenar el nombre, la ubicación GPS, la ciudad y el país donde está ubicado. Es importante notar que cada viaje tiene una relación con dos puertos marítimos, uno para embarcar y otro para desembarcar. Debido a que este proyecto se encuentra en estado de prueba, no será necesario considerar los viajes que utilicen varios puntos de embarque.</p>
+<p>Los viajes se realizan en un barco crucero de lujo, en donde las personas pueden disfrutar de las mejores comodidades. Los barcos tienen una matrícula que los identifica, el fabricante, un modelo e información de su capacidad (número máximo de pasajeros).</p>
+<p>Los pasajeros para poder realizar una reserva de viaje, deben registrar su nombre, pasaporte, fecha de nacimiento, teléfono, un correo electrónico y país de origen (es decir, su nacionalidad). Una vez registrados estos datos, la reserva se podrá realizar, en dichas reservas se almacena el precio del servicio, la fecha en que se realiza la transacción y tipo de cabina (estándar, exterior, balcón, premium).</p>
+<p>Opcionalmente, un cliente puede incluir servicios extra en la reserva, por ejemplo:<br>
+transporte de mascotas, caja fuerte, maletas extra, entre otros. De cada servicio extra, interesa almacenar el nombre del servicio y su precio.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img17.jpg?raw=true" alt="enter image description here"></p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">11. Sobre los autores de esta guía práctica</h2>
+<p>Autores:</p>
+<p><strong>Versión 1 (2020):</strong></p>
+<p>Emerson Gamaliel Nolasco (<a href="mailto:00215316@uca.edu.sv">00215316@uca.edu.sv</a>), Kevin Enmanuel Velásquez (<a href="mailto:00018616@uca.edu.sv">00018616@uca.edu.sv</a>)</p>
+<p><strong>Versión 2 (2021):</strong></p>
+<p>Fátima Adriana Renderos (<a href="mailto:00064018@uca.edu.sv">00064018@uca.edu.sv</a>)</p>
+<p><strong>Versión 3 (2022):</strong></p>
+<p>Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>), Alexei Eduardo Quintana Zelidon (<a href="mailto:00126118@uca.edu.sv">00126118@uca.edu.sv</a>)</p>
+<p><strong>Versión 4 (2023):</strong></p>
+<p>Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>), Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>)</p>
+<p><strong>Responsables:</strong></p>
+<p>Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>)</p>
+<p>Correspondencia: <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 4, 2023.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/01/src/img18.jpg?raw=true" alt="enter image description here"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
