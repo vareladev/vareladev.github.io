@@ -153,7 +153,7 @@ transporte de mascotas, caja fuerte, maletas extra, entre otros. De cada servici
 
 ### Solución Ejercicio Practico
 
-![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/L02/src/solucionL01.jpg?raw=true)
+![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/02/src/solucionL01.jpg?raw=true)
 
 ### Tarea
 
@@ -164,7 +164,7 @@ Tomando como base la solución del diagrama E-R obtenido del ejercicio realizado
 
 ### Métrica de evaluación
 
-![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/L02/src/metrica.jpg?raw=true)
+![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/02/src/metrica.jpg?raw=true)
 
 ## Sobre los autores de esta guía práctica
 
