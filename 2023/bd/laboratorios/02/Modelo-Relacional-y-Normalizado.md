@@ -49,7 +49,6 @@ absolutamente necesario para estos casos. Las claves primarias van siempre al
 principio. 
 
 ## Conversión 1:N 
-Duration: 0:08:00
 
 Cuando se tiene una situación 1:N, la entidad del lado que tiene la **N** obtiene una copia
 de la **clave primaria** de la otra entidad como atributo de sí misma, como en el siguiente
