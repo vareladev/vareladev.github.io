@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia 3 - Definicion-de-SQL-DDL-y-DML</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="definición-de-sql-ddl-y-dml">Definición de SQL, DDL y DML</h1>
+<h2 id="¿qué-es-sql-y-por-qué-es-importante-conocerlo">¿Qué es SQL y por qué es importante conocerlo?</h2>
+<p>SQL (Structured Query Language o Lenguaje de Consulta Estructurado) es un lenguaje de programación estándar utilizado para la manipulación de bases de datos relacionales, que permite realizar diversos tipos de operaciones en ellas. En este laboratorio aprenderá DDL (Lenguaje de Definición de Datos) y DML (Lenguaje de Manipulación de Datos).</p>
+<h2 id="conozcamos-el-ide">Conozcamos el IDE</h2>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img1.png?raw=true" alt="enter image description here"><br>
+SQL Server Management Studio (SSMS) es un ambiente de trabajo para estructuras SQL, provee de herramientas para configurar, monitorear y administrar bases de datos.<br>
+Encienda la máquina virtual y busque este icono en el escritorio.</p>
+<p>Al entrar en la aplicación, aparecerá esta pantalla, dar al botón “Conectar”.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img2.png?raw=true" alt="enter image description here"></p>
+<p>Lo que verá es una pantalla así:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img3.png?raw=true" alt="enter image description here"></p>
+<p>En los laboratorios anteriores se han realizado los procesos iniciales de creación de una base de datos, el siguiente paso después de tener el diagrama totalmente normalizado, es el de crear la base datos, junto a todas sus tablas y definir sus atributos.</p>
+<h2 id="creación-de-nueva-base-de-datos">Creación de nueva base de datos</h2>
+<p>Hay dos opciones para crear una nueva base, la primera es solo con el ratón: desplegar<br>
+la instancia creada al iniciar la aplicación y buscar la carpeta Bases de datos, dar con el<br>
+botón derecho sobre la carpeta y elegir la opción “Nueva base de datos”.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img4.png?raw=true" alt="enter image description here"></p>
+<p>Desplegará otra pantalla en la que requerirá de un nombre para la nueva base, puede ponerle el nombre que desee, en esta ocasión se nombra “Labo3”, luego dar clic al botón “Aceptar”, por el momento los parámetros de configuración de esta ventana se dejarán con sus valores por defecto.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img5.png?raw=true" alt="enter image description here"></p>
+<p>Presionar botón derecho sobre el servidor activo (Con el icono de play verde) y buscar la opción “Actualizar” en el menú, debería aparecer la nueva base de datos en la lista disponible.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img6.png?raw=true" alt="enter image description here"></p>
+<p>La otra opción para crear una base es utilizando sentencias DDL SQL.</p>
+<h2 id="ddl-y-dml">DDL y DML</h2>
+<h3 id="ddl">DDL</h3>
+<p>Las sentencias DDL se utilizan para crear, modificar la estructura, de las tablas y objetos de la base de datos. Por ejemplo:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img7.png?raw=true" alt="enter image description here"></p>
+<h3 id="dml">DML</h3>
+<p>Las sentencias DML son utilizadas para gestionar datos dentro de las tablas. Por ejemplo:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img8.png?raw=true" alt="enter image description here"></p>
+<h2 id="creación-de-una-base-de-datos">Creación de una base de datos</h2>
+<p>Los pasos para crear la base con comandos son los siguientes:</p>
+<p>Crear un nuevo archivo de consultas, dando clic en el botón que dice “Nueva consulta” (El que está al lado del botón para guardar).</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img9.png?raw=true" alt="enter image description here"></p>
+<p>Preguntará a que servidor queremos relacionar la consulta, se utiliza el servidor por defecto, no cambiamos nada, dar clic al botón “Conectar”.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img10.png?raw=true" alt="enter image description here"></p>
+<p>Tendremos una página en blanco en la que escribiremos las sentencias para la creación de la nueva Base de Datos. Se utiliza el comando CREATE.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img11.png?raw=true" alt="enter image description here"></p>
+<p>Sombrear el comando CREATE y en la barra superior, buscar el botón con un signo de admiración que dice “Ejecutar”, presionarlo y esperar el mensaje “Comandos completados correctamente” en la ventana Mensajes.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img12.png?raw=true" alt="enter image description here"></p>
+<p>Después de actualizar el servidor, debería aparecer la nueva base de datos en la lista disponible.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img13.png?raw=true" alt="enter image description here"></p>
+<p>¡Listo! la base de datos ha sido creada.</p>
+<p>Se procede a crear las tablas y definir los atributos para cada una, se utilizará el siguiente diagrama relacional normalizado como ejemplo:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img14.png?raw=true" alt="enter image description here"></p>
+<p>Antes de empezar con la creación de todos los objetos que utilizaremos, debemos indicarle al IDE que usaremos nuestra base de datos Labo3 con la instrucción USE:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img15.png?raw=true" alt="enter image description here"></p>
+<p>O bien podemos seleccionarla con el indicador del IDE:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img16.png?raw=true" alt="enter image description here"></p>
+<h2 id="creación-de-objetos-de-bases-de-datos">Creación de objetos de bases de datos</h2>
+<h3 id="tablas">TABLAS</h3>
+<p>Utilizaremos el comando CREATE TABLE donde colocaremos los campos a utilizar.<br>
+Ejemplo:</p>
+<pre><code>CREAETE TABLE LIBRO (
+    codigo int primary key not null,
+    titulo varchar(50),
+    isbn varchar(30),
+    npaginas INT,
+    id_editorial int
+);
+
+CREATE TABLE EDITORIAL (
+    codigo int primary key not null,
+    nombre varchar(50)
+);
+</code></pre>
+<p>Note que podemos colocar la llave primaria desde la creación de la tabla usando las palabras reservadas “primary key” en el atributo clave, y colocamos también la condición ‘not null’. (En clase se han visto dos formas más para configurar las llaves primarias ¿Cuales son?).</p>
+<h3 id="llaves-primarias-y-foráneas">LLAVES PRIMARIAS Y FORÁNEAS</h3>
+<p>Las llaves primarias son el atributo clave de la tabla, sin ella, los datos estarían desordenados y sin un índice que los identifique, de esto se puede asumir que la llave primaria <strong>no puede ser nula</strong>. Para crear llaves primarias desde la creación de la tabla se usará el siguiente ejemplo:</p>
+<pre><code>CREATE TABLE AUTORXLIBRO (
+    codigo int identity primary key not null,
+    codigo_autor int,
+    codigo_libro int
+);
+</code></pre>
+<p>Las llaves foráneas son importantes para la relación de tablas en la base de datos ya que nos permitirán hacer consultas cruzando tablas y obteniendo campos de ambas partes.</p>
+<p>En el siguiente ejemplo veremos la creación de las llaves foráneas desde la creación de la tabla, pero es recomendable hacerlo en un comando aparte, con un CONSTRAINT pues le asignamos un nombre a esta relación en caso de querer borrarla luego:</p>
+<pre><code>CREATE TABLE AUTORXLIBRO (
+    codigo int identity primary key not null,
+    codigo_autor int,
+    codigo_libro int FOREIGN KEY (codigo_libro) REFERENCES LIBRO (codigo)
+);
+</code></pre>
+<blockquote>
+<p>No es necesario que los campos referencia y referenciado tengan el<br>
+mismo nombre, pero sí es requisito que dispongan del mismo tipo de<br>
+dato.</p>
+</blockquote>
+<h3 id="alter-table">ALTER TABLE</h3>
+<p>En el caso de haber cometido un error al crear la base de datos, olvidar algún atributo, llave primaria o tipo de dato erróneo, puede modificar las propiedades de la tabla con esta instrucción.<br>
+En el caso de haber olvidado colocar la llave primaria, se puede solventar con el siguiente ejemplo:</p>
+<pre><code>ALTER TABLE AUTORXLIBRO
+ADD PRIMARY KEY (codigo);
+</code></pre>
+<p>También puede agregar la llave foránea después de haber creado las tablas:</p>
+<pre><code>ALTER TABLE AUTORXLIBRO
+ADD CONSTRAINT FK_AUTORXLIBRO_AUTOR
+FOREIGN KEY (codigo_autor) REFERENCES AUTOR (codigo);
+</code></pre>
+<p>Al olvidar colocar algún campo, puede ser resuelto de la siguiente forma:</p>
+<pre><code>ALTER TABLE AUTORXLIBRO
+ADD campo_olvidado char(5);
+</code></pre>
+<p>Si se colocó el tipo de dato erróneo en una columna:</p>
+<pre><code>ALTER TABLE AUTORXLIBRO
+ALTER COLUMN campo_olvidado int;
+</code></pre>
+<h3 id="insert">INSERT</h3>
+<p>Ahora insertamos datos a las tablas que creamos con la sentencia INSERT y los nombres de las columnas que queremos insertar:</p>
+<pre><code>INSERT INTO LIBRO (codigo, titulo, isbn, npaginas, id_editorial)
+  VALUES (1, 'Asedio y Tormenta', '010-1', 544, 002),
+    (2, 'Siempre Alice', '011-2', 300, 004),
+    (3, 'Corazon de Tinta', '012-3', 500, 005);
+
+INSERT INTO EDITORIAL (codigo, nombre)
+  VALUES (002, 'Hidra'),
+    (004, 'Ediciones B'),
+    (005, 'Scholastic Corporation');
+</code></pre>
+<p>Cuando se insertan los datos, hay que respetar los tipos, en los campos cuyo tipo es varchar se tienen que agregar los datos encerrados en comillas ‘simples’.</p>
+<p>También puedes agregar datos a tus tablas aunque no especifiques los campos, siempre y cuando insertes todos los campos en el orden en el que están guardados en la tabla. Por ejemplo, agregaremos los datos de un nuevo libro:</p>
+<pre><code>INSERT INTO LIBRO VALUES (5, 'La Huesped', '010-4', 644, 002);
+</code></pre>
+<h3 id="select">SELECT</h3>
+<p>Para verificar que las tablas fueron modificadas, utilizamos la sentencia SELECT, en este ejemplo le decimos que nos muestre todos los datos:</p>
+<pre><code>SELECT * FROM LIBRO;
+</code></pre>
+<p>El resultado será el siguiente:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img17.png?raw=true" alt="enter image description here"></p>
+<p>Los SELECT también pueden mostrarnos columnas específicas, solo se sustituye el asterisco por el nombre de la columna que se quiere consultar.</p>
+<pre><code>SELECT titulo FROM LIBRO;
+</code></pre>
+<p>El resultado debe verse algo así:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img18.png?raw=true" alt="enter image description here"></p>
+<h3 id="update">UPDATE</h3>
+<p>Esta sentencia se utiliza para actualizar un registro de una tabla, es preferible utilizar la sentencia WHERE junto a la llave primaria para especificar qué registro queremos actualizar. Actualicemos el libro con código 2 y cambiemos el número de páginas a 800:</p>
+<pre><code>UPDATE LIBRO SET npaginas=800
+  WHERE codigo=2;
+</code></pre>
+<blockquote>
+<p>¿Qué pasaría si no utilizamos el WHERE?</p>
+</blockquote>
+<h3 id="delete">DELETE</h3>
+<p>Esta sentencia se utiliza para borrar un registro de una tabla, para esto necesitamos saber la llave primaria del registro a eliminar, puede utilizarse otro campo pero no es recomendado pues podemos borrar muchos datos de una vez, para este ejemplo borraremos el libro “Siempre Alice”, cuya llave primaria es el número 2:</p>
+<pre><code>DELETE FROM LIBRO WHERE codigo=2;
+</code></pre>
+<p>Si realizamos un SELECT a la tabla LIBROS veremos que el campo ha sido eliminado.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img19.png?raw=true" alt="enter image description here"></p>
+<blockquote>
+<p>Es importante que no olvidemos la sentencia WHERE ¿Qué pasaría si no<br>
+la escribimos?</p>
+</blockquote>
+<h3 id="drop">DROP</h3>
+<p>Para terminar de estudiar las sentencias, utilizaremos el comando DROP para borrar la base de datos que no estamos usando actualmente y que creamos al principio del laboratorio.</p>
+<pre><code>DROP DATABASE Labo3ddl;
+</code></pre>
+<p>Actualizamos el servidor activo, siguiendo los mismos pasos que se utilizaron para ver la nueva base cuando fue creada.</p>
+<h2 id="tarea">Tarea</h2>
+<p>asldkfjeowfnsdfnsd;fk</p>
+<p>IMAGEN DE LA TAREA</p>
+<h2 id="apéndice-1-tipos-de-datos">Apéndice 1: Tipos de Datos</h2>
+<p>Hay que tener en cuenta los tipos de datos que usaremos para cada campo, así que se listaran los más utilizados para tener algunas nociones:</p>
+<p>Numéricos:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img20.png?raw=true" alt="enter image description here"></p>
+<p>Al tipos de dato int se le puede colocar un modificador <strong>identity</strong> con el cual podemos hacer un autoincremento de valor. Podemos usarlo en las llaves primarias por ejemplo.</p>
+<p><strong>¿Qué tipo de dato utilizaría usted para la edad de una persona?</strong></p>
+<p>Cadenas de texto:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img21.png?raw=true" alt="enter image description here"></p>
+<p><strong>¿Cuál es la diferencia entre Char y Varchar?</strong></p>
+<p>Fecha:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img22.png?raw=true" alt="enter image description here"><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/Img23.png?raw=true" alt="enter image description here"></p>
+<h3 id="métrica-de-evaluación">Métrica de evaluación</h3>
+<p>IMAGEN DE LA METRICA</p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">Sobre los autores de esta guía práctica</h2>
+<p>Autores:<br>
+<strong>Versión 1 (2020):</strong><br>
+Emerson Gamaliel Nolasco (<a href="mailto:00215316@uca.edu.sv">00215316@uca.edu.sv</a>), Kevin Enmanuel Velásquez (<a href="mailto:00018616@uca.edu.sv">00018616@uca.edu.sv</a>)<br>
+<strong>Versión 2 (2021):</strong><br>
+Fátima Adriana Renderos (<a href="mailto:00064018@uca.edu.sv">00064018@uca.edu.sv</a>)<br>
+<strong>Versión 3 (2022):</strong><br>
+Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>), Moisés Daniel Rosales Galindo (<a href="mailto:00218916@uca.edu.sv">00218916@uca.edu.sv</a>)<br>
+<strong>Versión 4 (2023):</strong><br>
+Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>), Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>)</p>
+<p><strong>Responsables:</strong><br>
+Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>)<br>
+Correspondencia: <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 4, 2023.<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/Laboratorio03/license.jpg?raw=true" alt="enter image description here"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
