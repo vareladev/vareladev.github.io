@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía 4 Consultas simples con SELECT y JOINS</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="consultas-simples-con-select-y-joins">Consultas simples con SELECT y JOINS</h1>
+<h2 id="consultas-sql-select">Consultas SQL (SELECT)</h2>
+<p>La sentencia SELECT es una sentencia DML (Lenguaje de Manipulación de Datos) utilizada para seleccionar datos de una base de datos, es también conocida como consulta de selección.</p>
+<h2 id="estructura-del-select">Estructura del SELECT</h2>
+<p>La sintaxis básica de una consulta de selección es la siguiente:</p>
+<pre><code>SELECT [CAMPOS] FROM [TABLA] [WHERE[CONDICION]];
+</code></pre>
+<p>En donde [CAMPOS] son los atributos o columnas que se desean extraer de la [TABLA] que se especifique y [WHERE] es opcional, esta condición será utilizada más adelante.</p>
+<p>Consideremos la siguiente base de datos:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/img1.jpg?raw=true" alt="enter image description here"></p>
+<p>Si se quiere extraer solamente el nombre y apellido de la tabla USUARIO se hace de la siguiente manera:</p>
+<pre><code>SELECT nombre, apellido FROM usuario;
+</code></pre>
+<p>Dando como resultado:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/img2.jpg?raw=true" alt="enter image description here"></p>
+<p>Si se desea extraer todos los campos de una tabla se utiliza * de la  siguiente manera:</p>
+<pre><code>SELECT * FROM usuario;
+</code></pre>
+<p>Esta instrucción devolverá todos los registros y todos los campos que la tabla posea.</p>
+<h3 id="alias-as">ALIAS (AS)</h3>
+<p>En muchos casos es necesario asignar un nombre a alguna columna o tabla, cuando se le asigna un alias a una columna el nombre de la columna cambia en el resultado, mientras que cuando se usa el alias en la tabla este sirve para identificar campos que tengan el mismo nombre en distintas tablas.</p>
+<p>Por ejemplo se desea extraer todos los nombres de la tabla AUTOR y todos los nombres de la tabla USUARIO, pero que al mostrarse se llamen Nombres de Autores y Nombres de Usuarios; <em>¿Qué problema habría si se quita el alias a las tablas?</em></p>
+<pre><code>SELECT u.nombre as "Nombre usuario", a.nombre as "Nombre autor" FROM usuario as u, autor as a;
+</code></pre>
+<p><em>¿Por qué el resultado de esta consulta está lleno de duplicidad?</em></p>
+<h3 id="cláusula-condicional-where">Cláusula condicional WHERE</h3>
+<p>Esta cláusula devuelve un subconjunto de los registros de una tabla que cumplan con dicha condición.</p>
+<pre><code>SELECT * FROM LIBRO WHERE npaginas = 300;
+</code></pre>
+<p>Esta consulta devuelve los registros de la tabla LIBRO que cumplan la condición de tener 300 páginas.</p>
+<p>Otros operadores que se pueden usar en la cláusula WHERE:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/tab1.jpg?raw=true" alt="enter image description here"></p>
+<p>Además de estos operadores lógicos se disponen otros adicionales:</p>
+<h3 id="between">BETWEEN</h3>
+<p>Indica un intervalo de valores:</p>
+<pre><code>SELECT * FROM LIBRO WHERE npaginas BETWEEN 1 AND 500;
+</code></pre>
+<p>Esta instrucción devuelve los registros de la tabla LIBRO que tengan entre 1 a 500 páginas.</p>
+<h3 id="like">LIKE</h3>
+<p>Sirve para comparar patrones de texto:</p>
+<pre><code>SELECT * FROM autor WHERE nombre LIKE '1%';
+</code></pre>
+<p>Devuelve todos los autores cuyo nombre comience con “L”.</p>
+<p><a href="https://www.w3schools.com/sql/sql_wildcards.asp">Lista de patrones de texto.</a></p>
+<h3 id="in">IN</h3>
+<p>Sirve para comparar con una lista de valores fijos:</p>
+<pre><code>SELECT num, calle, direccion
+FROM direccion
+WHERE ciudad IN ('Sevilla', 'Córdoba', 'Huelva', 'Cádiz')
+</code></pre>
+<h3 id="is-null-is-not-null">IS NULL/ IS NOT NULL</h3>
+<p>Devuelve los registros que sean o no sean nulos. Este operador lógico se verá más adelante cuando se trabajen los JOINS.</p>
+<h3 id="operadores-lógicos">Operadores lógicos</h3>
+<p>Sirven para componer expresiones y filtrar aún más los registros de una tabla.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/tab2.jpg?raw=true" alt="enter image description here"></p>
+<pre><code>SELECT * FROM Libro WHERE npaginas &gt; 550 AND titulo LIKE 'a%';
+</code></pre>
+<p>Esta consulta devuelve los registros de la tabla libro que tengan más de 550 páginas y el título comience con la letra a.</p>
+<h2 id="consultas-entre-tablas-join">Consultas entre tablas JOIN</h2>
+<p>Se pueden generar consultas en las cuales es necesario obtener datos de varias tablas relacionadas entre sí.<br>
+La forma básica de hacerlo es utilizando la cláusula condicional WHERE también conocido como INNER JOIN implícito:</p>
+<pre><code>SELECT l.titulo FROM libro as l, ejemplar as e
+WHERE l.codigo = e.codigo_libro;
+</code></pre>
+<p>A continuación se verán los principales tipos de JOINS. Imágenes cortesía de Steve Stedman.</p>
+<h3 id="inner-join">INNER JOIN</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/inerjoin.jpg?raw=true" alt="enter image description here"></p>
+<p>Esta consulta obtiene lo mismo que el JOIN implícito.</p>
+<h3 id="left-join">LEFT JOIN</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/leftjoin.jpg?raw=true" alt="enter image description here"></p>
+<p>El resultado de esta consulta contiene todos los registros de la relación izquierda (primera tabla indicada) y aquellos de la tabla derecha que cumplen la condición, para los demás aparecerá en los campos correspondientes un NULL.</p>
+<h3 id="right-join">RIGHT JOIN</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/rightjoin.jpg?raw=true" alt="enter image description here"></p>
+<p>Es análogo al LEFT JOIN, pero devolviendo todos los registros de la relación derecha (segunda tabla que aparece), y únicamente aquellos de la tabla izquierda que cumplen la condición del JOIN. Y aquellos sin equivalente en la parte izquierda tendrán en los campos correspondientes a dicha tabla un NULL.</p>
+<h3 id="two-inner-joins">TWO INNER JOINS</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/twoinnerjoins.jpg?raw=true" alt="enter image description here"></p>
+<h3 id="ejemplos">EJEMPLOS</h3>
+<p><strong>Ejemplo 1:</strong> Mostrar los libros que no han sido prestados en los últimos 6 meses.</p>
+<pre><code>SELECT l.titulo,p.fecha_prestamo FROM libro as l 
+INNER JOIN Ejemplar as e ON l.codigo = e.codigo_libro 
+INNER JOIN Prestamo as p ON e.codigo = p.codigo_ejemplar
+WHERE fecha_prestamo NOT BETWEEN CAST('2018-12-12' AS DATE) AND CAST('2019-05-05' AS DATE);
+</code></pre>
+<p><strong>Ejemplo 2:</strong> Mostrar que libros ha prestado el usuario Sara.</p>
+<pre><code>SELECT u.nombre AS Usuario, L.titulo AS Libro FROM Usuario as U INNER JOIN Prestamo P
+ON U.codigo = P.codigo_usuario INNER JOIN Ejemplar E
+ON E.codigo = P.codigo_ejemplar INNER JOIN Libro as L
+ON L.codigo = E.codigo_libro WHERE U.nombre='Daniel';
+</code></pre>
+<h2 id="ejercicios">EJERCICIOS</h2>
+<h3 id="diagrama-de-la-base-de-datos">Diagrama de la base de datos</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/04/src/DiagramaEjercicios.jpeg?raw=true" alt="enter image description here"></p>
+<p><strong>Ejercicio 1.</strong></p>
+<p>Los clientes VIP tienen acceso a una serie de servicios adicionales en los distintos viajes que realicen, por lo que se solicita que defina la lista de clientes VIP. El criterio de evaluación consiste en verificar que el promedio de las reservas realizadas por un cliente sea mayor a 1650.00. En la evaluación se debe tener en cuenta todos los servicios extra que incluyan los clientes en las reservas.</p>
+<p><strong>Restricción</strong>: El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).</p>
+<p><strong>Resultado esperado:</strong></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/04/src/Ejercicio%204.1.JPG?raw=true" alt="enter image description here"><br>
+<strong>Ejercicio 2.</strong></p>
+<p>Cada reserva tiene una fecha en la que fue realizada, una solicitud del departamento de finanzas del consorcio requiere la ganancia del mes de abril de 2023, pero los datos deben estar organizados por días. Como parte de la solicitud, se requiere que la fecha sea mostrada en un formato especial (ver imagen de vista esperada). Para calcular el valor de una reserva se debe tomar en cuenta tanto el precio de la reserva como la suma de todos los servicios extras incluidos.</p>
+<p><strong>Restricción</strong>: El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).</p>
+<p><strong>Sugerencia:</strong> investigar sobre la instrucción CONVERT y su utilización en la instrucción SELECT.</p>
+<p><strong>Sección del resultado esperado (El resultado contiene más filas):</strong></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/04/src/Ejercicio4.2.JPG?raw=true" alt="enter image description here"></p>
+<p><strong>Ejercicio 3.</strong></p>
+<p>La legislación internacional exige incluir un impuesto que depende del tipo de cabina seleccionada para cada reserva, la distribución actual impone los siguientes porcentajes:</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Tipo Cabina</strong></th>
+<th><strong>Impuesto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estándar</td>
+<td>7% sobre el total de la reserva</td>
+</tr>
+<tr>
+<td>Exterior</td>
+<td>11% sobre el total de la reserva</td>
+</tr>
+<tr>
+<td>Balcón</td>
+<td>15% sobre el total de la reserva</td>
+</tr>
+<tr>
+<td>Premium</td>
+<td>20% sobre el total de la reserva</td>
+</tr>
+</tbody>
+</table><p>Por lo que se requiere mostrar las reservas realizadas, pero incluyendo el precio de cada reserva más el impuesto aplicado según la clase. Se deben mostrar los siguientes campos: el id de la reserva, la fecha, el id del tipo de cabina, el nombre del tipo de cabina, el total de la reserva sin impuesto aplicado y el total con el impuesto aplicado. Debe recordar que el total de la reserva se define a partir del precio de la reserva más la suma de todos los servicios extras incluidos.</p>
+<p><strong>Restricciones</strong>: El ejercicio debe realizarse en una consulta SELECT, sin utilizar la sentencia INTO, tablas temporales o bloques de programación (bloques anónimos, funciones o procedimientos almacenados).</p>
+<p><strong>Sugerencia:</strong> Investigar sobre la instrucción CASE y su utilización en la instrucción SELECT.</p>
+<p><strong>Nota:</strong> El total de cada reserva se calcula de la siguiente forma: costo de la reserva + (suma de todos los servicios extra contratados). Tener en cuenta que no todas las reservas incluyen servicios extras.</p>
+<p><strong>Sección del resultado esperado (el resultado contiene más filas):</strong></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/bd/laboratorios/04/src/Ejercicio%204.3.JPG?raw=true" alt="enter image description here"></p>
+<h3 id="métrica-de-evaluación">Métrica de evaluación</h3>
+<p>TO DO</p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">Sobre los autores de esta guía práctica</h2>
+<p>Autores:</p>
+<p><strong>Versión 1:</strong><br>
+Emerson Gamaliel Nolasco (<a href="mailto:00215316@uca.edu.sv">00215316@uca.edu.sv</a>), Kevin Enmanuel Velásquez (<a href="mailto:00018616@uca.edu.sv">00018616@uca.edu.sv</a>)</p>
+<p><strong>Versión 2:</strong><br>
+Fátima Adriana Renderos (<a href="mailto:00064018@uca.edu.sv">00064018@uca.edu.sv</a>)</p>
+<p><strong>Versión 3:</strong><br>
+Karla Marielos Aguilar (<a href="mailto:00078913@uca.edu.sv">00078913@uca.edu.sv</a>), Alejandra Mabel Marroquín (<a href="mailto:00007415@uca.edu.sv">00007415@uca.edu.sv</a>)</p>
+<p><strong>Versión 4 (2023):</strong><br>
+Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>), Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>)</p>
+<p><strong>Responsables:</strong></p>
+<p>Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>)<br>
+Correspondencia: <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 4, 2023.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/bd/markdowns/img/laboratorio04/license.jpg?raw=true" alt="enter image description here"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
