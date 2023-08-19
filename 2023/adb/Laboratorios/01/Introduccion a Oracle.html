@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia 1 - Introduccion a Oracle</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="introducción-a-oracle">Introducción a Oracle</h1>
+<h2 id="objetivos">Objetivos</h2>
+<ul>
+<li>Conocer las herramientas para la administración de base de datos (Oracle SQL Developer y SQL Plus).</li>
+<li>Crear de manera correcta una base de datos en ambos clientes SQL Developer y SQL Plus.</li>
+<li>Verificar y gestionar los servicios de Oracle.</li>
+</ul>
+<h2 id="herramientas">Herramientas</h2>
+<p>Para esta práctica se utilizarán las siguientes herramientas:</p>
+<h3 id="oracle-db-19c">Oracle DB 19C</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture1.png?raw=true" alt="enter image description here">Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle Corporation. <strong>Oracle Database 19c</strong> es la versión actual a largo plazo, que además proporciona el nivel más alto de estabilidad de la versión y el plazo más largo para asistencia y corrección de errores.</p>
+<h3 id="sql-developer">SQL Developer</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture2.png?raw=true" alt="enter image description here"><br>
+Es una interfaz gráfica de usuario gratuita que permite a los usuarios y administradores de bases de datos realizar sus tareas con menos clicks y pulsaciones de teclas. SQL Developer es una herramienta de  productividad cuyo objetivo principal es ayudar al usuario final a   ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+<h3 id="sql-plus">SQL Plus</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture3.png?raw=true" alt="enter image description here"><br>
+Es un programa de línea de comandos de Oracle que puede ejecutar comandos SQL y PL/SQL de forma interactiva o mediante un script. SQL*Plus opera como una herramienta relativamente simple con una interfaz de líneas de comando básica. Los programadores y los administradores de bases de datos (DBA’s) lo usan de forma muy común como  interfaz fundamental en la mayoría de las instalaciones de software de Oracle.</p>
+<h2 id="introducción">Introducción</h2>
+<p>En esta guía se pretende dar una introducción a lo que es el mundo de Oracle y más específicamente lo que se refiere a sus clientes para la administración de la base de datos (SQL Developer y Plus). Dando un repaso sobre las características y ventajas que estos clientes poseen y además explicando paso a paso la gestión de los servicios de Oracle, así como también la creación de nuevas conexiones (bases de datos).</p>
+<h2 id="servicios">Servicios</h2>
+<p>Un servicio es un pequeño programa que normalmente se inicia cuando se carga el sistema operativo Windows. Los usuarios no interactúan directamente con los servicios como lo hacen con los programas regulares porque se ejecutan en segundo plano (no se ven) y no proporcionan una interfaz de usuario normal.</p>
+<p>Windows puede usar los servicios para controlar muchas cosas, como imprimir, compartir archivos, comunicarse con dispositivos Bluetooth, buscar actualizaciones de software, alojar un sitio web; en este caso se encargan de gestionar ciertos parámetros de Oracle DB.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture4.png?raw=true" alt="enter image description here"></p>
+<p>En la ventana verás el nombre de cada uno, una breve descripción de las funciones que realiza, su estado y el tipo de inicio. El tipo de inicio indica el comportamiento del servicio cuando arranca el sistema operativo. Existen cinco tipos:</p>
+<ul>
+<li>Automático, que se inicia con cada arranque del sistema.</li>
+<li>Automático (inicio retrasado), espera a que el sistema operativo se haya cargado y se inicia automáticamente.</li>
+<li>Manual, se inicia cuando una aplicación lo necesita.</li>
+<li>Manual (desencadenar inicio). El servicio sólo se iniciará si no hay demasiados servicios en ejecución.</li>
+<li>Deshabilitado, el servicio no se puede iniciar.</li>
+</ul>
+<h2 id="características-y-ventajas-de-los-clientes">Características y Ventajas de los Clientes</h2>
+<p>Ambos clientes nos brindan características propias interesantes y además ventajas entre los mencionados anteriormente en los cuales cabe destacar los puntos que se muestran continuación:</p>
+<h3 id="sql-developer-1">SQL Developer</h3>
+<ul>
+<li>Crear conexiones.</li>
+<li>Creación y mantenimiento de objetos.</li>
+<li>Ejecutar, editar y depurar PL/SQL.</li>
+<li>Ejecutar y crear informes.</li>
+<li>Visor de Data Modeler.</li>
+</ul>
+<h3 id="sql-plus-1">SQL Plus</h3>
+<ul>
+<li>Escribir, editar y ejecutar comandos SQL y bloques PL/SQL.</li>
+<li>Dar formato a los resultados de las consultas.</li>
+<li>Visualizar las estructuras de las tablas y copiar datos entre bases de datos.</li>
+<li>Ejecutar comandos y operaciones de entrada/salida (introducción, presentación y manipulación de variables).</li>
+</ul>
+<h3 id="ventajas">Ventajas</h3>
+
+<table>
+<thead>
+<tr>
+<th><strong>SQL Developer</strong></th>
+<th><strong>SQL Plus</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuenta con interfaz gráfica (GUI)</td>
+<td>Cuando queremos usar SHELL para acceder a la base de datos en la plataforma UNIX (como hacer algunas operaciones en segundo plano, tareas de tiempo, etc.), SQLPLUS es la única opción en este momento.</td>
+</tr>
+<tr>
+<td>Brinda diversas herramientas para la creación de diagramas</td>
+<td>SQL Plus es una herramienta que viene con Oracle, siempre que la base de datos esté instalada. Por lo tanto, si se llegara a presentar inconvenientes al momento de iniciar sesión con el SQL Developer, al ser independientes entre sí, se podría ingresar del SQL Plus sin ningún problema.</td>
+</tr>
+<tr>
+<td>Permite trabajar con múltiples conexiones simultáneamente</td>
+<td>----------</td>
+</tr>
+</tbody>
+</table><h2 id="conexión-a-sql-developer">Conexión a SQL Developer</h2>
+<p>En Oracle una <strong>nueva conexión</strong> es equivalente a una base de datos para otros gestores ya conocidos, en este caso para crear una nueva conexión basta con darle click en el botón como la figura 1 lo indica. Otra forma es dar click derecho donde dice “Oracle Conexiones” y luego a “Nueva Conexión a bases de datos”</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture5.png?raw=true" alt="enter image description here"></p>
+<p>Al crear la conexión se nos desplegara una ventana en el cual se nos muestra unos campos vacíos los cuales serán configurados de la siguiente manera:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture6.png?raw=true" alt="enter image description here"></p>
+<ol>
+<li>Asignación del nombre de la nueva base de datos.</li>
+<li>Usuario de administración de la nueva base de datos.</li>
+<li>Contraseña del usuario.</li>
+<li>Rol asignado al usuario de la base de datos.</li>
+<li>Nombre del host, al ser una conexión local se coloca “localhost”.</li>
+<li>Nombre de la instancia donde se ejecutará la nueva base de datos.</li>
+<li>Prueba la conexión a la nueva base de datos.</li>
+<li>Muestra el estado de conexión.</li>
+<li>Valida y crea la conexión previamente configurada.</li>
+</ol>
+<h2 id="ejercicio">Ejercicio</h2>
+<p>Crear una base de datos a partir del banco de datos proporcionado:<br>
+<a href="2023/adb/Laboratorios/01/files/DataBank_PlayStore_2023.sql">Script del banco de datos</a></p>
+<ol>
+<li>Asignarle una conexión al archivo .sql.</li>
+</ol>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture7.png?raw=true" alt="enter image description here"></p>
+<ol start="2">
+<li>Seleccionar la base de datos.</li>
+</ol>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture8.png?raw=true" alt="enter image description here"></p>
+<ol start="3">
+<li>Se seleccionan las sentencias sql a ejecutar para crear la base de datos.</li>
+</ol>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture9.png?raw=true" alt="enter image description here"></p>
+<h2 id="conexión-a-sql-plus">Conexión a SQL Plus</h2>
+<p>Al abrir la consola de SQL Plus o cualquier otro tipo de consola de nuestro sistema operativo Windows, basta con ingresar el nombre del usuario con acceso a la base de datos y el rol al mismo tiempo. Como, por ejemplo: “sys as sysdba” (Ver imagen).</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture10.png?raw=true" alt="enter image description here"></p>
+<p>Luego de haber ingresado con el usuario respectivo de manera correcta, se puede ejecutar cualquier sentencia sql, en este caso para el ejemplo: “SELECT * FROM FACTURADETALLE”.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture11.png?raw=true" alt="enter image description here"></p>
+<blockquote>
+<p>Siempre que se modifique la base de datos y estamos seguros de los<br>
+cambios que se han realizado, es recomendable confirmar la transacción<br>
+a través de un <strong>commit</strong>, Oracle gestiona muchas actividades en<br>
+memoria, confirmar la transacción permite guardar los cambios en<br>
+disco.</p>
+</blockquote>
+<h2 id="creación-de-diagrama-de-una-base-de-datos">Creación de diagrama de una base de datos</h2>
+<p>Para generar un diagrama en SQL Developer hay que seguir la siguiente ruta de acceso Archivo &gt; Data Modeler &gt; Importar &gt; Diccionario de Datos, el cual se verá reflejado de la siguiente manera:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture12.png?raw=true" alt="enter image description here"></p>
+<p>Se selecciona la base de datos con la cual se está trabajando y se da click en siguiente.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture13.png?raw=true" alt="enter image description here"></p>
+<p>En este paso se utiliza el filtro y se coloca “sys”, luego realizamos la búsqueda y marcamos la casilla con la opción “SYS” y se da click en siguiente.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture14.png?raw=true" alt="enter image description here"></p>
+<p>En esta ventana se seleccionan todas las tablas que se desean incluir en el diagrama y luego se da en la opción de siguiente.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture15.png?raw=true" alt="enter image description here"></p>
+<p>Aquí se muestra la cantidad de tablas seleccionadas previamente, solo se da click en siguiente para que ver el diagrama generado.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture16.png?raw=true" alt="enter image description here"></p>
+<p>Ya teniendo el diagrama creado, procedemos a dar click derecho en el espacio en blanco y seleccionamos la opción de “Imprimir Diagrama” y luego escoges el tipo de archivo que queremos, en nuestro caso será tipo imagen.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture17.png?raw=true" alt="enter image description here"></p>
+<p>Y por último proceden agregan un nombre y lo guardan en su lugar de preferencia.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture18.png?raw=true" alt="enter image description here"></p>
+<h2 id="actividad-evaluada">Actividad evaluada</h2>
+<p>Realizar los ejercicios que sean asignados por su instructor, las indicaciones sobre esta actividad se van a definir en las sesiones de laboratorio.</p>
+<p><a href="2023/adb/Laboratorios/01/files/DataBank_PlayStore_2023.sql">Script del banco de datos</a></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/diagrama.jpg?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<p>Mostrar el top 6 de las compañías más populares en la primera quincena de enero de 2019. (NOTA: la popularidad de un juego se define en cuantas veces se ha vendido). Vista esperada (vista completa):</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/Ejer1_L1.JPG?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<p>Mostrar el detalle de cada factura, incluir el nombre del cliente, el título del videojuego, el precio y la cantidad comprada. Vista esperada (vista parcial):</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/Ejer2_L1.JPG?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-3">Ejercicio 3</h3>
+<p>Mostrar la lista de facturas con el precio total resultante de realizar el siguiente cálculo. Vista esperada (vista parcial):</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/Ejer3_L1.JPG?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-4">Ejercicio 4</h3>
+<p>Definir la lista de clientes frecuentes del mes. Para ello, es necesario definir la cantidad de videojuegos que cada cliente ha comprado, un cliente se considera frecuente si ha comprado 10 o más videojuegos. Vista esperada (vista completa):</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/Ejer4_L1.JPG?raw=true" alt="enter image description here"></p>
+<h2 id="sobre-los-autores-de-esta-guía-de-laboratorio.">Sobre los autores de esta guía de laboratorio.</h2>
+<p><strong>Autores</strong></p>
+<p><strong>Versión 1:</strong><br>
+Ismael Chicas Garcia (<a href="mailto:00036818@uca.edu.sv">00036818@uca.edu.sv</a>), Oscar Rivas Borjas (<a href="mailto:00005218@uca.edu.sv">00005218@uca.edu.sv</a>), Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>).</p>
+<p><strong>Versión 2:</strong><br>
+Josué Cortez (<a href="mailto:00402918@uca.edu.sv">00402918@uca.edu.sv</a>)</p>
+<p><strong>Versión 3:</strong><br>
+Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>), Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>)</p>
+<p><strong>Correspondencia:</strong><br>
+Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>)</p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 3, Agosto 2023.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/general/license.jpg?raw=true" alt="enter image description here"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
