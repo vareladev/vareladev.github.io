@@ -85,7 +85,6 @@ Al crear la conexión se nos desplegara una ventana en el cual se nos muestra un
 
 ## Ejercicio
 Crear una base de datos a partir del banco de datos proporcionado:
-[Script del banco de datos](2023/adb/Laboratorios/01/files/DataBank_PlayStore_2023.sql)
 
 1. Asignarle una conexión al archivo .sql.
 
@@ -147,8 +146,6 @@ Y por último proceden agregan un nombre y lo guardan en su lugar de preferencia
 ## Actividad evaluada
 
 Realizar los ejercicios que sean asignados por su instructor, las indicaciones sobre esta actividad se van a definir en las sesiones de laboratorio.
-
-[Script del banco de datos](2023/adb/Laboratorios/01/files/DataBank_PlayStore_2023.sql)
 
 ![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/diagrama.jpg?raw=true)
 
