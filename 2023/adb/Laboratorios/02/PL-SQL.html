@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia 2 - PL SQL</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="plsql">PL/SQL</h1>
+<h2 id="objetivos.">Objetivos.</h2>
+<ul>
+<li>Conocer la sintaxis de las funciones, procedimientos y triggers en Oracle.</li>
+<li>Utilizar la salida de pantalla con ayuda de DBMS output.</li>
+<li>Crear distintos tipos de sentencias como Estructuras de control básicas, Tfunciones, procedimientos almacenados, triggers y bloques anónimos.</li>
+</ul>
+<h2 id="herramientas">Herramientas</h2>
+<p>Para esta práctica se utilizarán las siguientes herramientas:</p>
+<h3 id="oracle-db-19c">Oracle DB 19C</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture1.png?raw=true" alt="enter image description here"></p>
+<p>Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle  Corporation. Oracle Database 19c es la versión actual a largo plazo, que  además proporciona el nivel más alto de estabilidad de la versión y el  plazo más largo para asistencia y corrección de errores.</p>
+<h3 id="sql-developer">SQL Developer</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio01/Picture2.png?raw=true" alt="enter image description here"></p>
+<p>Es una interfaz gráfica de usuario gratuita que permite a los usuarios y  administradores de bases de datos realizar sus tareas con menos clicks y  pulsaciones de teclas. SQL Developer es una herramienta de productividad cuyo objetivo principal es ayudar al usuario final a ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+<h2 id="introducción.">Introducción.</h2>
+<p>En esta guía se dará a conocer que es el PL/SQL a profundidad, los  diversos tipos de datos que existen en el gestor, cómo podremos ser  capaces de mostrar salida de pantalla, a su vez conoceremos la sintaxis básica de las distintas sentencias que se pueden utilizar en Oracle.</p>
+<h2 id="¿qué-es-plsql">¿Qué es PL/SQL?</h2>
+<h3 id="definición">Definición</h3>
+<p>PL/SQL es un lenguaje de procedimiento diseñado específicamente para abarcar sentencias SQL dentro de su sintaxis. El servidor de Oracle Database compila las unidades de programa PL/SQL y se almacenan dentro de la base de datos. Y en tiempo de ejecución, tanto PL/SQL como SQL se ejecutan dentro del mismo proceso de servidor, brindando una eficiencia óptima. PL/SQL hereda automáticamente la robustez, la seguridad y la portabilidad de Oracle Database.</p>
+<h3 id="tipos-de-datos">Tipos de datos</h3>
+<p>En Oracle existen varios tipos de datos, los tipos más comunes en un programa son: number, varchar2, date, Boolean.<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio02/Picture1.png?raw=true" alt="enter image description here"></p>
+<h3 id="bloques-anónimos">Bloques anónimos</h3>
+<p>Los bloques anónimos no tienen ningún nombre concreto, por eso de anónimos. Un bloque PL/SQL es definido por las palabras clave  DECLARE, BEGIN, EXCEPTION, y END, que dividen el bloque en tres secciones:</p>
+<ul>
+<li>Declare: Se definen los distintos objetos que se van a utilizar en el bloque (variables, constantes, cursores, etcétera). Esta sección es opcional.</li>
+<li>Begin: En esta zona estará el código PL/SQL que ejecutaremos.</li>
+<li>Exception: Es una sección opcional donde se tratan todos los errores que puedan surgir a la hora de ejecutar las sentencias SQL y PL/SQL de la sección de instrucciones.</li>
+<li>End: Indica el cierre del bloque anónimo.</li>
+</ul>
+<p>Un bloque es en sí mismo una sentencia ejecutable, por lo que se pueden anidar los bloques unos dentro de otros.</p>
+<p>Sintaxis:</p>
+<pre><code>DECLARE
+    --Declaración de variable
+BEGIN
+    --Instrucciones PL/SQL
+EXCEPTION
+    --Tratamiento de excepciones
+END;
+</code></pre>
+<h3 id="declaración-de-variables-y-constantes">Declaración de variables y constantes</h3>
+<ul>
+<li>Variables: Las variables son nombres para procesar los elementos de los datos.</li>
+</ul>
+<p>Sintaxis:</p>
+<pre><code>Nombre_variable tipo [NOT NULL] [:= valor | DEFAULT valor]
+</code></pre>
+<ul>
+<li>Constantes: Las constantes son como las variables, pero no puede modificarse su valor.</li>
+</ul>
+<p>Sintaxis:</p>
+<pre><code>Nombre_constante CONSTANT tipo_de_dato := valor
+</code></pre>
+<blockquote>
+<p>El signo de “:=” y “DEFAULT” tienen la misma función. Si ponemos NOT<br>
+NULL es obligatorio inicializar la variable.</p>
+</blockquote>
+<h3 id="guardar-valores-a-partir-de-una-consulta-select.">Guardar valores a partir de una consulta SELECT.</h3>
+<p>Al tener una tabla origen, podemos insertar los datos de dicha tabla a una nueva tabla destino. Se puede elegir ciertos campos de la tabla o bien se pueden insertar todos, teniendo en cuenta que ambas tienen que tener los mismos capos con su mismo tipo de dato.</p>
+<p>Sintaxis:</p>
+<pre><code>INSERT INTO nombre_tabla SELECT * FROM nombre_tabla_fuente
+</code></pre>
+<h2 id="salida-de-pantalla-dbms-output.">Salida de pantalla DBMS Output.</h2>
+<p>Al haber iniciado SQL Developer daremos en la opción “Ver”:<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio02/Picture2.png?raw=true" alt="enter image description here"></p>
+<p>Posteriormente se seleccionará la opción de “salida DBMS”:<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio02/Picture3.png?raw=true" alt="enter image description here"></p>
+<p>Luego podremos imprimir valores en consola dándole en ejecutar.<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio02/Picture4.png?raw=true" alt="enter image description here"></p>
+<h2 id="estructuras-de-control-básicas.">Estructuras de control básicas.</h2>
+<h3 id="ifthenelse">IF/THEN/ELSE</h3>
+<p>Esta sentencia es utilizada cuando se quiere elegir entre dos opciones basadas<br>
+en una condición.</p>
+<p>Sintaxis:</p>
+<pre><code>IF condition THEN
+    {-- Código a ejecutar si la condición es verdadera... }
+
+ELSE
+    {-- Códifo a ejecutar si la condición es false... }
+END IF;
+</code></pre>
+<h3 id="loopexit-when">LOOP/EXIT WHEN</h3>
+<p>La sentencia loop es la encargada de ejecutar una secuencia de sentencias múltiples veces, PL/SQL nos permite utilizar diversas formas de loops, tales como BASIC LOOP, WHILE LOOP, FOR LOOP y Cursor FOR LOOP. Para salir de un loop podemos utilizar EXIT o EXIT-WHEN.</p>
+<p>Sintaxis:</p>
+<pre><code>    DECLARE
+         --Declaración de variables
+      BEGIN
+        LOOP
+          --Código que se desea ejecutar
+          EXIT WHEN    --Condición de paro
+    END LOOP;
+</code></pre>
+<h3 id="while-loop">WHILE LOOP</h3>
+<p>Este tipo de loop permite que se ejecute una sentencia mientras la condición dentro de esta sea verdadera.</p>
+<p>Sintaxis:</p>
+<pre><code>    WHILE condition LOOP
+        --Código que se desea ejecutar
+    END LOOP;
+</code></pre>
+<h3 id="while-loop-1">WHILE LOOP</h3>
+<p>Los loops FOR iteran sobre un rango específico de números enteros. El número de iteraciones se conoce antes de ingresar al loop. El rango se evalúa cuando se ingresa por primera vez el bucle FOR y nunca se vuelve a evaluar.</p>
+<pre><code>    BEGIN
+        FOR i IN 1 .. 3 LOOP
+            -- Código que se desea iterar
+            END LOOP;
+        END
+</code></pre>
+<h2 id="funciones.">Funciones.</h2>
+<p>Las funciones, como los procedimientos almacenados son bloques de código que permiten agrupar y organizar sentencias SQL que se ejecutan al invocar la función. Una función acepta parámetros, se invoca con su nombre y retorna un valor.</p>
+<p>Sintaxis:</p>
+<pre><code>    CREATE (OR REPLACE) FUNTION nombre_funcion ( param1 tipo, param2 tipo, ... ) 
+    RETURN tipo_dato IS
+        -- Declaración de variables locales --
+    BEGIN
+        -- Instrucciones de ejecución
+    [EXCEPTION]
+        -- Instrucciones de excepción
+    END;
+</code></pre>
+<h2 id="procedimientos-almacenados.">Procedimientos almacenados.</h2>
+<p>Los procedimientos PL/SQL son subprogramas compuestos por un conjunto de sentencias SQL. Un procedimiento está constituido por un conjunto de sentencias SQL y PL/SQL lógicamente agrupados para realizar una tarea específica. Los procedimientos almacenados constituyen un bloque de código PLSQL que ha sido compilado y almacenado en las tablas del sistema de la base de datos Oracle.</p>
+<p>Sintaxis:</p>
+<pre><code>    CREATE (OR REPLACE) PROCEDURE nombre_procdimiento} (param1 [IN | OUT | IN OUT] tipo, ... )
+    IS
+        -- Declaración de variables locales --
+    BEGIN
+        -- Instrucciones de ejecución
+    [EXCEPTION]
+        -- Instrucciones de excepción
+    END;
+</code></pre>
+<h2 id="triggers.">Triggers.</h2>
+<p>Un Trigger se lleva a cabo cuando se produce algún suceso relacionado con la misma. Los triggers pueden utilizarse para completar la integridad referencial, también para imponer reglas de negocio complejas o para auditar cambios en los datos. El código contenido en un trigger denominado cuerpo del trigger, está formado por bloques PL/SQL.</p>
+<p>Sintaxis:</p>
+<pre><code>    CREATE OR REPLACE TRIGGER nombre_trigger
+        BEFORE DELETE OR INSERT OR UPDATE ON tabla
+        FOR EACH ROW
+    WHEN -- Condición
+    DECLARE
+        -- Declaración de variables-
+    BEGIN
+        -- Instrucciones
+    END;
+</code></pre>
+<h2 id="actividad-práctica.">Actividad práctica.</h2>
+<h3 id="ejercicio-1.">Ejercicio 1.</h3>
+<p>Crear una función que reciba como parámetros dos números enteros, el primer parámetro “venta_objetivo” puede tomar el valor de 5, 10 o 15. El segundo “descuento”, se trata de un número flotante que puede tomar los valores 0.1, 0.15 o 0.20. La función deberá mostrar la siguiente información de las compras: el id de la factura, el id y nombre del cliente, el id y nombre del empleado, la fecha de la compra y el total de la compra. Además, se debe incluir un criterio extra: para cada compra que cumpla con la cantidad de videojuegos comprados en la “venta_objetivo” o más, se aplicará un valor establecido en el parámetro “descuento”. Por ejemplo, si los parámetros son (5, 0.1), a todas las facturas que tengan una compra de al menos 5 videojuegos se les aplicará un 10% de descuento. La columna muestra el descuento aplicable en cada factura. Resultado esperado con valores: ventas objetivo=10, descuento=0.1:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/02/src/Ejer1.jpg?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-2.">Ejercicio 2.</h3>
+<p>Crear una función que reciba como parámetro el id de un departamento, con esta información la función retornará una tabla con la información de todos los empleados que pertenecen a ese departamento. Crear una excepción personalizada para validar que el id se encuentre en el rango de departamentos disponibles, la validación de los departamentos debe realizarse de forma dinámica, para que la función pueda adaptarse ante una posible expansión de los departamentos. No se requiere que la excepción se administre. Resultado esperado con un id de departamento válido (para el caso, idempleado = 1):<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/02/src/Ejer2.jpg?raw=true" alt="enter image description here"><br>
+Resultado esperado con un id de departamento inválido (para el caso, idempleado = 4):<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/02/src/Ejer2.1.jpg?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-3.">Ejercicio 3.</h3>
+<p>Crear un procedimiento almacenado que tenga un parámetro de entrada en donde se recibirá el código de una compañía, el procedimiento imprimirá en consola toda la información de la compañía, incluyendo la información de todos sus videojuegos correspondientes. El formato que se ha establecido para poder imprimir la información es JSON. La siguiente figura muestra el resultado al ejecutar el procedimiento almacenado tomando al autor con id 3 como ejemplo:<br>
+<img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/02/src/Ejer3.jpg?raw=true" alt="enter image description here"></p>
+<p>Si se desea verificar el formato del resultado de una forma más<br>
+amigable, es posible utilizar herramientas online como: <a href="https://jsonformatter.curiousconcept.com">JSON formatter</a></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/02/src/Ejer3.1.jpg?raw=true" alt="enter image description here"></p>
+<h3 id="diagrama-relacional-para-la-actividad.">Diagrama relacional para la actividad.</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/01/src/diagrama.jpg?raw=true" alt="enter image description here"></p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">Sobre los autores de esta guía práctica</h2>
+<p><strong>Autores:</strong></p>
+<p><strong>Versión 1:</strong><br>
+Fátima Adriana Renderos (<a href="mailto:00064018@uca.edu.sv">00064018@uca.edu.sv</a>), Madeline Abigail Clará (<a href="mailto:00146318@uca.edu.sv">00146318@uca.edu.sv</a>), Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>)</p>
+<p><strong>Versión 2:</strong><br>
+Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>), Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>)</p>
+<p><strong>Versión 3:</strong><br>
+Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>), Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>)</p>
+<p><strong>Responsables:</strong><br>
+Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>),<br>
+Correspondencia: <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 3, 2023.</p>
+<p><img src="./img/general/license.jpg" alt="test"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
