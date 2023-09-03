@@ -143,7 +143,7 @@ Sintaxis:
     END LOOP;
 ```
 
-### WHILE LOOP
+### FOR LOOP
 
 Los loops FOR iteran sobre un rango específico de números enteros. El número de iteraciones se conoce antes de ingresar al loop. El rango se evalúa cuando se ingresa por primera vez el bucle FOR y nunca se vuelve a evaluar.
 
