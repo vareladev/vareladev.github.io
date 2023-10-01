@@ -1,0 +1,434 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion-y-almacenamiento-de-usuarios</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="administaricón-de-almacenamiento-y-usuarios">Administaricón de Almacenamiento y usuarios</h1>
+<h2 id="objetivos">Objetivos</h2>
+<ul>
+<li>Administrar el almacenamiento de Oracle a través Tablespace y Datafiles.</li>
+<li>Conocer como es la sintaxis de la creación de un usuario y perfiles.</li>
+<li>Aprender los diferentes tipos de roles para los usuarios.</li>
+</ul>
+<h2 id="herramientas">Herramientas</h2>
+<p>Para esta práctica se hará uso de estas herramientas:</p>
+<h3 id="oracle-db-19c">Oracle DB 19c</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/oracle.png?raw=true" alt="enter image description here"><br>
+Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle Corporation. Oracle Database 19c es la versión actual a largo plazo, que además proporciona el nivel más alto de estabilidad de la versión y el plazo más largo para asistencia y corrección de errores.</p>
+<h3 id="sql-developer">SQL Developer</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/sqldev.png?raw=true" alt="enter image description here"><br>
+Es una interfaz gráfica de usuario gratuita que permite a los usuarios y administradores de bases de datos realizar sus tareas con menos clicks y pulsaciones de teclas. SQL Developer es una herramienta de productividad cuyo objetivo principal es ayudar al usuario final a ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+<h2 id="introducción">Introducción</h2>
+<p>En esta guía se dará a conocer las diferencias entre un tablespaces y datafiles, al igual que como se administran cada uno de ellos, como puede ser crearlos, cambiar sus parámetros y eliminarlos. Al igual aprenderemos como crear usuarios, a crear roles que estos mismos usuarios pueden tener y crear perfiles, y como podemos dejarles ciertos permisos dependiendo de las tareas que deben realizar.</p>
+<h2 id="administración-de-almacenamiento">Administración de almacenamiento</h2>
+<p>Como sabemos, Oracle guarda los datos de manera lógica en un tablespace y  físicamente en datafiles, que corresponden o están asociados a los tablespaces. Las bases de datos, tablespaces y datafiles están estrechamente relacionadas, pero es  de importancia saber que existen diferencias muy grandes:</p>
+<ul>
+<li>Una base de datos Oracle consiste en uno o más unidades de almacenamiento lógico llamados tablespaces, estos tablespaces son los que guardan todos los datos de la base de datos.</li>
+<li>Cada tablespaces en una base de datos Oracle consiste en uno o más archivos llamados datafiles, los cuales son la estructura física de los tablespaces.</li>
+<li>Los datos son guardados en datafiles que constituyen cada tablespace de la base   de datos, por ejemplo, la base de datos más simple podría tener como mínimo un tablespace y un datafiles.</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/Tablespace.png?raw=true" alt="enter image description here"></p>
+<h2 id="tablespace">Tablespace</h2>
+<p>La estructura lógica está formada por los tablespace y los objetos de un esquema de la base de  datos (tablas, vistas, índices…)</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/Tablespace2.png?raw=true" alt="enter image description here"></p>
+<p>Una base de datos está formada por una o varias unidades lógicas llamadas Tablespaces. Un tablespace es la unidad de almacenamiento lógico. Además, cada una de estos Tablespaces está formada por uno o varios ficheros físicos que son los datafiles. Un datafile solamente puede pertenecer a un tablespace. Por lo tanto, los datafiles de una base de datos son todos los datafiles que forman parte de todos los tablespaces de la base. Cuando se crea una base de datos, hay que crear al menos un tablespace, por lo que durante el proceso de creación de la base de datos siempre se indica el tablespace principal de ésta, que se llama SYSTEM.</p>
+<p><em>Propiedades:</em></p>
+<ul>
+<li>Localización de los ficheros de datos.</li>
+<li>Especificación de máximas cuotas de consumo de disco.</li>
+<li>Backup de datos.</li>
+</ul>
+<p>Cuando un objeto se crea dentro de un cierto Tablespace, este objeto adquiere todas las propiedades antes descritas del Tablespace utilizado.</p>
+<p><em>Características:</em></p>
+<ul>
+<li>Debe estar asociado a un Datafiles.</li>
+<li>Un Tablespace está asociado a uno o varios Datafiles y puede tener uno o ovarios usuarios.</li>
+</ul>
+<h3 id="creación-de-tablespace">5.1 Creación de Tablespace</h3>
+<p>Una de las tareas habituales en la administración de una base de datos Oracle es la de crear un nuevo Tablespace para contener nuevos objetos, La sentencia CREATE TABLESPACE sirve para crear un tablespace en una base de datos Oracle. Recordemos que los Tablespaces permanentes contienen objetos, tablas, índices, etc. de uno o más esquemas. Los objetos en los tablespaces permanentes se almacenan en archivos de datos, datafiles.</p>
+<h4 id="ejemplo-1.1">Ejemplo 1.1</h4>
+<pre><code>    CREATE TABLESPACE tablespace1
+    DATAFILE 'C:/datafile_tb1.dbf' SIZE 10M;
+</code></pre>
+<h3 id="sql-developer-1">5.2 SQL Developer</h3>
+<p>Podemos crear tablespaces donde el/los datafiles se vayan extendiendo de forma automática, si lo creamos de esta manera debemos tener cuidado en no olvidar la cláusula MAXSIZE, ya que si la omitimos el datafile se extenderá hasta llenar el filesystem donde esté creado.</p>
+<h4 id="ejemplo-1.2">Ejemplo 1.2</h4>
+<pre><code>  CREATE TABLESPACE tablespace2
+    DATAFILE 'C:/datafile_tb2.dbf' SIZE 5M
+    AUTOEXTEND ON NEXT 1M MAXSIZE 20M;
+</code></pre>
+<h4 id="ejercicio-1">Ejercicio 1</h4>
+<ul>
+<li>Crear un tablespace auto expandible llamado TB__LB3 (sustituir “” por su número de carnet).</li>
+<li>Asignar un datafile de 8 megabytes y que será guardado en el disco C.</li>
+<li>El tamaño máximo será de 36 Megabytes con extensiones de 2 Megabytes.</li>
+</ul>
+<h3 id="sql-developer-2">5.3 SQL Developer</h3>
+<p>Para cambiar el tamaño de un tablespace tenemos dos posibles opciones:</p>
+<ul>
+<li>Modificar el tamaño de un datafile.</li>
+<li>Agregar un nuevo datafile.</li>
+</ul>
+<h4 id="ejemplo-1.3.-agregando-nuevos-datafiles.">Ejemplo 1.3. agregando nuevos datafiles.</h4>
+<p>Ahora modificaremos el tablespace creado en el Ejercicio 1. Antes de modificarlo es recomendable ver cuántos datafiles conforman el tablespace, y que tamaño tienen, con en base en esta información, añadir uno nuevo, siguiendo el estándar de nombres, y el tamaño apropiado.</p>
+<p>A continuación, se presenta la forma de ver la información de los datafiles del tablespace.</p>
+<pre><code>  SELECT * FROM DBA_TABLESPACES;
+  SELECT * FROM DBA_DATA_FILES;
+</code></pre>
+<p>Si ejecutamos este SELECT con el tablespace llamado “tablespace2” veremos la siguiente información:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/tablamuestra.png?raw=true" alt="enter image description here"></p>
+<p>Lo que nos indica que este tablespace posee un solo datafile de 5 MB de tamaño. A continuación, agregamos un nuevo datafile.</p>
+<pre><code>  ALTER TABLESPACE tablespace2
+   ADD DATAFILE 'C:/datafile_tb2_2.dbf' SIZE 5M AUTOEXTEND OFF;
+</code></pre>
+<h4 id="ejercicio-2">Ejercicio 2</h4>
+<ul>
+<li>Añadir un nuevo datafile al tablespace creado en el ejercicio 1.</li>
+<li>El tamaño será 10 Megabytes y será almacenado en el disco C.</li>
+</ul>
+<p>Mostrando la información de tablespace2 nuevamente:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/tablespace2datafile.png?raw=true" alt="enter image description here"></p>
+<p><strong>Ejemplo 1.4 modificando un datafile.</strong></p>
+<p>También podemos modificar un datafile existente.</p>
+<pre><code>  ALTER DATABASE DATAFILE 'C:/datafile_tb2_2.dbf' RESIZE 10M;
+</code></pre>
+<p>Mostrando la información de tablespace2 nuevamente:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/TablespaceEJE1.4.png?raw=true" alt="enter image description here"></p>
+<h4 id="ejercicio-3">Ejercicio 3</h4>
+<p>Redimensionar el segundo datafile creado a 8 Megabytes.</p>
+<h3 id="sql-developer-3">5.4. SQL Developer</h3>
+<p>Primero debemos asegurarnos de que el contenido de los archivos de datos no es necesario, o se ha movido a otro tablespace.</p>
+<p><strong>Ejemplo 1.5</strong></p>
+<p>Borrando el tablespace1 anteriormente creado.</p>
+<pre><code>  DROP TABLESPACE tablespace1;
+</code></pre>
+<p><em>¡La sentencia anterior borra un tablespace, pero NO los datafiles!</em> ahora podemos ir a borrar manualmente el datafile. La siguiente instrucción borra un tablespace incluyendo sus datafiles.</p>
+<pre><code>  DROP TABLESPACE tablespace2 INCLUDING CONTENTS AND DATAFILES;
+</code></pre>
+<h2 id="datafiles">Datafiles</h2>
+<p>Un datafile es la representación física de un tablespace. Son los “ficheros de datos” donde se almacena la información físicamente. Los tablespaces están formados por datafiles, el crecimiento en el uso de memoria o el modo de gestión determinarán algunas configuraciones en ellos.</p>
+<h3 id="ejemplos-de-administración-de-datafiles">6.1 Ejemplos de Administración de Datafiles</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/datafiles_1.png?raw=true" alt="enter image description here"><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/datafiles_2.png?raw=true" alt="enter image description here"></p>
+<blockquote>
+<p>Los nuevos archivos deben existir antes de poder renombrar, esta<br>
+sentencia no crea archivos.</p>
+</blockquote>
+<h3 id="limitantes-en-la-creación-de-datafiles">6.2 Limitantes en la creación de datafiles</h3>
+<ul>
+<li>Los sistemas operativos pueden poner un límite con respecto al número de archivos que un proceso puede abrir simultáneamente. También podría poner límites con respecto al tamaño de los  archivos creados.</li>
+<li>Oracle impone un límite máximo de datafiles creados por cualquier base de datos; no se puede exceder del número de datafiles creados por el parámetro de inicialización DB_FILES.</li>
+</ul>
+<h2 id="administración-de-usuarios">Administración de Usuarios</h2>
+<p>Un usuario es un nombre de acceso a la base de datos Oracle. Normalmente va asociado a una clave (password).</p>
+<p>Lo que puede hacer un usuario una vez ha accedido a la base de datos depende de los permisos que tenga asignados ya sea directamente (GRANT) como sobre algún rol que tenga asignado (CREATE ROLE).</p>
+<p>El perfil que tenga asignado influye en los recursos del sistema de los que dispone un usuario a la hora de ejecutar Oracle (CREATE PROFILE).</p>
+<p>La sintaxis para crear un usuario es:</p>
+<pre><code>  CREATE USER  &lt;usuario&gt;
+  IDENTIFIED BY &lt;contraseña&gt;/EXTERNALLY
+  DEFAULT TABLESPACE &lt;espacio&gt;
+  TEMPORARY TABLESPACE &lt;espacio&gt;
+  QUOTA {&lt;xx&gt; K | UNLIMITED ON &lt;espacio&gt;}
+  PROFILE &lt;perfil&gt;
+  PASSWORD EXPIRE
+  ACCOUNT LOCK/UNLOCK
+</code></pre>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Campo</strong></td>
+            <td><strong>Descripcion</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>&lt;usuario&gt;</strong></td>
+            <td>Debe ser único con respecto al resto de usuarios.</td>
+        </tr>
+        <tr>
+            <td><strong>&lt;contraseña&gt;</strong></td>
+            <td>Un usuario autenticado de forma externa se ha de crear con la cláusula “IDENTIFIED EXTERNALLY”.</td>
+        </tr>
+        <tr>
+            <td><strong>DEFAULT TABLESPACE</strong></td>
+            <td>Indica aquel espacio de almacenamiento donde se crearán los objetos del esquema del usuario.</td>
+        </tr>
+        <tr>
+            <td><strong>TEMPORARY TABLESPACE </strong></td>
+            <td>Indica el espacio de almacenamiento donde se almacenan los segmentos temporales requeridos por el usuario. No debe indicarse quota.</td>
+        </tr>
+        <tr>
+            <td><strong>QUOTA</strong></td>
+            <td>Indica la cantidad de espacio reservada en un determinado espacio de almacenamiento para el usuario. Por defecto un usuario no tiene quota en ningún espacio de almacenamiento. Indicando UNLIMITED, es ilimitado el espacio a usar.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PROFILE</strong></td>
+            <td>Indica el perfil a asignar al usuario.
+            </td>
+        </tr>
+        <tr>
+            <td> <strong>PASSWORD EXPIRE</strong> </td>
+            <td>Fuerza al usuario a cambiar la clave antes de conectarse a la base de datos.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>ACCOUNT LOCK/UNLOCK</strong> </td>
+            <td>Bloquea/desbloquea la cuenta de usuario e inhabilita el acceso.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Ejemplo</strong><br>
+Creando un usuario sin derechos a guardar datos o crear objetos:</p>
+<pre><code>  CREATE USER usuariolimitado IDENTIFIED BY miclavesecreta;
+</code></pre>
+<h4 id="ejercicio-4">Ejercicio 4</h4>
+<ul>
+<li>Crear un usuario “user_” (sustituir con su carnet) la contraseña será “contrasena”.</li>
+<li>Asignar como tablespace por defecto el creado en el ejercicio 1, y como tablespace temporal “TEMP”.</li>
+<li>Definir una cuota de 4MB de uso de espacio en el tablespace por defecto.</li>
+</ul>
+<h3 id="modificación-de-un-usuario">7.1 Modificación de un usuario</h3>
+<p>Los usuarios pueden cambiar sus propias claves, sin embargo, para cambiar cualquier otro parámetro es necesario el privilegio “ALTER USER”.</p>
+<p>Sintaxis para modificar un usuario.</p>
+<pre><code>  ALTER USER  &lt;usuario&gt;
+  IDENTIFIED BY &lt;contraseña&gt;/EXTERNALLY
+  DEFAULT TABLESPACE &lt;espacio&gt;
+  TEMPORARY TABLESPACE &lt;espacio&gt;
+  QUOTA {&lt;xx&gt; K | UNLIMITED ON &lt;espacio&gt;}
+  DEFAULT ROLE &lt;role&gt;/ALL/ALL EXCEPT &lt;role&gt;/NONE
+  PROFILE &lt;perfil&gt;
+  PASSWORD EXPIRE
+  ACCOUNT LOCK/UNLOCK;
+</code></pre>
+<h3 id="eliminación-de-usuario">7.2 Eliminación de usuario</h3>
+<p>Los usuarios pueden ser eliminados de la BD utilizando el comando DROP USER. Este comando tiene un único parámetro, CASCADE, el cual permite borrar todos los objetos del usuario antes de eliminar el usuario.</p>
+<h2 id="roles-y-privilegios">Roles y Privilegios</h2>
+<p>Los roles se pueden utilizar para gestionar los comandos de sistema disponibles para los usuarios. Estos incluyen comandos como CREATE TABLE o SELECT ANY TABLE. Todos los usuarios que quieran acceder a la BD deben tener el rol CONNECT. Un usuario con el rol DBA tiene derecho para ver y manejar todos los datos de la BD.</p>
+<p>Algunos roles predefinidos en Oracle son: CREATE ROLE programador; SYSDBA, SYSOPER, OSDBA, OSOPER, EXP_FULL_DATABASE, IMP_FULL_DATABASE, SELECT_CATALOG_ROLE, EXECUTE_CATALOG_ROLE, DELETE_CATALOG_ROLE.</p>
+<p><strong>Ejemplo 3.1</strong><br>
+Administrando roles:</p>
+<pre><code>-- Creando rol
+CREATE ROLE RolGerente;
+
+-- Creando rol con password
+CREATE ROLE RolGerenteVentas IDENTIFIED BY password;
+
+-- Borrando rol
+DROP ROLE RolGerente;
+</code></pre>
+<p><strong>Parámetros para la creación de un perfil:</strong></p>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Roles</strong></td>
+            <td><strong>Autorizaciones</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>SYSOPER</strong></td>
+            <td>
+            <ul>
+            <li>CREATE SPFILE</li>
+            <li>ALTER DATABASE OPEN/MOUNT/BACKUP</li>
+            <li>ALTER DATABASE ARCHIVELOG</li>
+            <li>ALTER DATABASE RECOVER</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>SYSDBD </strong></td>
+            <td>
+            <ul>
+            <li>STARTUP</li>
+            <li> SHUTDOWN</li>
+            <li>ALTER DATABASE: open, mount, back up, or change character set.</li>
+            <li>CREATE DATABASE</li>
+            <li>DROP DATABASE</li>
+            <li>CREATE SPFILE</li>
+            <li>ALTER DATABASE ARCHIVELOG</li>
+            <li>ALTER DATABASE RECOVER</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>OSOPER</strong></td>
+            <td>
+            <ul>
+            <li>STARTUP</li>
+            <li>SHUTDOWN</li>
+            <li>ALTER DATABASE: open/mount</li>
+            <li>ALTER DATABASE BACKUP CONTROLFILE</li>
+            <li>ALTER TABLESPACE BEGIN/END BACKUP</li>
+            <li>ARCHIVE LOG</li>
+            <li>RECOVER</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+        <td><strong>OSDBA</strong></td>
+        <td>OSDBA incluye todo lo que tiene el rol OSOPER, igual este usuario tiene más privilegios que otros usuarios.</td>
+        </tr>
+        <tr>
+            <td><strong>EXP_FULL_DATABASE</strong></td>
+            <td>
+            <ul>
+            <li>SELECT ANY TABLE</li>
+            <li>BACKUP ANY TABLE</li>
+            <li>EXECUTE ANY PROCEDURE</li>
+            <li>EXECUTE ANY TYPE</li>
+            <li>ADMINISTER RESOURCE MANAGER</li>
+            <li>INSERT, DELETE, and UPDATE on the tables SYS.INCVID, SYS.INCFIL, and SYS.INCEXP</li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>MP_FULL_DATABASE </strong></td>
+            <td>
+            Puede otorgar privilegios a roles y usuarios.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>SELECT_CATALOG_ROL </strong></td>
+            <td>
+            Puede otorgar permisos a los usuarios de SELECT a algunos datos.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>EXECUTE_CATALOG_ROLE  </strong></td>
+            <td>
+              Puede otorgar permisos a los usuarios para ejecutar procedimientos y paquetes.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>DELETE_CATALOG_ROLE  </strong></td>
+            <td>
+              Permite a los usuarios eliminar registros de tablas.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>Para asignar privilegios a un rol, tenemos el siguiente formato:</p>
+<pre><code>  GRANT &lt;privilegios&gt; ON &lt;nombre_de_función|nombre_de_tabla&gt; TO &lt;nombre_de_rol&gt;;
+</code></pre>
+<p>Se vería de la siguiente manera (este ejemplo es sin privilegios predefinidos):</p>
+<pre><code>GRANT SELECT, INSERT, UPDATE, DELETE
+ON customers
+TO &lt;nombre_del_rol&gt;;
+</code></pre>
+<p>También podemos eliminar privilegios:</p>
+<pre><code>  REVOKE &lt;privilegio&gt; ON &lt;nombre_de_tabla&gt; FROM &lt;nombre_de_rol&gt;;
+</code></pre>
+<h4 id="ejercicio-5">Ejercicio 5</h4>
+<p>Crear Rol “hacker” y asignar los siguientes privilegios:</p>
+<ul>
+<li>Poder conectarse a la base de datos (CONNECT).</li>
+<li>Poder crear recursos (RESOURCE).</li>
+</ul>
+<p>Crear Rol “developer” y asignar los siguientes privilegios:</p>
+<ul>
+<li>Poder conectarse a la base de datos (CONNECT).</li>
+<li>Permitir agregar nuevas filas de datos (INSERT ON).</li>
+</ul>
+<p>Asignar el rol hacker al usuario creado en el ejercicio 4.</p>
+<h2 id="perfiles">Perfiles</h2>
+<p>Un perfil está constituido por un conjunto de límites de recursos de la base de datos. Diferentes perfiles pueden ser asignados a diferentes usuarios.</p>
+<p>Algunas consideraciones acerca de los perfiles.</p>
+<ol>
+<li>Es necesario el privilegio de sistema CREATE PROFILE.</li>
+<li>Existe un perfil por defecto denominado DEFAULT. Inicialmente todos los recursos asignados en él tienen valor UNLIMITED, por lo que es conveniente modificarlo.</li>
+<li>Un usuario al que no se le asigna perfil posee el perfil DEFAULT, aquellos recursos para los que en el perfil asignado no se ha definido un valor, o se ha indicado DEFAULT, toman el valor asignado en el perfil por defecto.</li>
+</ol>
+<p><strong>Sintaxis para la creación de un perfil.</strong></p>
+<pre><code>  CREATE PROFILE &lt;nombre_perfil&gt;
+  LIMIT &lt;parametros&gt; &lt;valor&gt;/UNLIMITED/DEFAULT;
+</code></pre>
+<p>A continuación, se describen los parámetros que pueden configurarse cuando se crea un perfil.</p>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Parametro</strong></td>
+            <td><strong>Descripcion</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>SESSIONS_PER_USER</strong></td>
+            <td>Número de sesiones concurrentes.</td>
+        </tr>
+        <tr>
+            <td><strong>CONNECT_TIME</strong></td>
+            <td>Tiempo total para una sesión (minutos).</td>
+        </tr>
+        <tr>
+            <td><strong>IDLE_TIME</strong></td>
+            <td>Tiempo de inactividad continua en una sesión (minutos).</td>
+        </tr>
+        <tr>
+            <td><strong>LOGICAL_READS_PER_CALL </strong></td>
+            <td>Número de bloques de datos para una llamada de una SQL.</td>
+        </tr>
+        <tr>
+            <td><strong>PRIVATE_SGA</strong></td>
+            <td>Cantidad de espacio, en bytes, para uso privado reservado en la “shared pool” de la SGA (se emplea K o M para indicar kilobyte o megabytes).</td>
+        </tr>
+        <tr>
+            <td><strong>FAILED_LOGIN_ATTEMPTS</strong></td>
+            <td>Número de intentos fallidos de conexión antes del bloqueo.</td>
+        </tr>
+        <tr>
+            <td><strong>PASSWORD_LIFE_TIME</strong></td>
+            <td>Número de días en que la clave es válida para autenticación. Se indica un valor para PASSWORD_GRACE_TIME, la clave expira si no se cambia en este periodo. Si no se indica valor para PASSWORD_GRACE_TIME, por defecto UNLIMITED, se genera un aviso, pero el usuario puede seguir conectándose</td>
+        </tr>
+        <tr>
+            <td><strong>PASSWORD_GRACE_TIME </strong></td>
+            <td>Periodo de gracia donde se permite la conexión, pero se notifica la necesidad de cambiarla.</td>
+        </tr>
+        <tr>
+            <td><strong>PASSWORD_REUSE_TIME</strong></td>
+            <td>Número de días en los cuales la contraseña no puede reutilizarse.</td>
+        </tr>
+        <tr>
+            <td><strong>PASSWORD_REUSE_MAX</strong></td>
+            <td>Número de cambios de clave necesarios antes de poder reutilizar la clave actual.</td>
+        </tr>
+        <tr>
+            <td><strong>PASSWORD_LOCK_TIME</strong></td>
+            <td>Número de días que la cuenta estará bloqueada después de un cierto número de fallos de conexión indicado.</td>
+        </tr>
+    </tbody>
+</table>
+<h4 id="ejercicio-6">Ejercicio 6:</h4>
+<p>Crear el perfil FCLD_ABD con los siguientes parámetros:</p>
+<ul>
+<li>Máximo número de intentos de login: 3.</li>
+<li>Tiempo de vida de la contraseña: 20.</li>
+<li>Tiempo de inactividad: 30.</li>
+<li>Número máximo de reutilización de una contraseña: 5.</li>
+<li>Tiempo de gracia de una contraseña: 5.</li>
+</ul>
+<p>Asignar el perfil al usuario creado en el ejercicio 4.</p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">Sobre los autores de esta guía práctica</h2>
+<p><strong>Autores:</strong></p>
+<p><strong>Versión 1:</strong><br>
+Diana Cristina Sánchez Muñoz (<a href="mailto:00188618@uca.edu.sv">00188618@uca.edu.sv</a>), Carlos Francisco Estévez Lemus (<a href="mailto:00120218@uca.edu.sv">00120218@uca.edu.sv</a>), Fernando Josué Vásquez Hernández (<a href="mailto:00179118@uca.edu.sv">00179118@uca.edu.sv</a>), Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>).</p>
+<p><strong>Versión 2:</strong><br>
+Fernando José Meléndez Orellana (<a href="mailto:00018720@uca.edu.sv">00018720@uca.edu.sv</a>), Marcos Benjamin Granillo Flores (<a href="mailto:00028320@uca.edu.sv">00028320@uca.edu.sv</a>).</p>
+<p><strong>Versión 3:</strong><br>
+Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>), Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>).</p>
+<p><strong>Responsables:</strong> Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>) .</p>
+<p><strong>Correspondencia:</strong> <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 3, 2023.</p>
+<p><img src="./img/general/license.jpg" alt="test"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> <img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/general/license.jpg?raw=true" alt="enter image description here"></p>
+</div>
+</body>
+
+</html>
