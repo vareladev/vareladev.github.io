@@ -1,4 +1,4 @@
-﻿# Administaricón de Almacenamiento y usuarios 
+﻿# Administración de Almacenamiento y usuarios 
 
 ## Objetivos 
 
