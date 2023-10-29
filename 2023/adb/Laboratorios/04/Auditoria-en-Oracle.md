@@ -228,6 +228,7 @@ Crear tablas al usuario admin
 
 ![enter image description here](https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej1_1.jpg?raw=true)
 
+
 Verificar desde la conexión del usuario admin el de la siguiente instrucción:
 
 
