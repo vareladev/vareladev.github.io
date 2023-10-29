@@ -218,9 +218,9 @@ Crear tablas al usuario admin</p>
 <p>Verificar desde la conexión del usuario SYS la vista dba_audit_trail.</p>
 </li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej1_1.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej1_1.jpg?raw=true" alt="enter image description here"></p>
 <p>Verificar desde la conexión del usuario admin el de la siguiente instrucción:</p>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej1_2.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej1_2.jpg?raw=true" alt="enter image description here"></p>
 <h2 id="auditar-instrucciones-ddl.">Auditar instrucciones DDL.</h2>
 <p>Pongámonos en la situación que por ejemplo vamos a auditar todas las sentencias que creen una tabla, para este ejemplo vamos a auditar las acciones CREATE TABLE del usuario que creamos en el ejercicio 1.</p>
 <h3 id="ejercicio-2">Ejercicio 2</h3>
@@ -228,15 +228,15 @@ Crear tablas al usuario admin</p>
 <li>En la conexión del usuario SYS: auditar la creación de tablas al usuario admin.</li>
 <li>En la conexión del usuario admin, crear el siguiente modelo de datos.</li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_1.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej2_1.jpg?raw=true" alt="enter image description here"></p>
 <ul>
 <li>Insertar datos en tablas principales</li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_2.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej2_2.jpg?raw=true" alt="enter image description here"></p>
 <ul>
 <li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_3.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej2_3.jpg?raw=true" alt="enter image description here"></p>
 <h2 id="auditar-acciones-sobre-objetos.">Auditar acciones sobre objetos.</h2>
 <p>Con esta posibilidad tendremos mayor control sobre la actividad de los usuarios que han interactuado con un objeto específico de la base de datos, vamos a ver como se audita una tabla.</p>
 <h3 id="ejercicio-3.">Ejercicio 3.</h3>
@@ -256,15 +256,15 @@ SELECT sobre las tablas COMPANIA y VIDEOJUEGO SELECT, INSERT, DELETE y UPDATE so
 <p>En la conexión del usuario aux, insertar los siguientes datos en la tabla VIDEOJUEGOXCOMPANIA:</p>
 </li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_1.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej3_1.jpg?raw=true" alt="enter image description here"></p>
 <ul>
 <li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_2.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej3_2.jpg?raw=true" alt="enter image description here"></p>
 <ul>
 <li>En la conexión del usuario SYS, auditar todas las acciones sobre la tabla OBRA:</li>
 </ul>
-<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_3.png?raw=true" alt="enter image description here"></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/04/src/Ej3_3.jpg?raw=true" alt="enter image description here"></p>
 <h2 id="gestionar-registros-de-auditoría">Gestionar registros de Auditoría</h2>
 <p>Para gestionar los registros de auditoría de Oracle debemos tener claro que cualquier usuario que se conecte con privilegios de administrador puede borrar estos archivos, aunque es “visible” que han sido borrados siempre que tengamos activado el parámetro audit_sys_operations=true</p>
 <p><strong>Protegiendo los registros de auditoría.</strong></p>
