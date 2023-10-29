@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoria-en-Oracle</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="auditoría-en-oracle">Auditoría en Oracle</h1>
+<h2 id="objetivos">Objetivos</h2>
+<ul>
+<li>Aprender a activar la auditoría en ORACLE.</li>
+<li>Dominar las vistas donde se almacena la información de auditoría.</li>
+<li>Conocer la forma de auditar.</li>
+<li></li>
+</ul>
+<h2 id="herramientas">Herramientas</h2>
+<p>Para esta práctica se hará uso de estas herramientas:</p>
+<h3 id="oracle-db-19c">Oracle DB 19c</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/oracle.png?raw=true" alt="enter image description here"></p>
+<p>Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional (ORDBMS, por el acrónimo en inglés de Object-Relational Data Base Management System), desarrollado por Oracle Corporation. Oracle Database 19c es la versión actual a largo plazo, que además proporciona el nivel más alto de estabilidad de la versión y el plazo más largo para asistencia y corrección de errores.</p>
+<h3 id="sql-developer">SQL Developer</h3>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio03/sqldev.png?raw=true" alt="enter image description here"></p>
+<p>Es una interfaz gráfica de usuario gratuita que permite a los usuarios y administradores de bases de datos realizar sus tareas con menos clicks y pulsaciones de teclas. SQL Developer es una herramienta de productividad cuyo objetivo principal es ayudar al usuario final a ahorrar tiempo y maximizar el retorno de la inversión en el paquete de tecnología de Oracle Database.</p>
+<h2 id="introducción">Introducción</h2>
+<p>Esta guía pretende explorar una serie de buenas prácticas de auditoría, así como la importancia que ésta tiene en el servidor de bases de datos, añadiendo una nueva capa de seguridad que ayuda a prevenir e  identificar sucesos o actividades inusuales y sospechosas, además de explicar de manera practica el cómo utilizar las herramientas de auditoría que Oracle nos proporciona.</p>
+<h2 id="activación-de-la-auditoría-en-oracle">Activación de la auditoría en Oracle</h2>
+<p>La auditoría en Oracle consiste en la monitorización y almacenamiento de información de nuestro servidor Oracle, la auditoría es una parte importante de la seguridad del sistema que no debe olvidarse.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Dispondremos de información de las operaciones del sistema.</li>
+<li>Protegeremos mejor nuestro sistema.</li>
+<li>Podemos prevenir ataques y detectar posibles intrusos.</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li>Mayor consumo de recursos del sistema.</li>
+</ul>
+<p>Oracle, por defecto no trae activada la auditoría (Hasta la versión 11g), aunque la emplea en algunas actividades de esta (auditoría obligatoria): el encendido y apagado, conexiones como sysdba y sysoper. Para activar la auditoría estándar en Oracle,nec esitamos cambiar el parámetro Audit_trail del init.ora (por defecto <em>“none”</em>), podemos ver el estado de este parámetro con el comando <em>“show parameter audit”</em>.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/1.png?raw=true" alt="enter image description here"></p>
+<p>El comando para activar la auditoría en oracle es el siguiente:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/2.png?raw=true" alt="enter image description here"></p>
+<p>Las modificaciones del archivo init.ora requieren el reinicio de la base de datos para que surjan efecto, así que reiniciaremos para aplicar los cambios.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/12.png?raw=true" alt="enter image description here"></p>
+<pre><code>También podemos activar la auditoría de operaciones de usuarios con privilegios de
+sistema, para ello hacemos lo siguiente:
+
+SQL&gt; ALTER SYSTEM SET audit_sys_operations=true SCOPE=SPFILE;
+
+</code></pre>
+<p>Los valores más comunes que podemos asignar al parámetro audit_trail son los siguientes:</p>
+<ul>
+<li>none: La auditoría está desactivada.</li>
+<li>db: La auditoría está activada con todos y guarda los registros en la tabla SYS.AUD$ (tablespace SYSTEM por defecto).</li>
+<li>os: La auditoría está activada, con todos los registros guardados directamente en el sistema operativo (en un directorio y archivos concretos), está opción depende del sistema operativo.</li>
+<li>db, extended: La auditoría está activada los datos se almacenarán en la taba SYS.AUD$. Además, se escribirán los valores correspondientes en las columnas SqlText y SqlBind de la tabla SYS.AUD $.<br>
+xml: activa la auditoría de la base de datos, los sucesos serán escritos en ficheros XML del sistema operativo.</li>
+<li>xml, extended: activa la auditoría de la base de datos, los registros serán escritos en el formato XML del sistema operativo, además se incluirán los valores de SqlText y SqlBind.</li>
+</ul>
+<p>Para esta práctica vamos a usar el tipo de auditoría db.</p>
+<h2 id="activación-de-la-auditoría-en-oracle-1">Activación de la auditoría en Oracle</h2>
+<p>Las vistas del diccionario de datos nos muestran información útil de nuestro sistema, a<br>
+nosotros nos interesan las vistas con relación a la auditoría, que principalmente son:</p>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Vista</strong></td>
+            <td><strong>Descripcion</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>&lt;ALL_AUDIT_POLICIES&gt;</strong></td>
+            <td>Define las políticas en las tablas y vistas accesibles al usuario actual.</td>
+        </tr>
+        <tr>
+            <td><strong>&lt;ALL_AUDIT_POLICY_COLUMNS&gt;</strong></td>
+            <td>Define las políticas de auditoría en las tablas y vistas accesibles para el usuario actual.</td>
+        </tr>
+        <tr>
+            <td><strong>ALL_DEF_AUDIT_OPTS</strong></td>
+            <td>Lista las opciones por defecto de auditoría que serán aplicadas a los objetos que se crean.</td>
+        </tr>
+        <tr>
+            <td><strong>AUDIT_ACTIONS </strong></td>
+            <td>Lista las acciones que pueden ser auditadas.</td>
+        </tr>
+        <tr>
+            <td><strong>DBA_AUDIT_EXISTS</strong></td>
+            <td>Lista las entradas auditadas producidas por AUDIT NOT EXISTS.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>DBA_AUDIT_OBJECT</strong></td>
+            <td>Lista los registros de auditoría de todos los objetos del sistema.
+            </td>
+        </tr>
+        <tr>
+            <td> <strong>DBA_AUDIT_POLICIES</strong> </td>
+            <td>Lista toda la información sobre las políticas de auditoría del sistema.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>DBA_AUDIT_SESSION</strong> </td>
+            <td>Lista todos los registros que conciernen a CONNECT y DISCONNECT.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>BDA_AUDIT_STATEMENT</strong> </td>
+            <td>Lista los registros auditados que conciernen a GRANT, REVOKE, AUDIT, NOAUDIT y ALTER SYSTEM de toda la base de datos.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>DBA_COMMON_AUDIT_TRAIL</strong> </td>
+            <td>Combina los logs estándares con los exhaustivos, incluye SYS y los registros obligatorios escritos en formato XML.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>DBA_FGA_AUDIT_TRAIL</strong> </td>
+            <td>Lista los registros completos de una auditoría.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>DBA_OBJ_AUDIT_OPTS</strong> </td>
+            <td>Describe las opciones de auditoría en todos los objetos.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>DBA_PRIV_AUDIT_OPTS</strong> </td>
+            <td>Describe los privilegios de sistema actuales que estan siendo auditados por algún usuario.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>DBA_STMT_AUDIT_OPTS</strong> </td>
+            <td>Describe todas las opciones de auditoría actuales de todo el sistema y por usuario.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_AUDIT_OBJECT</strong> </td>
+            <td>Lista los registros auditados para sentencias que conciernen objetos accesibles para el usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_AUDIT_POLICIES</strong> </td>
+            <td>Describe exhaustivamente las columnas de políticasde auditoría en las tablas y vistas accesibles por el usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_AUDIT_SESSION</strong> </td>
+            <td>Lista todos los registros de auditoría relacionados a conexiones y desconexiones del usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_AUDIT_STATEMENT</strong> </td>
+            <td>Lista todos los registros relacionados con lassentencias GRANT, REVOKE, AUDIT, NOAUDIT y ALTER SYSTEM emitidas por el usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_AUDIT_TRAIL</strong> </td>
+            <td>Lista todas las entradas de auditoría estándares de la tabla AUD$ sobre el usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>USER_OBJ_AUDIT_OPTS</strong> </td>
+            <td>Describe las opciones de auditoría en todos los objetos que posee el usuario actual.
+            </td>
+        </tr>
+         <tr>
+            <td><strong>STMT_AUDIT_OPTION_MAP</strong> </td>
+            <td>Describe información sobre los tipos de códigos de auditoría
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>Hay bastantes vistas más, para verlas todas podemos usar esta sentencia:</p>
+<pre><code>SELECT view_name FROM dba_views WHERE view_name LIKE '%AUDIT%' ORDER BY view_name;
+</code></pre>
+<h2 id="auditar-los-inicios-de-sesión-de-la-base-de-datos">Auditar los inicios de sesión de la base de datos</h2>
+<p>Para auditar los inicios de sesión de la base de datos usaremos la sentencia:</p>
+<pre><code>AUDIT SESSION
+</code></pre>
+<p>(la cual podemos filtrar por usuarios de la siguiente forma <em>“AUDIT  SESSION BY usuario1, usuario2;”</em>) Al igual que el comando AUDIT tenemos el comando NOAUDIT para desactivarla política de auditoría previamente activada.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/3.png?raw=true" alt="enter image description here"></p>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<p>En SQL Developer o Sql PLUS, iniciar sesión con el usuario SYS y crear los siguientes usuarios.</p>
+<ul>
+<li>
+<p>Usuario 1:</p>
+<p>“admin” (ejemplo admin00091610)<br>
+Password: elegido por el estudiante<br>
+Default Tablespace: USERS<br>
+Cuota: 10M<br>
+Temporary Tablespace: TEMP</p>
+</li>
+<li>
+<p>Usuario 2:</p>
+<p>Usuario: “aux” (ejemplo aux00091610)<br>
+Password: elegido por el estudiante<br>
+Default Tablespace: USERS<br>
+Cuota: 10M<br>
+Temporary Tablespace: TEMP</p>
+</li>
+<li>
+<p>Asignar los siguientes privilegios:<br>
+Crear sesión a ambos usuarios<br>
+Crear tablas al usuario admin</p>
+</li>
+<li>
+<p>Activar la auditoria de sesión para los usuarios creados en el punto 1.</p>
+</li>
+<li>
+<p>Sin cerrar la conexión del usuario SYS (la utilizaremos más adelante), iniciar una conexión con el usuario admin creado en el punto 1.</p>
+</li>
+<li>
+<p>Verificar desde la conexión del usuario SYS la vista dba_audit_trail.</p>
+</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej1_1.png?raw=true" alt="enter image description here"></p>
+<p>Verificar desde la conexión del usuario admin el de la siguiente instrucción:</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej1_2.png?raw=true" alt="enter image description here"></p>
+<h2 id="auditar-instrucciones-ddl.">Auditar instrucciones DDL.</h2>
+<p>Pongámonos en la situación que por ejemplo vamos a auditar todas las sentencias que creen una tabla, para este ejemplo vamos a auditar las acciones CREATE TABLE del usuario que creamos en el ejercicio 1.</p>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<ul>
+<li>En la conexión del usuario SYS: auditar la creación de tablas al usuario admin.</li>
+<li>En la conexión del usuario admin, crear el siguiente modelo de datos.</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_1.png?raw=true" alt="enter image description here"></p>
+<ul>
+<li>Insertar datos en tablas principales</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_2.png?raw=true" alt="enter image description here"></p>
+<ul>
+<li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej2_3.png?raw=true" alt="enter image description here"></p>
+<h2 id="auditar-acciones-sobre-objetos.">Auditar acciones sobre objetos.</h2>
+<p>Con esta posibilidad tendremos mayor control sobre la actividad de los usuarios que han interactuado con un objeto específico de la base de datos, vamos a ver como se audita una tabla.</p>
+<h3 id="ejercicio-3.">Ejercicio 3.</h3>
+<ul>
+<li>
+<p>En la conexión del usuario SYS:<br>
+Auditar por acceso las acciones con resultado exitoso o no, de las consultas SELECT, INSERT, DELETE y UPDATE sobre las tablas COMPANIA, VIDEOJUEGO; VIDEOJUEGOXCOMPANIA.</p>
+</li>
+<li>
+<p>Desde la conexión del usuario admin, otorgar los siguientes permisos al usuario aux:<br>
+SELECT sobre las tablas COMPANIA y VIDEOJUEGO SELECT, INSERT, DELETE y UPDATE sobre la tabla VIDEOJUEGOXCOMPANIA.</p>
+</li>
+<li>
+<p>Iniciar una conexión con el usuario aux y consultar las tablas COMPANIA, VIDEOJUEGO y VIDEOJUEGOXCOMPANIA.</p>
+</li>
+<li>
+<p>En la conexión del usuario aux, insertar los siguientes datos en la tabla VIDEOJUEGOXCOMPANIA:</p>
+</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_1.png?raw=true" alt="enter image description here"></p>
+<ul>
+<li>En la conexión del usuario SYS, realizar la siguiente consulta para verificar los registros generados por el usuario.</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_2.png?raw=true" alt="enter image description here"></p>
+<ul>
+<li>En la conexión del usuario SYS, auditar todas las acciones sobre la tabla OBRA:</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2023/adb/Laboratorios/03/src/Ej3_3.png?raw=true" alt="enter image description here"></p>
+<h2 id="gestionar-registros-de-auditoría">Gestionar registros de Auditoría</h2>
+<p>Para gestionar los registros de auditoría de Oracle debemos tener claro que cualquier usuario que se conecte con privilegios de administrador puede borrar estos archivos, aunque es “visible” que han sido borrados siempre que tengamos activado el parámetro audit_sys_operations=true</p>
+<p><strong>Protegiendo los registros de auditoría.</strong></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/13.png?raw=true" alt="enter image description here"></p>
+<p><strong>Eliminando registros de auditoría</strong></p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/14.png?raw=true" alt="enter image description here"></p>
+<p><strong>Gestión del almacenamiento</strong></p>
+<p>Un administrador de bases de datos debe tener en cuenta que el tamaño de la tabla AUD$ (como hemos dicho antes) puede aumentar mucho, depende de dos factores:</p>
+<ul>
+<li>Número de opciones de auditoría activadas.</li>
+<li>Frecuencia con la que se producen esas auditorias.</li>
+</ul>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/laboratorio04/15.png?raw=true" alt="enter image description here"></p>
+<h2 id="sobre-los-autores-de-esta-guía-práctica">Sobre los autores de esta guía práctica</h2>
+<p><strong>Autores:</strong></p>
+<p><strong>Versión 1:</strong><br>
+Diana Cristina Sánchez Muñoz (<a href="mailto:00188618@uca.edu.sv">00188618@uca.edu.sv</a>), Carlos Francisco Estévez Lemus (<a href="mailto:00120218@uca.edu.sv">00120218@uca.edu.sv</a>), Fernando Josué Vásquez Hernández (<a href="mailto:00179118@uca.edu.sv">00179118@uca.edu.sv</a>), Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>).</p>
+<p><strong>Versión 2:</strong><br>
+Fatima Adriana Renderos Laínez (<a href="mailto:00064018@uca.edu.sv">00064018@uca.edu.sv</a>)</p>
+<p><strong>Versión 3:</strong><br>
+Brian Darwin Carranza Campos (<a href="mailto:00136020@uca.edu.sv">00136020@uca.edu.sv</a>), Alejandro Ernesto Cerón Lemus (<a href="mailto:00040116@uca.edu.sv">00040116@uca.edu.sv</a>).</p>
+<p><strong>Responsables:</strong> Erick Varela Guzmán (<a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a>) .</p>
+<p><strong>Correspondencia:</strong> <a href="mailto:evarela@uca.edu.sv">evarela@uca.edu.sv</a></p>
+<p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p>Versión de este documento: Versión 3, 2023.</p>
+<p><img src="https://github.com/vareladev/vareladev.github.io/blob/main/2022/adb/markdowns/img/general/license.jpg?raw=true" alt="enter image description here"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</div>
+</body>
+
+</html>
