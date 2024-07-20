@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-07-20T02:34:56-06:00",
+  "id": "m3-guia-03",
+  "duration": 64,
+  "title": "Expresiones de análisis de datos con DAX",
+  "summary": "Guía de aprendizaje 3",
+  "source": ".\\guia03.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "basesdedatos"
+  ],
+  "feedback": "mailto:evarela@uca.edu.sv",
+  "url": "m3-guia-03"
+}
