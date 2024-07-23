@@ -1,0 +1,173 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Expresiones de análisis de datos con DAX</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="m3-guia-04"
+                  title="Expresiones de análisis de datos con DAX"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Presentación y contextualización" duration="10">
+        <p class="image-container"><img alt="logo uca" src="img\\10663c8c2add680a.png"></p>
+<h2 is-upgraded>Postgrado en Ciencia de Datos e Inteligencia de Negocios</h2>
+<h2 is-upgraded>Módulo 3. Visualización y análisis en Power BI</h2>
+<h2 is-upgraded>Guía de aprendizaje 4. Publicación de tableros.</h2>
+<h3 is-upgraded>Indicaciones.</h3>
+<ul>
+<li><strong>Esta guía de aprendizaje es opcional.</strong> El objetivo es ampliar el conocimiento de Power BI y no tiene nota asignada en el postgrado.</li>
+<li><strong>Modalidad de trabajo.</strong> Esta actividad esta planificada para poder realizar en formato individual.</li>
+</ul>
+<h3 is-upgraded>Objetivos de aprendizaje.</h3>
+<p>Que el estudiante pueda:</p>
+<p><strong>1.</strong> Familiarizarse con el proceso de publicación de tableros de Power BI.</p>
+<p><strong>2.</strong> Publicar tableros en el servicio en línea de Power BI, con el objetivo de compartirlos entre los distintos miembros de la organización.</p>
+<p><strong>3.</strong> configurar actualizaciones automáticas para asegurar que los informes y tableros reflejen siempre la información más reciente y precisa.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contextualización" duration="5">
+        <p>A lo largo del módulo se ha discutido sobre las ventajas que habilita Power BI para crear informes interactivos y reveladores a partir de varias fuentes de datos. Pero ¿Cómo comparte los informes con los demás colegas, clientes o partes interesadas de la manera más eficaz? En esta guía de trabajo, aprenderá sobre algunas formas diferentes de compartir informes de Power BI y las ventajas y desventajas de cada método.</p>
+<p class="image-container"><img alt="proceso de despliegue" src="img\\ceb1f4acac4001b9.png"></p>
+<h2 is-upgraded>Algunos métodos para compartir en la web</h2>
+<h3 is-upgraded>Publicar en la Web</h3>
+<p>Una de las formas más sencillas de compartir sus informes de Power BI es publicarlos en la Web. Esta opción le permite generar una URL pública o un código de inserción que puede compartir con cualquier persona que tenga acceso a Internet. También puede insertar sus informes en sitios web, blogs o plataformas de redes sociales. Sin embargo, este método tiene algunas limitaciones y riesgos. En primer lugar, no puede controlar quién puede acceder o descargar sus informes, y no puede aplicar ninguna configuración de seguridad o filtrado. En segundo lugar, sus informes no se actualizarán automáticamente y deberá volver a publicarlos cada vez que realice algún cambio. En tercer lugar, puede infringir los términos de servicio de algunas fuentes de datos o Power BI si comparte datos confidenciales o sensibles.</p>
+<h3 is-upgraded>Compartir un tablero</h3>
+<p>Otra forma de compartir sus informes de Power BI es compartir un tablero que contenga las visualizaciones. Esta opción permite compartir sus informes con otros usuarios de Power BI dentro de su organización y puede controlar quién puede ver, editar o compartir el panel. También puede aplicar configuraciones de seguridad y clasificación de datos a nivel de fila a sus informes. Sin embargo, este método también tiene algunas desventajas. En primer lugar, debe crear un panel para cada informe que desee compartir y no puede compartir páginas de informes individuales ni elementos visuales. En segundo lugar, sus destinatarios deben tener una licencia de Power BI Pro o ser parte de una capacidad de Power BI Premium para acceder al panel. En tercer lugar, no puede compartir sus informes con usuarios externos, a menos que use una cuenta de invitado o un servicio de terceros.</p>
+<h3 is-upgraded>Exportar a PDF o PowerPoint</h3>
+<p>Una tercera forma de compartir sus informes de Power BI es exportarlos a archivos PDF o PowerPoint. Esta opción le permite compartir sus informes con cualquier persona que pueda abrir estos formatos de archivo y puede agregar anotaciones o comentarios a sus informes. Sin embargo, este método también tiene algunas limitaciones. En primer lugar, pierde la interactividad y la funcionalidad de sus informes y no puede explorar en profundidad, filtrar ni segmentar los datos. En segundo lugar, sus informes no se actualizarán automáticamente y deberá exportarlos nuevamente cada vez que realice algún cambio. En tercer lugar, puede comprometer la calidad o la legibilidad de sus informes, especialmente si contienen elementos visuales complejos o grandes cantidades de datos.</p>
+<h3 is-upgraded>Imprimir o enviar por correo electrónico</h3>
+<p>Una cuarta forma de compartir sus informes de Power BI es imprimirlos o enviarlos por correo electrónico como archivos adjuntos. Esta opción le permite compartir sus informes con cualquier persona que pueda ver los documentos impresos o enviados por correo electrónico, y puede personalizar el diseño y la orientación de sus informes. Sin embargo, este método también tiene algunas desventajas. En primer lugar, pierde la interactividad y la funcionalidad de sus informes, y no puede desglosar, filtrar o segmentar los datos. En segundo lugar, sus informes no se actualizarán automáticamente y deberá imprimirlos o enviarlos por correo electrónico nuevamente cada vez que realice algún cambio. En tercer lugar, puede desperdiciar papel o espacio de almacenamiento, y puede encontrar problemas de compatibilidad o seguridad con algunos clientes de correo electrónico o impresoras.</p>
+<h3 is-upgraded>Usar aplicaciones de Power BI</h3>
+<p>Una quinta forma de compartir sus informes de Power BI es usar aplicaciones de Power BI. Se trata de colecciones de paneles e informes que puede crear y publicar en el espacio de trabajo de aplicaciones de su organización. Esta opción le permite compartir sus informes con otros usuarios de Power BI dentro de su organización y puede controlar quién puede acceder, editar o actualizar la aplicación. También puede aplicar configuraciones de seguridad y clasificación de datos a nivel de fila a sus informes. Sin embargo, este método también presenta algunos desafíos. En primer lugar, debe crear y mantener una aplicación para cada informe que desee compartir y no puede compartir páginas de informes o elementos visuales individuales. En segundo lugar, sus destinatarios deben tener una licencia de Power BI Pro o ser parte de una capacidad de Power BI Premium para acceder a la aplicación. En tercer lugar, no puede compartir sus informes con usuarios externos, a menos que use una cuenta de invitado o un servicio de terceros.</p>
+<h3 is-upgraded>Usar Power BI Embedded</h3>
+<p>Una sexta forma de compartir sus informes de Power BI es usar Power BI Embedded. Este es un servicio que le permite incrustar sus informes en aplicaciones o portales personalizados que puede compartir con sus clientes o socios. Esta opción le permite compartir sus informes con cualquier persona que pueda acceder a su aplicación o portal, y puede personalizar la apariencia de sus informes. También puede aplicar configuraciones de seguridad y clasificación de datos a nivel de fila a sus informes. Sin embargo, este método también tiene algunos requisitos y costos. En primer lugar, debe tener algunas habilidades y recursos de desarrollo para crear y alojar su aplicación o portal, y no puede usar el servicio Power BI o las características de escritorio. En segundo lugar, debe tener una licencia de Power BI Premium o pagar por la capacidad de Power BI Embedded según la cantidad de sesiones o representaciones. En tercer lugar, debe asegurarse de que su aplicación o portal cumpla con los términos de servicio y las políticas de privacidad de Power BI y sus fuentes de datos. En esta guía de trabajo se revisarán dos métodos: publicar un tablero en la web y compartir un tablero a través de Power BI.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Obtener cuenta para usar el servicio en línea de Power BI." duration="15">
+        <p>En esta sección, se revisará el proceso de publicación de sus informes de Power BI. Al final de esta sección, comprenderá de manera clara cómo publicar correctamente sus informes de Power BI.</p>
+<h2 is-upgraded>Requisitos previos</h2>
+<ul>
+<li>Necesita una licencia por usuario de Microsoft Power BI Pro o Premium para publicar en la Web.</li>
+<li>La función &#34;Publicar en la Web&#34; está disponible para los informes que puede editar en &#34;Mi espacio de trabajo&#34;.</li>
+<li>No está disponible para los informes que se comparten con usted o que dependen de la seguridad a nivel de fila para proteger los datos.</li>
+<li>Los lectores de sus informes no necesitan ser usuarios de Power BI.</li>
+</ul>
+<h2 is-upgraded>Procedimiento</h2>
+<p>Cómo se ha discutido en los requisitos previos para poder realizar esta práctica se requiere de una cuenta de Power BI pro o Premium para poder realizar la publicación de un tablero en el servicio en línea de Power BI. Sin embargo, es posible activar una cuenta Pro de forma gratuita para realizar pruebas durante 30 días. A continuación, s de describen los pasos. <strong>Este proceso no requiere que se compre algún servicio, tampoco es necesario registrar tarjetas de crédito/débito.</strong></p>
+<p><strong>1.</strong>	Ir a sitio oficial de Microsoft para adquirir Office 365. <a href="https://www.office.com/" target="_blank"><strong>Clic aquí.</strong></a></p>
+<p><strong>2.</strong>	Ubicar el botón &#34;Buy now&#34;. En el momento de publicación de esta guía, el botón se encuentra en la barra superior.</p>
+<p class="image-container"><img alt="office official web" src="img\\396ea5b071c3035d.png"></p>
+<p><strong>3.</strong>	Ubicar la sección de productos disponibles, aquí, será necesario acceder a la sección &#34;For bussiness&#34;.</p>
+<p class="image-container"><img alt="for bussiness" src="img\\b2beb9ce566ef5fe.png"></p>
+<p><strong>4.</strong>	Hacer clic en la activación de prueba gratuita por un mes del plan &#34;Microsoft 365 Business Premium&#34;.</p>
+<p class="image-container"><img alt="try free" src="img\\60ffc6e2c833943f.png"></p>
+<p><strong>5.</strong>	En el primer paso del proceso de registro, leemos la indicaciones y luego, hacer clic en siguiente.</p>
+<p class="image-container"><img alt="primer paso" src="img\\8a3e4706d125b04.png"></p>
+<p><strong>6.</strong>	El segundo paso solicita un correo institucional, sin embargo, no es necesario. Puede ser un correo personal, incluso puede ser de otro dominio, en este caso se esta utilizando un correo de Gmail.</p>
+<p class="image-container"><img alt="ingresar correo" src="img\\c17896e0af64cb02.png"></p>
+<p><strong>7.</strong>	A continuación, con probabilidad, el asistente de registro indicará que es necesario configurar una nueva cuenta. Hacer clic en configurar cuenta.</p>
+<p class="image-container"><img alt="ingresar correo" src="img\\d5c48f4ae27d7e67.png"></p>
+<p><strong>8.</strong>	El siguiente paso es llenar el formulario con algunos datos. En el caso del número de teléfono será necesario colocar un teléfono personal, porque en el siguiente paso se solicita un código que será enviado vía SMS.</p>
+<p class="image-container"><img alt="registro" src="img\\b21333c4dd16a1a5.png"></p>
+<p><strong>9.</strong>	El siguiente paso es solicitar un código como medida de seguridad. En general este paso es seguro y no suele tener repercusiones en el futuro. Una vez completado este paso, será necesario hacer clic en un botón que se activará luego.</p>
+<p class="image-container"><img alt="check phone number" src="img\\5dcacdbff3bc4914.png"></p>
+<p><strong>10.</strong>	A continuación, se configurar la cuenta de usuario para utilizar el servicio, en el caso de esta guía. Se debe definir un nombre de usuario, subdominio y contraseña. En el caso de este ejemplo, el usuario es &#34;evarela@pcdin.onmicrosoft.com&#34;. Se sugiere anotar la información de usuario y contraseña para no olvidar estas credenciales.</p>
+<p class="image-container"><img alt="setting user" src="img\\63aafa8d29a56597.png"></p>
+<p><strong>11.</strong>	El siguiente paso solicita que ingresemos una tarjeta de crédito para realizar el cobro respectivo una vez finalizado el mes de prueba. Sin embargo, no es necesario completar este paso, porque la cuenta ya ha sido creada. Es posible simplemente cerrar el asistente sin ingresar la información de pago.</p>
+<p class="image-container"><img alt="add payment" src="img\\d32a3f5ccc014435.png"></p>
+<p><strong>12.</strong>	El siguiente paso es registrarse en el servicio de Power BI utilizando el usuario recién configurado. Ir al servicio de Power BI en línea, <a href="https://app.powerbi.com" target="_blank"><strong>puede hacerlo a través de este enlace.</strong></a></p>
+<p><strong>13.</strong>	El primer paso es ingresar un correo electrónico, con el que se verificará si será necesario crear una nueva cuenta empresarial. En este paso, se ingresará el usuario configurado en la página de office.</p>
+<p class="image-container"><img alt="signin user" src="img\\9d077723e29382f8.png"></p>
+<p><strong>14.</strong>	La plataforma detectará que el usuario ya ha sido configurado, por lo que será necesario iniciar sesión ingresando la contraseña.</p>
+<p><strong>15.</strong>	A continuación, la plataforma solicitará el país de procedencia y un teléfono. En el caso del número de teléfono en esta ocasión no será necesario colocar un número personal porque no se utilizará para realizar un paso de confirmación.</p>
+<p class="image-container"><img alt="signin user" src="img\\3041ddc1d51d0e21.png"></p>
+<p><strong>16.</strong>	Una vez finalizado el registro de datos, el usuario estará configurado para utilizar el servicio. Es posible hacer clic en el botón &#34;Iniciar&#34;.</p>
+<p class="image-container"><img alt="signin user" src="img\\8e0aaaead6d8b825.png"></p>
+<p><strong>17.</strong>	Finalmente, deberíamos ser redireccionados al servicio de Power BI online.</p>
+<p class="image-container"><img alt="power bi online" src="img\\875cb90893078f74.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Publicando un tablero." duration="15">
+        <p>Llegados a este punto, podremos realizar el procedimiento para publicar un tablero siguiendo los siguientes pasos:</p>
+<p><strong>1.</strong>	Abrir Power BI y cargar un tablero (se sugiere utilizar un tablero generado en alguna de las primeras tres prácticas).</p>
+<p><strong>2.</strong>	Hacer clic en iniciar sesión y a continuación, escribir el usuario configurado en los pasos anteriores.</p>
+<p class="image-container"><img alt="iniciando sesion" src="img\\fc78d5af642e5f36.png"></p>
+<p><strong>3.</strong>	Luego de esperar algunos minutos, se notificará que el proceso de inicio de sesión ha sido exitoso.</p>
+<p class="image-container"><img alt="sesion iniciada" src="img\\ae9c54e22342f664.png"></p>
+<p><strong>4.</strong>	En la cinta de opciones, en la pestaña &#34;inicio&#34;, ubicar la sección &#34;compartir&#34;. Hacer clic en el botón &#34;Publicar&#34;. Posiblemente, Power BI solicitará guardar los cambios.</p>
+<p><strong>5.</strong>	En la ventana emergente, se debe seleccionar un espacio de trabajo. En este caso tendremos un espacio de trabajo por defecto llamado &#34;mi área de trabajo&#34;. Hacer clic en seleccionar.</p>
+<p class="image-container"><img alt="select workspace" src="img\\1262fe561e8312ba.png"></p>
+<p><strong>6.</strong>	Esperar mientras el tablero se publica.</p>
+<p class="image-container"><img alt="select workspace" src="img\\e64c50397a3e0b6e.png"></p>
+<p><strong>7.</strong>	Una vez finalizado el proceso de Power BI, regresar al servicio de Power BI en línea. En la barra de tareas lateral izquierda, hacer clic en la opción &#34;Workspaces&#34;. A continuación, hacer clic en &#34;My workspace&#34;.</p>
+<p class="image-container"><img alt="select workspace" src="img\\8daefd0c08c8d338.png"></p>
+<p><strong>8.</strong>	En la ventana de administración, tendremos dos archivos, uno representa al banco de datos y el otro, el tablero. Si colocamos el puntero del mouse sobre el ícono, inicial, se mostrará un mensaje emergente. Hacer clic en el reporte.</p>
+<p class="image-container"><img alt="select workspace" src="img\\a2b3c73688d2961a.png"></p>
+<p><strong>9.</strong>	En este punto, tendremos disponible nuestro tablero (nota. El mapa no se observa por una cuestión de configuración en el servicio).</p>
+<p class="image-container"><img alt="select workspace" src="img\\4b2f25a2abc7fb33.png"></p>
+<p><strong>10.</strong>	Para activar la visualización de mapa, es necesario cambiar una pequeña configuración. Ir a Configuración (icono de engranaje), esta opción se encuentra en la barra superior a la derecha, en el menú emergente, buscar la opción &#34;Admin portal&#34;.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\e55fe152639392ac.png"></p>
+<p><strong>11.</strong>	En el portal de administrador, es posible realizar una búsqueda manual de la opción, o bien utilizar el buscador. Como ejemplo, buscar la palabra &#34;map&#34;, las opciones relacionadas serán mostradas. Expandir la opción &#34;map and fill map visual&#34; y habilitar la configuración. No olvidar confirmar la nueva configuración con el botón que aparece al final de la sección de configuración. La configuración debería ser aplicada en los próximos minutos.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\1b6f02f702d3dd5d.png"></p>
+<p><strong>12.</strong>	Ahora podremos compartir el reporte con otros usuarios utilizando distintos métodos. A nivel organizacional se sugiere utilizar las opciones ubicadas en la opción &#34;Compartir&#34;. Esta opción requiere que los destinatarios deben tener una licencia de Power BI Pro o ser parte de una capacidad de Power BI Premium para acceder al panel.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\7c5e1333f57163cb.png"></p>
+<p><strong>13.</strong>	Una segunda opción es compartir el tablero como un recurso web. Para ello deberá ubicar la opción &#34;file&#34; y en el menú emergente, seleccionar la opción &#34;Embed report&#34;. Nota. Esta opción esta deshabilitada por defecto, para activarla, es necesario ir al portal de administrador y buscar la opción &#34;Publish to web&#34;. Será necesario habilitar esta configuración. Además habilitar la opción &#34;Allow users to créate new embed codes&#34;.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\d66567681bc9777c.png"></p>
+<p><strong>14.</strong>	La opción &#34;Ember report -&gt; Website or portal&#34;, ofrece un bloque de código que puede agregarse en una pagina web. Normalmente esta alternativa requiere de algunos conocimientos técnicos sobre desarrollo web y administración de páginas web. Esta opción además es privada, es decir, solo los usuarios miembros de la organización podrán ver este reporte</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\461044d3e213a911.png"></p>
+<p><strong>15.</strong>	La opción &#34;Ember report -&gt; publish to web (public)&#34; es similar, pero para ver las opciones disponibles, antes será necesario aceptar las consideraciones que se presentan.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\8aedcb7805103c57.png"></p>
+<p><strong>16.</strong>	Una vez aceptadas las advertencias, tendremos accesible algunas opciones semejantes a las disponibles en &#34;Werbsite or portal&#34;. La diferencia radica en que estos enlaces permiten acceder a reportes públicos, es decir, cualquier persona con el enlace podrá acceder a los reportes. Esta opción se debe utilizar con cuidado porque muchas veces los reportes incluyen información sensible de la organización.</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\77a5e8acd81c34fa.png"></p>
+<p><strong>17.</strong>	El reporte público se ve así:</p>
+<p class="image-container"><img alt="Activando mapa" src="img\\f3d169ad8bff69c5.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <h2 is-upgraded>Autores:</h2>
+<p><strong>Versión 1:</strong> Erick Varela Guzmán</p>
+<p><strong>Contacto: </strong><a href="mailto:evarela@uca.edu.sv" target="_blank">evarela@uca.edu.sv</a></p>
+<p>Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1, 2024.</p>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
