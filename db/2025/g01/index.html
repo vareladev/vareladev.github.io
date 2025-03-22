@@ -1,0 +1,249 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Modelo Entidad - Relación</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="g01"
+                  title="Modelo Entidad - Relación"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Introducción" duration="4">
+        <p>Una base de datos es una colección de datos relacionados. Estos se almacenan con el objetivo que diferentes programas y/o usuarios puedan acceder a ellos posteriormente.</p>
+<p>Una base de datos tiene las siguientes propiedades implícitas:</p>
+<ul>
+<li>Representa algún aspecto del mundo real, en ocasiones llamada minimundo o universo de discurso (UoD). Las modificaciones del minimundo se reflejan en la base de datos.</li>
+<li>Es un conjunto de datos lógicamente coherente, con cierto significado. Una colección aleatoria de datos no puede considerarse propiamente como una base de datos.</li>
+<li>Se diseña, construye y alimenta con datos para un propósito específico. Está dirigida a un grupo de usuarios y tienen ciertas aplicaciones que interesan a los usuarios.</li>
+</ul>
+<p>Suelen representarse como contenedores cilíndricos.</p>
+<p class="image-container"><img alt="Representación base de datos" src="img\\388781cbc35faa6.PNG"></p>
+<p>Ejemplo: Base de datos de expedientes de alumnos de la UCA</p>
+<aside class="special"><p> Para discutir: ¿Puede ocuparse un archivo de texto como base de datos? </p>
+</aside>
+<h2 is-upgraded>DBMS</h2>
+<p>DBMS significa Database Management System, o Sistema de Gestión de Bases de Datos (SGBD) en español, y es un software que facilita el proceso de definición, construcción, manipulación y el compartir bases de datos entre varios usuarios y/o aplicaciones.</p>
+<ul>
+<li><strong>Definir</strong> una base de datos implica especificar los tipos de datos, estructuras y restricciones de los datos a almacenar.</li>
+<li><strong>Construir</strong> es el proceso que consiste en la carga de los datos en algún medio de almacenamiento que es controlado por el DBMS.</li>
+<li><strong>Manipulación</strong> de la base de datos incluye funciones como recuperar datos específicos a través de consultas, actualizar el valor de la información y generar reportes de los datos.</li>
+<li><strong>Compartir</strong> la base de datos permite múltiples usuarios y programas acceder a ella de manera simultánea.</li>
+</ul>
+<p class="image-container"><img alt="DBMS" src="img\\1599e4a76146f50a.PNG"></p>
+<p>Otras funciones importantes de un DBMS son la protección y el mantenimiento de la base. <strong>Protegerla</strong> contra un mal funcionamiento de hardware o software, y contra acceso malicioso o no autorizado. En cuanto al <strong>mantenimiento</strong>, es una característica que le permite al sistema evolucionar a medida cambian los requerimientos.</p>
+<aside class="special"><p> Algunos de los DBMS más populares en la industria son: Oracle RDBMS, Microsoft SQL Server,PostgreSQL, MySQL, MongoDB, etc. </p>
+</aside>
+<p>Ahora la pregunta es <strong>¿Cómo diseño mi base de datos?</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modelo Entidad-Relación" duration="10">
+        <p>El modelado conceptual es una fase muy importante en el diseño de una base de datos exitosa. Esto se hace por medio del <strong>modelo Entidad-Relación</strong>, el cuál describe los datos como entidades, relaciones y atributos. El principal objetivo es ilustrar como las entidades se relacionan entre sí en un sistema.</p>
+<p class="image-container"><img alt="MER" src="img\\f782b2b6d90dd9c.PNG"></p>
+<h2 is-upgraded>Elementos del Modelo Entidad-Relación</h2>
+<ul>
+<li><strong>Entidad:</strong> representa una cosa u objeto del mundo real con existencia independiente. Una entidad puede ser un objeto con existencia física, conocida como entidad concreta (por ejemplo: una persona, un carro, una casa, etc.) o un objeto con existencia conceptual, conocida como entidad abstracta (por ejemplo: un puesto de trabajo, una asignatura, un préstamo, etc.).</li>
+<li><strong>Atributos:</strong> son las características que definen o identifican a una entidad. Estas pueden ser muchas pero el diseñador solo utiliza o implementa las que considere más relevantes. Los tipos de atributos son: simples, compuestos, monovaluados, multivaluados, derivados y nulos.</li>
+<li><strong>Relación:</strong> describe cierta dependencia entre entidades o permite la asociación de las mismas. Esta también puede tener atributos cuando la cardinalidad es M:N (esto se explicará a detalle en otra sesión).</li>
+</ul>
+<h2 is-upgraded>Simbología de elementos.</h2>
+<p class="image-container"><img alt="MER_simbolos" src="img\\1935cc028fb02b63.PNG"></p>
+<h2 is-upgraded>El concepto de minimundo</h2>
+<p>Al diseñar una base de datos para un escenario del mundo real, puede ser complicado identificar como se relacionan las entidades, es por eso que como diseñadores de BBDD, se debe definir ciertas <strong>reglas y restricciones</strong>, y eso sería definir el minimundo. Por ejemplo, para el escenario de &#34;préstamo y devolución de libros de una biblioteca&#34;, se pueden restringir o permitir algunas cosas como: &#34;Un usuario solo puede prestar máximo 5 libros&#34;, &#34;Todo libro tiene que estar en un estante, pero puede haber estantes vacíos&#34;, &#34;Puede haber usuarios registrados que nunca hayan prestado un libro&#34;, etc.</p>
+<h2 is-upgraded>Diagramas ER</h2>
+<p>Se utilizará una herramienta llamada <a href="https://app.diagrams.net/" target="_blank"><strong>Draw.io</strong></a>, el cual es un sitio web que cuenta con los elementos necesarios para facilitar la realización de diversos tipos de diagrama, incluyendo el Entidad-Relación, y además es gratuito. <a href="https://app.diagrams.net/" target="_blank"><strong>Draw.io</strong></a>.</p>
+<aside class="special"><p> El modelo ER es la base para el diseño exitoso de la base de datos, pero más adelante se mostrará otro modelo y técnicas para mejorar el diseño de la base de datos. </p>
+</aside>
+<h2 is-upgraded>Ejemplo práctico – Inscripción de materias</h2>
+<p>Para la inscripción de materias la Universidad (UCA) necesita llevar un registro de la información de cada estudiante, como nombre, fecha de nacimiento, id estudiantil, dirección y teléfonos.</p>
+<p>Se llevará el registro del docente que impartirá cada materia, y se necesitan tomar los siguientes datos: nombre, fecha de nacimiento, dirección, teléfono y carne de identidad única. Para cada materia se llevarán registros del nombre y el código.</p>
+<p>Es indispensable llevar un registro del año y el ciclo en que se impartirá dicha materia.</p>
+<h2 is-upgraded>TIPS:</h2>
+<p><strong>1.</strong> Cada entidad debe poseer un atributo clave que la diferencie del resto de entidades del mismo tipo.</p>
+<p><strong>2.</strong> Debemos incluir tantos atributos como sea necesario para cumplir los requerimientos del sistema, siempre y cuando aporten un valor a la base de datos.</p>
+<p><strong>3.</strong> Todos los elementos de un diagrama ER se unen con otros por medio de líneas rectas. Ya sean atributos a entidades, atributos compuestos a sus componentes o entidades a relaciones.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Restricciones Estructurales" duration="5">
+        <h2 is-upgraded>Atributos clave</h2>
+<p>En el diagrama anterior se puede observar que hay ciertos atributos subrayados, esto significa que es un <strong>atributo clave.</strong> Al pensar, por ejemplo, en la entidad ALUMNO (Carné, Nombres, Apellidos, Edad, Carrera), su representación en el modelo ER sería así:</p>
+<p class="image-container"><img alt="MER_ejemplo" src="img\\d019ff6eca82fb0c.PNG"></p>
+<p>Y visto en forma de tabla sería así:</p>
+<p class="image-container"><img alt="MER_ejemplo_2" src="img\\aae2a21f64b8cbdd.PNG"></p>
+<p>Seguramente notó que los campos en rojo son datos repetidos, pero, si observan, ningún valor del atributo Carné se repite, y tampoco debería hacerlo, pues es el <strong>atributo clave</strong> o, dicho de otra manera, el <strong>identificador único</strong> para cada alumno. Por ejemplo, para las personas salvadoreñas mayores de edad, el atributo clave sería el DUI.</p>
+<aside class="special"><p> NOTA: Hay entidades que pueden tener más de un atributo que pueden funcionar como atributo clave. </p>
+</aside>
+<p>Las restricciones estructurales son <strong>herramientas conceptuales</strong> que ayudan a responder preguntas que pueden surgir durante el diseño de la base de datos. Por ejemplo, al relacionar las entidades ALUMNO y MATERIA, uno se podría preguntar: ¿Un alumno puede cursar muchas materias?, ¿Una materia puede ser cursada por muchos alumnos?, ¿Puede un alumno no cursar ninguna materia y seguir siendo alumno?, etc.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Restricciones de cardinalidad" duration="10">
+        <p>Se refiere al número máximo de ocurrencias que una entidad puede tener con otra entidad con la cual esté relacionada. Los posibles tipos de cardinalidad son:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Tipo de relación</p>
+</td><td colspan="1" rowspan="1"><p>Descripción</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1:1</p>
+</td><td colspan="1" rowspan="1"><p>Relación uno a uno</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1:N, N:1</p>
+</td><td colspan="1" rowspan="1"><p>Relaciones uno a muchos y muchos a uno</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>M:N</p>
+</td><td colspan="1" rowspan="1"><p>Relación muchos a muchos. También conocido como N:N</p>
+</td></tr>
+</table>
+<h2 is-upgraded>Uno a Uno (1:1)</h2>
+<p>En este ejemplo particular, DIRIGE representa la relación de las entidades EMPLEADO y DEPARTAMENTO, indicando que, en algún punto, un empleado puede administrar máximo un departamento, y que un departamento solo puede tener un administrador. También cabe destacar, que no necesariamente todos los empleados serán administradores de algún departamento.</p>
+<p class="image-container"><img alt="1_1" src="img\\cb42cd4a08434719.PNG"></p>
+<h2 is-upgraded>Uno a muchos (1:N) y Muchos a uno (N:1)</h2>
+<p>En este ejemplo, un departamento puede gestionar varios proyectos, pero cada proyecto solo puede ser gestionado por un departamento.</p>
+<p class="image-container"><img alt="1_n" src="img\\f4e2ffde25661a77.PNG"></p>
+<h2 is-upgraded>Muchos a muchos (N:N)</h2>
+<p>Aquí se indica que un empleado puede trabajar en muchos proyectos y que en un proyecto pueden trabajar varios empleados.</p>
+<p class="image-container"><img alt="n_n" src="img\\203ef4f58cd8f662.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Restricciones de participación" duration="5">
+        <p>Específica si la existencia de una entidad depende de un tipo de relación con otra entidad. Se denomina participación total cuando cada ocurrencia de la entidad A participa, al menos, en una relación de R con una ocurrencia de la entidad B. Por el contrario, cuando existe, al menos, una ocurrencia de A que NO PARTICIPA en alguna relación R con una ocurrencia de la entidad B, se le conoce como participación parcial. Observe el siguiente ejemplo para comprender mejor.</p>
+<p>En la universidad todos los estudiantes activos reciben materias de sus carreras. Al haber cursado la materia y al haber cumplido ciertos requisitos, estos pueden impartir dicha materia como instructores.</p>
+<p class="image-container"><img alt="participacion" src="img\\9695f508abb1db6c.PNG"></p>
+<h2 is-upgraded>Participación total:</h2>
+<p>Toda ocurrencia de un estudiante activo debe participar en el tipo de relación RECIBE con alguna materia, ya que no tiene sentido que exista un estudiante que NO reciba una materia.</p>
+<h2 is-upgraded>Participación parcial:</h2>
+<p>con respecto a la relación IMPARTE, no todo estudiante imparte una materia, o, dicho de otra forma, existe al menos un estudiante que NO imparta una materia, y por tanto se considera como participación parcial.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Mínimos y máximos" duration="0">
+        <p>En una relación entre dos entidades los mínimos representan la participación (total o parcial) y los máximos la cardinalidad (1:1, 1:N, N:1, N:N).</p>
+<p>Los mínimos pueden tomar los valores cero o uno (0 o 1), mientras que los máximos pueden ser uno o muchos (1 o N). Por último, la cardinalidad se obtiene cruzando los valores máximos.</p>
+<p class="image-container"><img alt="participacion" src="img\\a11c66c0406373bb.PNG"></p>
+<p>¿Cómo encontrar estos valores? Existen dos preguntas que facilitan esta tarea.</p>
+<h2 is-upgraded>MIN (participación)</h2>
+<p>¿Tiene A que estar relacionado con algún B? (nótese que tiene demuestra obligación)</p>
+<ul>
+<li><strong>Sí: min = 1</strong> | Participación total enter image description here</li>
+<li><strong>No: min = 0</strong> | Participación parcial enter image description here</li>
+</ul>
+<p>###MAX (cardinalidad)</p>
+<p>¿Puede A estar relacionado con más de un B? (nótese que puede demuestra elección)</p>
+<ul>
+<li><strong>Sí: max = N</strong></li>
+<li><strong>No: max = 1</strong></li>
+</ul>
+<p>##Entidades fuertes y débiles Duration: 0:05:00</p>
+<p>En una relación entre dos entidades (A y B) decimos que la entidad B es débil con respecto a la entidad A, si la entidad B depende de que exista A primero. Las entidades débiles se representan con un doble rectángulo.</p>
+<p>Ocupe el siguiente ejemplo para asimilarlo mejor: &#34;Un cliente solicita un préstamo&#34;. Para solicitar el préstamo, el cliente tuvo que existe primero. Un préstamo no se puede asignar al vacío, es por eso que el préstamo existe cuando el cliente lo solicita.</p>
+<p class="image-container"><img alt="participacion" src="img\\11c87f348c689da2.PNG"></p>
+<p>También existe una pregunta que nos facilita identificar entidades débiles o fuertes. Si se coloca sobre la entidad A y se pregunta ¿Necesita existir B para que exista A?</p>
+<ul>
+<li><strong>SÍ:</strong> A es débil con respecto a B</li>
+<li><strong>NO:</strong> A es fuerte con respecto a B</li>
+</ul>
+<p>Ahora se coloca sobre la entidad B y se hace la misma pregunta.</p>
+<ul>
+<li><strong>SÍ:</strong> B es débil con respecto a A</li>
+<li><strong>NO:</strong> B es fuerte con respecto a A</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entidad-Relación Extendido" duration="5">
+        <p>También conocido como Entidad-Relación Ajustado, surge, por supuesto, del modelo Entidad-Relación presentado anteriormente, con la diferencia que, para este, se debe definir las restricciones estructurales e identificar entidades fuertes y débiles. Así se vería el ER extendido del ejemplo de la biblioteca:</p>
+<p class="image-container"><img alt="biblioteca" src="img\\766c7efc6f856aa3.PNG"></p>
+<p>Analizando algunas cosas que el diagrama anterior representa:</p>
+<ul>
+<li>Si un escritor está en mi BD significa que tengo AL MENOS UN libro de ese escritor. No tendría lógica tener registrado un escritor del cual no tengo ningún libro.</li>
+<li>En nuestra BD pueden existir usuarios que NUNCA hayan prestado un libro.</li>
+<li>Igualmente pueden existir libros que NUNCA hayan sido prestados por alguien.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio práctico" duration="40">
+        <p><strong>Analizar el siguiente caso y crear el modelo entidad relación.</strong></p>
+<p>Una empresa de consultoría desea desarrollar un sistema de información para gestionar sus operaciones internas y externas de forma más eficiente. El sistema debe permitir llevar un registro detallado de los empleados, los proyectos en los que participan, y otras entidades relacionadas con la actividad diaria de la empresa.</p>
+<p>Cada empleado posee información personal como su nombre, apellido, email, fecha de ingreso a la empresa y el puesto que ocupa. Los empleados pueden estar asignados a uno o más proyectos, y cada proyecto debe contar con al menos un empleado asignado. Además, cada proyecto tiene un único empleado que actúa como líder, aunque un empleado puede liderar varios proyectos. De los proyectos nos interesa el código del proyecto, su nombre y el área del proyecto.</p>
+<p>En cuanto a la dinámica interna, los empleados pueden actuar como mentores de otros empleados dentro de la organización. Esta relación es reflexiva y muchos a muchos: un empleado puede tener varios mentores, y a la vez, puede mentorear a varios compañeros.</p>
+<p>Los empleados están organizados en departamentos, cada uno con un nombre. Un empleado solo puede pertenecer a un único departamento.</p>
+<p>Cada proyecto es desarrollado para un cliente determinado, del cual se desea almacenar su nombre, el rubro de la industria al que pertenece y un email de contacto. Además, los proyectos hacen uso de distintas tecnologías, registrando su nombre y versión. Cabe recalcar que un proyecto puede usar varias tecnologías.</p>
+<p>Los empleados también pueden participar en diversas capacitaciones que ofrece la empresa. De cada capacitación se debe registrar el tema, la fecha y la duración en horas. Los empleados pueden asistir a cuantas capacitaciones quieran.</p>
+<p>Finalmente, el desempeño de cada empleado es evaluado periódicamente mediante evaluaciones. Estas evaluaciones incluyen una fecha, un puntaje numérico y comentarios adicionales. Un empleado puede tener múltiples evaluaciones a lo largo del tiempo.</p>
+<p class="image-container"><img alt="consulting_company" src="img\\88131c1bfbdb31b2.PNG"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1.05, 2025.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Versión</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Año</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Autores</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.05</strong></p>
+</td><td colspan="1" rowspan="1"><p>2025</p>
+</td><td colspan="1" rowspan="1"><p>Christian Alejandro Paz (00132720@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.04</strong></p>
+</td><td colspan="1" rowspan="1"><p>2023</p>
+</td><td colspan="1" rowspan="1"><p>Alejandro Ernesto Cerón Lemus (00040116@uca.edu.sv), Brian Darwin Carranza Campos (00136020@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.03</strong></p>
+</td><td colspan="1" rowspan="1"><p>2022</p>
+</td><td colspan="1" rowspan="1"><p>Brian Darwin Carranza Campos (00136020@uca.edu.sv), Alexei Eduardo Quintana Zelidon (00126118@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.02</strong></p>
+</td><td colspan="1" rowspan="1"><p>2021</p>
+</td><td colspan="1" rowspan="1"><p>Fátima Adriana Renderos (00064018@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.01</strong></p>
+</td><td colspan="1" rowspan="1"><p>2020</p>
+</td><td colspan="1" rowspan="1"><p>Emerson Gamaliel Nolasco (00215316@uca.edu.sv), Kevin Enmanuel Velásquez (00018616@uca.edu.sv)</p>
+</td></tr>
+</table>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

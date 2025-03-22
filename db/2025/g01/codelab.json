@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-03-21T17:12:47-06:00",
+  "id": "g01",
+  "duration": 80,
+  "title": "Modelo Entidad - Relación",
+  "summary": "Guía de aprendizaje 01",
+  "source": ".\\guia01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "databases"
+  ],
+  "tags": [
+    "databases"
+  ],
+  "feedback": "mailto:evarela@uca.edu.sv",
+  "url": "g01"
+}
