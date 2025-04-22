@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-04-21T17:17:20-06:00",
+  "id": "g02",
+  "duration": 0,
+  "title": "Modelo Relacional y Normalizado",
+  "summary": "Guía de aprendizaje 01",
+  "source": ".\\guia02.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "databases"
+  ],
+  "tags": [
+    "databases"
+  ],
+  "feedback": "mailto:e",
+  "url": "g02"
+}
