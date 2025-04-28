@@ -1,0 +1,267 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Definición de SQL, DDL y DML</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="g03"
+                  title="Definición de SQL, DDL y DML"
+                  environment="web"
+                  feedback-link="mailto:">
+    
+      <google-codelab-step label="¿Qué es SQL y por qué es importante conocerlo?" duration="0">
+        <p>SQL (Structured Query Language o Lenguaje de Consulta Estructurado) es un lenguaje de programación estándar utilizado para la manipulación de bases de datos relacionales, que permite realizar diversos tipos de operaciones en ellas. En este laboratorio aprenderá DDL (Lenguaje de Definición de Datos) y DML (Lenguaje de Manipulación de Datos).</p>
+<p class="image-container"><img alt="Icono MSS" src="img\\f328c09aa227d262.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conozcamos el IDE" duration="0">
+        <p class="image-container"><img alt="Icono SQLServerManagement" src="img\\b2c16a7fb731b558.png"></p>
+<p>SQL Server Management Studio (SSMS) es un ambiente de trabajo para estructuras SQL, provee de herramientas para configurar, monitorear y administrar bases de datos. Encienda la máquina virtual y busque este icono en el escritorio.</p>
+<p>Al entrar en la aplicación, aparecerá esta pantalla, dar al botón &#34;Conectar&#34;.</p>
+<p class="image-container"><img alt="ventana de login" src="img\\3d2b5d249f1d8cec.png"></p>
+<p>Lo que verá es una pantalla así:</p>
+<p class="image-container"><img alt="interfaz de SSM" src="img\\da71fb86bd775a39.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de nueva base de datos" duration="0">
+        <p>Hay dos opciones para crear una nueva base, la primera es solo con el ratón: desplegar la instancia creada al iniciar la aplicación y buscar la carpeta Bases de datos, dar con el botón derecho sobre la carpeta y elegir la opción &#34;Nueva base de datos&#34;.</p>
+<p class="image-container"><img alt="crear Nueva Base de datos" src="img\\90797839727bbfdc.png"></p>
+<p>Desplegará otra pantalla en la que requerirá de un nombre para la nueva base, puede ponerle el nombre que desee, en esta ocasión se nombra &#34;Labo3&#34;, luego dar clic al botón &#34;Aceptar&#34;, por el momento los parámetros de configuración de esta ventana se dejarán con sus valores por defecto.</p>
+<p class="image-container"><img alt="ventana de creacion de base de datos" src="img\\86a27add7a415807.png"></p>
+<p>Presionar botón derecho sobre el servidor activo (Con el icono de play verde) y buscar la opción &#34;Actualizar&#34; en el menú, debería aparecer la nueva base de datos en la lista disponible.</p>
+<p class="image-container"><img alt="interfaz actualizada" src="img\\fd062aee533c1328.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="DDL y DML" duration="0">
+        <h2 is-upgraded>DDL</h2>
+<p>Las sentencias DDL se utilizan para crear, modificar la estructura, de las tablas y objetos de la base de datos. Por ejemplo:</p>
+<p class="image-container"><img alt="Instrucciones DDL" src="img\\a837f947ed8f3b3e.png"></p>
+<h2 is-upgraded>DML</h2>
+<p>Las sentencias DML son utilizadas para gestionar datos dentro de las tablas. Por ejemplo:</p>
+<p class="image-container"><img alt="Instrucciones DML" src="img\\2a04fc0365709121.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de una base de datos" duration="0">
+        <p>Los pasos para crear la base con comandos son los siguientes:</p>
+<p>Crear un nuevo archivo de consultas, dando clic en el botón que dice &#34;Nueva consulta&#34; (El que está al lado del botón para guardar).</p>
+<p class="image-container"><img alt="Nueva consulta" src="img\\83f3ac09c2bb0cac.png"></p>
+<p>Preguntará a que servidor queremos relacionar la consulta, se utiliza el servidor por defecto, no cambiamos nada, dar clic al botón &#34;Conectar&#34;.</p>
+<p class="image-container"><img alt="ventana de login" src="img\\3d2b5d249f1d8cec.png"></p>
+<p>Tendremos una página en blanco en la que escribiremos las sentencias para la creación de la nueva Base de Datos. Se utiliza el comando CREATE.</p>
+<p class="image-container"><img alt="CREATE DATABASE" src="img\\ee6c204ad8d92c3.png"></p>
+<p>Sombrear el comando CREATE y en la barra superior, buscar el botón con un signo de admiración que dice &#34;Ejecutar&#34;, presionarlo y esperar el mensaje &#34;Comandos completados correctamente&#34; en la ventana Mensajes.</p>
+<p class="image-container"><img alt="CREATE DATABASE exito" src="img\\d96ad6a8dbe201b5.png"></p>
+<p>Después de actualizar el servidor, debería aparecer la nueva base de datos en la lista disponible.</p>
+<p class="image-container"><img alt="Nueva base de datos" src="img\\f21b52f23c918a7a.png"></p>
+<p>¡Listo! la base de datos ha sido creada.</p>
+<p>Se procede a crear las tablas y definir los atributos para cada una, se utilizará el siguiente diagrama relacional normalizado como ejemplo:</p>
+<p class="image-container"><img alt="Modelo R libreria" src="img\\223047fb4ecc864.png"></p>
+<p>Antes de empezar con la creación de todos los objetos que utilizaremos, debemos indicarle al IDE que usaremos nuestra base de datos Labo3 con la instrucción USE:</p>
+<p class="image-container"><img alt="Use database opcion 1" src="img\\2f7e4cb0451fabfe.png"></p>
+<p>O bien podemos seleccionarla con el indicador del IDE:</p>
+<p class="image-container"><img alt="Use database opcion 2" src="img\\85d1bede59dc1a16.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de objetos de bases de datos" duration="0">
+        <h2 is-upgraded>TABLAS</h2>
+<p>Utilizaremos el comando CREATE TABLE donde colocaremos los campos a utilizar. Ejemplo:</p>
+<pre><code language="language-sql" class="language-sql">CREATE TABLE LIBRO (
+    codigo int primary key not null,
+    titulo varchar(50),
+    isbn varchar(30),
+    npaginas INT,
+    id_editorial int
+);
+
+CREATE TABLE EDITORIAL (
+    codigo int primary key not null,
+    nombre varchar(50)
+);
+</code></pre>
+<p>Note que podemos colocar la llave primaria desde la creación de la tabla usando las palabras reservadas &#34;primary key&#34; en el atributo clave, y colocamos también la condición ‘not null&#39;. (En clase se han visto dos formas más para configurar las llaves primarias ¿Cuales son?).</p>
+<h2 is-upgraded>LLAVES PRIMARIAS Y FORÁNEAS</h2>
+<p>Las llaves primarias son el atributo clave de la tabla, sin ella, los datos estarían desordenados y sin un índice que los identifique, de esto se puede asumir que la llave primaria no puede ser nula. Para crear llaves primarias desde la creación de la tabla se usará el siguiente ejemplo:</p>
+<pre><code language="language-sql" class="language-sql">CREATE TABLE AUTORXLIBRO (
+    codigo int identity primary key not null,
+    codigo_autor int,
+    codigo_libro int
+);
+</code></pre>
+<p>Las llaves foráneas son importantes para la relación de tablas en la base de datos ya que nos permitirán hacer consultas cruzando tablas y obteniendo campos de ambas partes.</p>
+<p>En el siguiente ejemplo veremos la creación de las llaves foráneas desde la creación de la tabla, pero es recomendable hacerlo en un comando aparte, con un CONSTRAINT pues le asignamos un nombre a esta relación en caso de querer borrarla luego:</p>
+<pre><code language="language-sql" class="language-sql">CREATE TABLE AUTORXLIBRO (
+    codigo int identity primary key not null,
+    codigo_autor int,
+    codigo_libro int FOREIGN KEY (codigo_libro) REFERENCES LIBRO (codigo)
+);
+</code></pre>
+<aside class="special"><p> No es necesario que los campos referencia y referenciado tengan el mismo nombre, pero sí es requisito que dispongan del mismo tipo de dato. </p>
+</aside>
+<h2 is-upgraded>ALTER TABLE</h2>
+<p>En el caso de haber cometido un error al crear la base de datos, olvidar algún atributo, llave primaria o tipo de dato erróneo, puede modificar las propiedades de la tabla con esta instrucción. En el caso de haber olvidado colocar la llave primaria, se puede solventar con el siguiente ejemplo:</p>
+<pre><code language="language-sql" class="language-sql">ALTER TABLE AUTORXLIBRO
+ADD PRIMARY KEY (codigo);
+</code></pre>
+<p>También puede agregar la llave foránea después de haber creado las tablas:</p>
+<pre><code language="language-sql" class="language-sql">ALTER TABLE AUTORXLIBRO
+ADD CONSTRAINT FK_AUTORXLIBRO_AUTOR
+FOREIGN KEY (codigo_autor) REFERENCES AUTOR (codigo);
+</code></pre>
+<p>Al olvidar colocar algún campo, puede ser resuelto de la siguiente forma:</p>
+<pre><code language="language-sql" class="language-sql">ALTER TABLE AUTORXLIBRO
+ADD campo_olvidado char(5);
+</code></pre>
+<p>Si se colocó el tipo de dato erróneo en una columna:</p>
+<pre><code language="language-sql" class="language-sql">ALTER TABLE AUTORXLIBRO
+ALTER COLUMN campo_olvidado int;
+</code></pre>
+<h2 is-upgraded>INSERT</h2>
+<p>Ahora insertamos datos a las tablas que creamos con la sentencia INSERT y los nombres de las columnas que queremos insertar:</p>
+<pre><code language="language-sql" class="language-sql">INSERT INTO LIBRO (codigo, titulo, isbn, npaginas, id_editorial)
+  VALUES (1, &#39;Asedio y Tormenta&#39;, &#39;010-1&#39;, 544, 002),
+    (2, &#39;Siempre Alice&#39;, &#39;011-2&#39;, 300, 004),
+    (3, &#39;Corazon de Tinta&#39;, &#39;012-3&#39;, 500, 005);
+
+INSERT INTO EDITORIAL (codigo, nombre)
+  VALUES (002, &#39;Hidra&#39;),
+    (004, &#39;Ediciones B&#39;),
+    (005, &#39;Scholastic Corporation&#39;);
+</code></pre>
+<p>Cuando se insertan los datos, hay que respetar los tipos, en los campos cuyo tipo es varchar se tienen que agregar los datos encerrados en comillas ‘simples&#39;.</p>
+<p>También puedes agregar datos a tus tablas aunque no especifiques los campos, siempre y cuando insertes todos los campos en el orden en el que están guardados en la tabla. Por ejemplo, agregaremos los datos de un nuevo libro:</p>
+<pre><code language="language-sql" class="language-sql">INSERT INTO LIBRO VALUES (5, &#39;La Huesped&#39;, &#39;010-4&#39;, 644, 002);
+</code></pre>
+<h2 is-upgraded>SELECT</h2>
+<p>Para verificar que las tablas fueron modificadas, utilizamos la sentencia SELECT, en este ejemplo le decimos que nos muestre todos los datos:</p>
+<pre><code language="language-sql" class="language-sql">SELECT * FROM LIBRO;
+</code></pre>
+<p>El resultado será el siguiente:</p>
+<p class="image-container"><img alt="SELECT * FROM LIBRO" src="img\\5d9785af8088aa97.png"></p>
+<p>Los SELECT también pueden mostrarnos columnas específicas, solo se sustituye el asterisco por el nombre de la columna que se quiere consultar.</p>
+<pre><code language="language-sql" class="language-sql">SELECT titulo FROM LIBRO;
+</code></pre>
+<p>El resultado debe verse algo así:</p>
+<p class="image-container"><img alt="SELECT titulo FROM LIBRO" src="img\\ead2a2a0f8e1fb45.png"></p>
+<h2 is-upgraded>UPDATE</h2>
+<p>Esta sentencia se utiliza para actualizar un registro de una tabla, es preferible utilizar la sentencia WHERE junto a la llave primaria para especificar qué registro queremos actualizar. Actualicemos el libro con código 2 y cambiemos el número de páginas a 800:</p>
+<pre><code language="language-sql" class="language-sql">UPDATE LIBRO SET npaginas=800
+  WHERE codigo=2;
+</code></pre>
+<aside class="special"><p> ¿Qué pasaría si no utilizamos el WHERE? </p>
+</aside>
+<h2 is-upgraded>DELETE</h2>
+<p>Esta sentencia se utiliza para borrar un registro de una tabla, para esto necesitamos saber la llave primaria del registro a eliminar, puede utilizarse otro campo pero no es recomendado pues podemos borrar muchos datos de una vez, para este ejemplo borraremos el libro &#34;Siempre Alice&#34;, cuya llave primaria es el número 2:</p>
+<pre><code language="language-sql" class="language-sql">DELETE FROM LIBRO WHERE codigo=2;
+</code></pre>
+<p>Si realizamos un SELECT a la tabla LIBROS veremos que el campo ha sido eliminado.</p>
+<p class="image-container"><img alt="Row eliminada" src="img\\485da90b5f9e2617.png"></p>
+<aside class="special"><p> Es importante que no olvidemos la sentencia WHERE ¿Qué pasaría si no la escribimos? </p>
+</aside>
+<h2 is-upgraded>DROP</h2>
+<p>Para terminar de estudiar las sentencias, utilizaremos el comando DROP para borrar la base de datos que no estamos usando actualmente y que creamos al principio del laboratorio.</p>
+<pre><code language="language-sql" class="language-sql">DROP DATABASE Labo3ddl;
+</code></pre>
+<p>Actualizamos el servidor activo, siguiendo los mismos pasos que se utilizaron para ver la nueva base cuando fue creada.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Tarea" duration="0">
+        <p>Tomando como base la solución del diagrama relacional normalizado del ejercicio realizado de la segunda guía, realizar:</p>
+<ol type="1">
+<li>Crear las tablas.</li>
+<li>Crear las llaves primarias (PK) y foráneas (FK) correspondientes a cada tabla.</li>
+<li>Introducir 5 filas por lo menos en 3 tablas (Tablas catalogo no cuentan).</li>
+</ol>
+<p class="image-container"><img alt="Ejercicio" src="img\\9adf77b67208ff8.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Apéndice 1: Tipos de Datos" duration="0">
+        <p>Hay que tener en cuenta los tipos de datos que usaremos para cada campo, así que se listaran los más utilizados para tener algunas nociones:</p>
+<p>Numéricos:</p>
+<p class="image-container"><img alt="Tipos de dato 1" src="img\\681683940dc41940.png"></p>
+<p>Al tipos de dato int se le puede colocar un modificador <strong>identity</strong> con el cual podemos hacer un autoincremento de valor. Podemos usarlo en las llaves primarias por ejemplo.</p>
+<p><strong>¿Qué tipo de dato utilizaría usted para la edad de una persona?</strong></p>
+<p>Cadenas de texto:</p>
+<p class="image-container"><img alt="Tipos de dato 2" src="img\\2ee36749bbd11b52.png"></p>
+<p><strong>¿Cuál es la diferencia entre Char y Varchar?</strong></p>
+<p>Fecha:</p>
+<p class="image-container"><img alt="Tipos de dato 3" src="img\\42247cac53366c21.png"><img alt="Tipos de dato 4" src="img\\9b6c467f475cf846.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sobre los autores de esta guía práctica" duration="0">
+        <p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1.05, 2025.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Versión</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Año</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Autores</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.05</strong></p>
+</td><td colspan="1" rowspan="1"><p>2025</p>
+</td><td colspan="1" rowspan="1"><p>Christian Alejandro Paz (00132720@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.04</strong></p>
+</td><td colspan="1" rowspan="1"><p>2023</p>
+</td><td colspan="1" rowspan="1"><p>Alejandro Ernesto Cerón Lemus (00040116@uca.edu.sv), Brian Darwin Carranza Campos (00136020@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.03</strong></p>
+</td><td colspan="1" rowspan="1"><p>2022</p>
+</td><td colspan="1" rowspan="1"><p>Brian Darwin Carranza Campos (00136020@uca.edu.sv), Alexei Eduardo Quintana Zelidon (00126118@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.02</strong></p>
+</td><td colspan="1" rowspan="1"><p>2021</p>
+</td><td colspan="1" rowspan="1"><p>Fátima Adriana Renderos (00064018@uca.edu.sv)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.01</strong></p>
+</td><td colspan="1" rowspan="1"><p>2020</p>
+</td><td colspan="1" rowspan="1"><p>Emerson Gamaliel Nolasco (00215316@uca.edu.sv), Kevin Enmanuel Velásquez (00018616@uca.edu.sv)</p>
+</td></tr>
+</table>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
