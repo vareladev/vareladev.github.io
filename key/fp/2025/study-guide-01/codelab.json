@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-05-16T10:01:11-06:00",
+  "id": "study-guide-01",
+  "duration": 80,
+  "title": "Guía de introducción a manejo de Git y Github",
+  "summary": "Guía de introducción a Git y Github",
+  "source": ".\\Guia-de-introducción-Git.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "programmingfundamentals"
+  ],
+  "tags": [
+    "powershell"
+  ],
+  "feedback": "mailto:erick.varela@keyinstitute.edu.sv",
+  "url": "study-guide-01"
+}

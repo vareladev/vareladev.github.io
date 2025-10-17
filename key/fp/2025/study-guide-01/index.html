@@ -1,0 +1,343 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Guía de introducción a manejo de Git y Github</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="study-guide-01"
+                  title="Guía de introducción a manejo de Git y Github"
+                  environment="web"
+                  feedback-link="mailto:erick.varela@keyinstitute.edu.sv">
+    
+      <google-codelab-step label="Introducción" duration="4">
+        <p class="image-container"><img src="img\\3bf339a37e25caa4.jpg"></p>
+<p>En el desarrollo de software moderno, el control de versiones es una herramienta esencial para gestionar cambios en el código, colaborar con otros desarrolladores y mantener un historial claro de las modificaciones realizadas. Git, el sistema de control de versiones más utilizado, junto con GitHub, una plataforma de alojamiento de repositorios, son fundamentales para cualquier programador o equipo de trabajo.</p>
+<p>Esta guía práctica te ayudará a:</p>
+<ul>
+<li>Crear una cuenta en GitHub para alojar tus proyectos.</li>
+<li>Instalar Git en tu computadora y configurarlo correctamente.</li>
+<li>Aprender los comandos básicos como git init, git commit y git push, que te permitirán empezar a trabajar con repositorios locales y remotos.</li>
+</ul>
+<p>Al finalizar, estarás listo para comenzar el aprendizaje relacionado con la gestión de proyectos de desarrollo de software de manera eficiente, colaborar con otros desarrolladores y aprovechar al máximo las ventajas del control de versiones. Pero antes, es importante conocer algunos conceptos fundamentales.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Concepto</p>
+</td><td colspan="1" rowspan="1"><p>Descripción</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Git</p>
+</td><td colspan="1" rowspan="1"><p>Sistema de control de versiones distribuido y que se instala en una computadora. Permite rastrear cambios en archivos y coordinar trabajo entre desarrolladores.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>GitHub</p>
+</td><td colspan="1" rowspan="1"><p>Plataforma en línea para alojar repositorios Git, colaborar y compartir código entre colegas y la comunidad.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Repositorio (repo)</p>
+</td><td colspan="1" rowspan="1"><p>Carpeta donde se almacena el código y su historial de versiones. Puede estar en local (Git) o remoto (GitHub).</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Commit</p>
+</td><td colspan="1" rowspan="1"><p>Una instantánea de los cambios realizados en el código. Incluye un mensaje que describe los cambios.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Branch (rama)</p>
+</td><td colspan="1" rowspan="1"><p>Línea paralela de desarrollo. Permite trabajar en nuevas características sin afectar el código principal.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Merge</p>
+</td><td colspan="1" rowspan="1"><p>Integración de los cambios de una rama en otra, por lo general en la rama principal (main o master).</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Clone</p>
+</td><td colspan="1" rowspan="1"><p>Copia de un repositorio remoto (por ejemplo, desde GitHub) a tu máquina local.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Push</p>
+</td><td colspan="1" rowspan="1"><p>Enviar los cambios realizados localmente al repositorio remoto en GitHub.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Pull</p>
+</td><td colspan="1" rowspan="1"><p>Obtener y fusionar cambios desde el repositorio remoto al repositorio local.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Fork</p>
+</td><td colspan="1" rowspan="1"><p>Copia de un repositorio de otro usuario en tu propia cuenta de GitHub. Útil para proponer cambios sin acceso directo al repo original.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Pull Request (PR)</p>
+</td><td colspan="1" rowspan="1"><p>Solicitud para que los cambios en una rama sean revisados e integrados en otra rama (comúnmente main).</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>.gitignore</p>
+</td><td colspan="1" rowspan="1"><p>Archivo que especifica qué archivos o carpetas deben ser ignorados por Git (por ejemplo, archivos temporales o binarios).</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Status</p>
+</td><td colspan="1" rowspan="1"><p>Comando (git status) que muestra el estado actual de los archivos en el repositorio local.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Log</p>
+</td><td colspan="1" rowspan="1"><p>Comando (git log) que muestra el historial de commits realizados en el repositorio.</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creando cuenta en Github" duration="10">
+        <p>Para comenzar a utilizar GitHub, deberá crear una cuenta personal gratuita y verificar su dirección de correo electrónico. A continuación, se muestran los pasos para poder crear una cuenta en Github.</p>
+<p><strong>1.</strong> Accede a <a href="https://github.com/" target="_blank"><strong>Github</strong></a> y haz clic en &#34;Registrarse&#34; (sign up). NOTA. Se sugiere utilizar una cuenta de correo electrónico personal, porque las cuentas institucionales suelen ser temporales.</p>
+<p><strong>2.</strong> Llena el formulario de registro y sigue las instrucciones para crear una cuenta personal. En este proceso será necesario resolver un pequeño puzzle y confirmar la cuenta de correo electrónico.</p>
+<p class="image-container"><img src="img\\dc86754d6e1a711e.png"></p>
+<p><strong>3.</strong>	Si los pasos se han completado correctamente, habremos creado una cuenta en la plataforma Github. Se sugiere activar el inicio de sesión con doble factor de autenticación. La primera interfaz que veremos al iniciar sesión por primera vez será muy parecida a la siguiente imagen.</p>
+<p class="image-container"><img src="img\\41ae829d8a098ddb.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalando Git" duration="15">
+        <p>Git es un sistema de control de versiones distribuido diseñado para rastrear cambios en archivos de código (o cualquier proyecto) a lo largo del tiempo. Fue creado por Linus Torvalds (el mismo creador de Linux) en 2005 y se ha convertido en el estándar para el desarrollo de software.</p>
+<p>¿Para qué se usa Git?</p>
+<ul>
+<li>Desarrollo de software: Guardar cambios incrementalmente con commits.</li>
+<li>Trabajo en equipo: Sincronizar código entre múltiples desarrolladores.</li>
+<li>Experimentar sin riesgo: Crear ramas para probar nuevas ideas sin romper el código estable.</li>
+<li>Recuperación de errores: Volver a una versión anterior si algo falla.</li>
+</ul>
+<h2 is-upgraded>Git vs. Github</h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Git</p>
+</td><td colspan="1" rowspan="1"><p>GitHub</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Sistema de control de versiones local</p>
+</td><td colspan="1" rowspan="1"><p>Plataforma en la nube para alojar repositorios Git</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Se instala en tu computadora</p>
+</td><td colspan="1" rowspan="1"><p>Servicio web (gitHub.com)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Comandos como git init, git commit</p>
+</td><td colspan="1" rowspan="1"><p>Funciones como Pull Requests, Issues</p>
+</td></tr>
+</table>
+<h2 is-upgraded>Instalando Git en Microsoft Windows</h2>
+<p><strong>1.</strong> Descarga Git. Accede al sitio oficial de <a href="https://git-scm.com/downloads" target="_blank"><strong>Git</strong></a>  Haz clic en &#34;Download for Windows&#34;.</p>
+<p class="image-container"><img src="img\\81fe78e70de93d56.png"></p>
+<p><strong>2.</strong> Abre el archivo descargado (Git-X.X.XX-64-bit.exe). Sigue los pasos del asistente (en general se usarán las opciones predeterminadas).</p>
+<p class="image-container"><img src="img\\cfb9291d9984466d.png"></p>
+<p><strong>3. Paso 1. configuración es seleccionar el directorio donde se instalará git.</strong> En general, se deja el directorio por defecto. Se sugiere no cambiarlo.</p>
+<p class="image-container"><img src="img\\5fbfbfa8fbc63434.png"></p>
+<p><strong>4. Paso 2. Seleccionar componentes que se instalarán..</strong> Asegurarse que los componentes seleccionados sean los que aparecen en la siguiente figura y hacer clic en continuar.</p>
+<p class="image-container"><img src="img\\4f47c24c2adad2b8.png"></p>
+<p><strong>5. Paso 3. Configurar nombre del directorio en la sección de inicio.</strong> Dejar la configuración por defecto.</p>
+<p class="image-container"><img src="img\\9d92fbbaed7a8f86.png"></p>
+<p><strong>6. Paso 4. Editor predeterminado utilizado por Git.</strong> Elige el editor de texto que se abrirá por defecto cuando Git lo necesite (por ejemplo, al escribir mensajes de confirmación). Recomendado: Visual Studio Code o Vim si estás familiarizado; sino, Notepad++ o Nano son buenas opciones sencillas.</p>
+<p class="image-container"><img src="img\\db7e7d307f8396c4.png"></p>
+<p><strong>7. Paso 5. Configurar el nombre de la rama inicial en nuevos repositorios.</strong> Este paso te permite elegir el nombre de la rama inicial cuando se crea un nuevo repositorio con &#34;git init&#34;. Se sugiere seleccionar la opción &#34;Override the default Branch name for new repositories&#34; y asegurarse que el nombre sea &#34;main&#34;, esto porque GitHub y muchas otras plataformas usan el nombre &#34;main&#34; por defecto desde 2020. No utilizar esta configuración puede causar serios conflictos en el futuro para utilizar Github.</p>
+<p class="image-container"><img src="img\\f34c9d505e57fb74.png"></p>
+<p><strong>8. Paso 6. Configurar variables de entorno.</strong> Se sugiere seleccionar la opción &#34;Use Git from the command line and also from 3rd-party software&#34; porque permite utilizer git desde otras herramientas como desde CMD o PowerShell.</p>
+<p class="image-container"><img src="img\\bb6fa95cc2d93fd7.png"></p>
+<p><strong>9. Paso 7. Selección del servicio SSH.</strong> En este paso eliges qué programa va a manejar las conexiones SSH cuando uses comandos como git push o git pull por SSH. Se sugiere la opción &#34;Use bundled OpenSSH&#34;. Que usa la versión de OpenSSH que viene incluida con la instalación de Git para Windows, que funciona bien en la mayoría de los casos.</p>
+<p class="image-container"><img src="img\\f9dd3a18fbee5ed7.png"></p>
+<p><strong>10. Paso 8. Seleccionar el backend de transporte HTTPS.</strong> Se sugiere seleccionar la opción &#34;Use the OpenSSL library&#34;, que usa OpenSSL para manejar conexiones HTTPS. Es estándar y con alto grado de compatibilidad.</p>
+<p class="image-container"><img src="img\\50cd69fb7040c5a2.png"></p>
+<p><strong>11. Paso 9. Configurar la convención de fin de línea.</strong> Seleccionar la opción &#34;Checkout Windows-style, commit Unix-style line endings&#34;, que convierte los saltos de línea a CRLF al clonar y a LF al confirmar. Ideal para compatibilidad entre sistemas operativos.</p>
+<p class="image-container"><img src="img\\584b80ee60cf7d64.png"></p>
+<p><strong>12. Paso 10. Configurar el emulador de terminar para usar con Git Bash.</strong> Seleccionar &#34;Use MinTTY (the default terminal of MSYS2)&#34;. Que es una terminal independiente con mejor soporte para colores, fuentes, y otras herramientas.</p>
+<p class="image-container"><img src="img\\6eaf45833bb3bc9e.png"></p>
+<p><strong>13. Paso 11. Seleccionar el comportamiento por defecto del comando &#34;git pull&#34;.</strong> Selecciona la opción &#34;Default (fast-forward or merge)&#34;.</p>
+<p class="image-container"><img src="img\\2dd0b674de380e98.png"></p>
+<p><strong>14. Paso 12. Seleccionar el asistente de credenciales.</strong> Seleccionar la opción &#34;Git Credential Manager&#34;, que maneja credenciales de forma segura, guarda tokens y contraseñas.</p>
+<p class="image-container"><img src="img\\ba1e3913ca0afee3.png"></p>
+<p><strong>15. Paso 13. Configurar algunas opciones extra.</strong> Se sugiere seleccionar la opción &#34;Enable file system caching&#34;, que mejora el rendimiento en repos grandes. Luego de esta configuración, hacer clic para instalar Git.</p>
+<p class="image-container"><img src="img\\64fe1f8d2d88f96c.png"></p>
+<p><strong>16. Verifica la instalación.</strong> Abre Git Bash o Windows Power Shell y ejecuta:</p>
+<pre><code>git --version
+
+</code></pre>
+<p>El resultado debería verse como en la siguiente figura:</p>
+<p class="image-container"><img src="img\\4008c3206eb33081.png"></p>
+<h2 is-upgraded>Instalando Git en MacOS.</h2>
+<p><strong>1. Descarga Git.</strong> Ve a <a href="https://git-scm.com/downloads" target="_blank"><strong>Git</strong></a>  Haz clic en &#34;Download for macOS&#34;, y descarga el instalador .dmg</p>
+<p><strong>2. Abre el archivo .dmg y ejecuta el instalador.</strong> Sigue las instrucciones. <strong>3. Verifica la instalación.</strong> Abre Terminal y ejecuta:</p>
+<pre><code>git --version
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creando un repositorio en Github." duration="10">
+        <p><strong>1.</strong> Inicia sesión en github. En la interfaz de dashboard, hacer clic en &#34;Create repository&#34;.</p>
+<p class="image-container"><img src="img\\6286f25d6961baa2.png"></p>
+<p><strong>2.</strong> En el formulario, rellena los siguientes campos:</p>
+<ul>
+<li>Reposity-name: selecciona un nombre alusivo a la materia de fundamentos de programación, en el ejemplo se ha seleccionado &#34;fundamentos-python&#34; pero puede ser diferente. Este nombre estará en la URL, y el titulo por defecto. Por lo tanto, ser coherente con el nombre seleccionado. Consejos: el nombre debe estar en minúsculas, sin el uso de acentos u otros símbolos especiales, y separado por guion o guion bajo en lugar de espacios.</li>
+<li>Descripción: Coloca el siguiente mensaje: &#34;Repositorio de NOMBRE-COMPLETO-DE-ALUMNO para el curso de fundamentos de programación&#34;.</li>
+<li>Asegurate de dejar el repositorio público. La idea es que quede como portafolio del trabajo realizado en el curso.</li>
+<li>Marca la opción &#34;Add a README file&#34;</li>
+<li>Asegurate que la opción &#34;Add .gitignore&#34; este marcada en &#34;.gitignore template: None&#34;</li>
+<li>Selecciona una licencia, puede ser la licencia &#34;GNU General Public License V3.0&#34;</li>
+</ul>
+<p class="image-container"><img src="img\\9fd9742389bda399.png"></p>
+<p><strong>3.</strong>	Luego de crear el repositorio, vamos a ser redirigidos a la pantalla principal del repositorio recién creado.</p>
+<p class="image-container"><img src="img\\61d04c6258e21a5a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Prepando el acceso a Github desde Git" duration="10">
+        <p>Cuando se trabaja en equipos compartidos (como las computadoras de Key institute), es importante que cada estudiante pueda enlazar Git con su cuenta personal de GitHub de manera segura, sin dejar credenciales almacenadas permanentemente en la máquina. Estos pasos, seguirán esta perspectiva. Sin embargo, los usuarios que tienen su computadora personal, pueden seguir estos pasos perfectamente.</p>
+<p><strong>1.</strong>	Lo primero es crear un &#34;Token&#34;, que permitirá conectar la cuenta de Github en el entorno de Git. Se utiliza este método porque es mucho más seguro que el uso de contraseñas. Para crear el Token, en github, haz clic en tu avatar (arriba a la derecha) y selecciona &#34;Settings&#34; (Configuración).</p>
+<p class="image-container"><img src="img\\f564d5f3d3bdbdfd.png"></p>
+<p><strong>2.</strong>	En el menú lateral izquierdo, baja hasta la sección &#34;Developer settings&#34; (al final). Dentro de &#34;Developer settings&#34;, haz clic en &#34;Personal access tokens&#34;.</p>
+<p class="image-container"><img src="img\\42698010bce368e3.png"></p>
+<p><strong>3.</strong>	Elige la opcion &#34;Fine-grained tokens&#34;, que son la versión más actual y segura, permite configurar permisos más detallados por repositorio. Luego haz clic en  &#34;Generate new token&#34;.</p>
+<p class="image-container"><img src="img\\f46b8a6026f2dcb4.png"></p>
+<p><strong>4.</strong>	Llena el formulario del token.</p>
+<ul>
+<li>Token name: nombre del token, en este caso se ha utilizado &#34;key-fundamentos-programacion-temp&#34;</li>
+<li>Descripción: campo que puede ser utilizado para contextualizar el token. No es obligatorio llenarlo.</li>
+<li>Resourse owner: usuario</li>
+<li>Expiration: tiempo de vida del token, para computadoras personales, es posible definir &#34;no expiration&#34;, para computadoras públicas, se sugiere configurar alguna de las opciones entre 7 y 30 días.</li>
+<li>Repository Access: Seleccionar la opción &#34;Only select repositories&#34; y seleccionar el repositorio de fundamentos de programación</li>
+<li>En la sección de permisos, haz clic en &#34;Repository permissions&#34; y ubica la opción &#34;Contents&#34;, que debes configurar como &#34;Read and write&#34;. Este permiso habilitará la opción de actualizar el repositorio desde nuestros recursos locales.</li>
+<li>Luego de aplicar la configuración, haz clic en &#34;generate token&#34;.</li>
+</ul>
+<p class="image-container"><img src="img\\b52a3806ab10782.png"></p>
+<p class="image-container"><img src="img\\6aeca0bed33b2954.png"></p>
+<p><strong>5.</strong>	El siguiente paso es confirmar en una ventana emergente la configuración aplicada.</p>
+<p class="image-container"><img src="img\\510a0da75a13f571.png"></p>
+<p><strong>6.</strong>	A continuación, se generará una cadena de texto. <strong>¡Importante!</strong> debemos copiar y almacenar esta cadena de texto porque será necesaria para poder conectar git con github y en este paso es el único momento que tenemos acceso a esta cadena de texto y podemos copiarla.</p>
+<p class="image-container"><img src="img\\3761675958636727.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clonando repositorio" duration="10">
+        <p>Clonar un repositorio tiene varias utilidades importantes, especialmente cuando quieres agregar archivos o contribuir a un proyecto. Cuando clonas un repositorio, obtienes una copia completa del proyecto en tu computadora. Esto te permite:</p>
+<ul>
+<li>Trabajar sin conexión.</li>
+<li>Explorar el código cómodamente.</li>
+<li>Editar, agregar o eliminar archivos.</li>
+</ul>
+<p>Clonar el repositorio permite modificar el código, crear nuevos archivos o agregar funcionalidades sin afectar el repositorio original (hasta que decidas subir tus cambios). Si estás trabajando con otros programadores, puedes hacer cambios localmente de forma segura, subir tus aportes y actualizar el proyecto cuando estes seguro que el cambio esta correcto. Para clonar tu repositorio sigue los siguientes pasos:</p>
+<p><strong>1.</strong>	Ir al repositorio y en el botón &#34;Code&#34; copiar la URL del repositorio</p>
+<p class="image-container"><img src="img\\cc7680558dcc08df.png"></p>
+<p><strong>2.</strong>	En nuestro sistema operativo, ubicar un directorio para almacenar la carpeta del repositorio. Se sugiere crear una carpeta en la raíz (en el caso de Windows en el disco C). En este ejemplo se ha creado manualmente (clic derecho &gt; nuevo &gt; nueva carpeta) llamada &#34;Proyectos&#34;. Entrar al directorio y hacer clic derecho, en el menú emergente, ubicar la opción &#34;abrir una terminal&#34;.</p>
+<p class="image-container"><img src="img\\8d2c9e9aab68829c.png"></p>
+<p><strong>2.</strong>	En la terminal escribir la siguiente instrucción. <strong>¡Importante!</strong> La siguiente instrucción es una plantilla, debes editarla y utilizar el enlace copiado de tu repositorio.</p>
+<pre><code>git clone https://github.com/tu-usuario/tu-repositorio.git
+
+</code></pre>
+<p>Ver ejemplo del proceso de clonación del repositorio en la siguiente imagen. Luego de este proceso, verificar que se ha creado un directorio con el mismo nombre del repositorio.</p>
+<p class="image-container"><img src="img\\a23aa58e9bfb4eef.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actualizando repositorio en Github" duration="20">
+        <p><strong>1.</strong>	Entrar al repositorio (repositorio clonado) y copiar los archivos relacionados con la etapa de fortalecimiento lógico que se han asignado como actividades obligatorias (en otros escenarios estos archivos podrían ser un proyecto de desarrollo, algunos archivos de código fuente u otro tipo de recursos). Es posible categorizar las actividades en directorios por clase o por tema. Cada ejercicio debe contener esta información como cabecera de documentación:</p>
+<pre><code language="language-python" class="language-python">&#39;&#39;&#39;
+Clase:        Correlativo de clase
+Tema:         Tema de la clase
+Ejercicio:    Identificador de la clase
+Descripción:  Definición del ejercicio
+
+Autor:        Nombre del estudiante
+Fecha:        2025-05-15
+Estado:       [ En progreso | Terminado ]
+&#39;&#39;&#39;
+</code></pre>
+<p>La siguiente imagen representa un escenario donde se han incluido un archivo de python y un directorio con otros archivos al repositorio clonado.</p>
+<p class="image-container"><img src="img\\1c7d7bb7b6d24054.png"></p>
+<p><strong>2.</strong>	Cuando estamos listos para actualizar el repositorio en Github, debemos seguir los siguientes paso: primero, es neceario configurar los metadatos (nombre y correo electrónico) del usuario que va a actualizar el repositorio. Dirigirse al directorio del repositorio (en el ejemplo de esta guía de trabajo, es necesario ubicarse en el directorio &#34;fundamentos-python&#34;, que representa el directorio raiz del repositorio), abrir una terminal y configurar el nombre y correo del usuario que actualizará el repositorio utilizando las siguientes instrucciones.</p>
+<p>Verifica cual es tu contexto en los comentarios de las instrucciones.</p>
+<pre><code>// Para todo el sistema (recomendado en equipos personales):
+git config --global user.name &#34;Tu Nombre&#34;
+git config --global user.email &#34;tucorreo@ejemplo.com&#34;
+
+// Solo para un proyecto (si son computadoras públicas, compartidas o prestadas):
+git config user.name &#34;Tu Nombre&#34;
+git config user.email &#34;tucorreo@ejemplo.com&#34;
+</code></pre>
+<h2 is-upgraded>¡IMPORTANTE!</h2>
+<aside class="special"><p> Cuando trabajes en una computadora pública (cómo el aula CLIC), compartida (cómo el servicio de préstamo de Key) o prestada (es un equipo de algún familiar o amigo), es fundamental configurar tu nombre de usuario y correo electrónico en Git usando los comandos git &#34;config user.name&#34; y &#34;git config user.email&#34;. Esto asegura que tus contribuciones queden correctamente registradas con tu identidad y evita confusiones con el trabajo de otros estudiantes. Además, permite que tus commits se asocien a tu cuenta de GitHub y aparezcan como parte de tu actividad. Si omites este paso, podrías perder el crédito de tu trabajo o generar conflictos en el historial del repositorio. En palabras simples: cada vez que vayamos a actualizar un repositorio desde una computadora pública, compartida o prestada, será necesario configurar estos metadatos. </p>
+</aside>
+<p>La siguiente imagen muestra un ejemplo del proceso de configuración de los comandos git &#34;config user.name&#34; y &#34;git config user.email&#34;:</p>
+<p class="image-container"><img src="img\\227fdc6a3007d9f4.png"></p>
+<p><strong>2.</strong>	A continuación, será necesario preparar los archivos que serán actualizados, este proceso se puede hacer automáticamente con Git utilizando el siguiente comando:</p>
+<pre><code>git add .
+</code></pre>
+<aside class="special"><p> ¡El &#34;.&#34; es parte de la sintaxis! El punto en el comando &#34;git add .&#34; significa &#34;agrega todos los archivos modificados o nuevos del directorio actual y sus subdirectorios al área de preparación (staging area)&#34;. </p>
+</aside>
+<p>La siguiente imagen muestra un ejemplo de la ejecución del comando &#34;git add .&#34; <strong>Nota.</strong> Los warnings que aparecen no son errores, solo indican que el carácter de fin de archivo será manipulado por compatibilidad con el sistema operativo.</p>
+<p class="image-container"><img src="img\\fbcb29e59ef076cf.png"></p>
+<p><strong>3.</strong>	A continuación, es necesario aplicar la instrucción commit, que se encarga de guardar los archivos que deben ser actualizados como un nuevo &#34;punto de control&#34; en Git. El mensaje &#34;mi primer commit&#34; puede cambiar a uno más personalizado y que ofrezca contexto. Por ejemplo &#34;Ejercicios sesión 1 y 2&#34;.</p>
+<pre><code>git commit -m &#34;mi primer commit&#34;
+</code></pre>
+<p>La siguiente imagen muestra un ejemplo de la ejecución del comando git commit -m &#34;mi primer commit&#34;.</p>
+<p class="image-container"><img src="img\\7b1d09f7da0d059d.png"></p>
+<p><strong>4.</strong>	Ahora será necesario enviar los commits que tienes guardados localmente hacia el repositorio remoto de Github. Al ejecutar la instrucción en la terminal,  Git solicitará iniciar sesión en github, debemos seleccionar la pestaña &#34;Token&#34; y pegar el token que hemos creado previamente en la sección 5 de esta guía de trabajo.</p>
+<pre><code>git push origin main
+</code></pre>
+<p class="image-container"><img src="img\\b55d6a6a931cde2a.png"></p>
+<p>Luego de pegar el token y aceptar, el proceso debería finalizar con una salida parecida a la siguiente imagen</p>
+<p class="image-container"><img src="img\\7607b19c9391af75.png"></p>
+<p><strong>5.</strong>	Luego de unos segundos de espera, al visitar nuestro repositorio en github, observarémos que los archivos que agregamos en local están disponibles en el repositorio. Notar también que aparece el mensaje que hemos colocado en la etapa de &#34;commit&#34;.</p>
+<p class="image-container"><img src="img\\2eaaad2e0bfcfbe9.png"></p>
+<p>¡Felicidades! Haz realizado tu primer commit en Github, estas listo para dar tus primeros pasos en el mundo del desarrollo de software colaborativo.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Limpieza de credenciales" duration="0">
+        <aside class="special"><p> Recomendación: El proceso de limpieza de credenciales es opcional en equipos personales, pero debe considerarse obligatoria en entornos compartidos para proteger tu identidad y tu repositorio. </p>
+</aside>
+<p>Si estás utilizando una computadora pública o compartida temporalmente, es fundamental eliminar las credenciales guardadas (como tu token personal de GitHub) al finalizar tu sesión de trabajo. Esto evita que otra persona pueda subir cambios a tu repositorio usando tu identidad sin autorización.</p>
+<p>Si utilizas el servicio de préstamo de equipos de Key Institute, el proceso de limpieza de credenciales lo puedes realizar cuando termine el periodo de préstamos y tengas que devolverlo.</p>
+<p>Para eliminar el token guardado en Git, puedes ejecutar el siguiente comando en la terminal:</p>
+<pre><code>git credential-manager erase
+</code></pre>
+<p>A continuación el promt queda en espera de los parámetros de eliminación de credenciales, por lo que debes escribir los siguiente:</p>
+<pre><code>protocol=https
+host=github.com
+</code></pre>
+<p>Y presiona Enter dos veces.</p>
+<p>Esto eliminará de forma segura el token almacenado para GitHub, y Git volverá a pedir autenticación la próxima vez que intentes hacer git push.</p>
+<p class="image-container"><img src="img\\bf3b7c05a2d690bf.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <p>###Instituto Kriete de Ingeniería y Ciencias, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1.00, 2025.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Versión</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Año</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Autores</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.00</strong></p>
+</td><td colspan="1" rowspan="1"><p>2025</p>
+</td><td colspan="1" rowspan="1"><p>Erick Varela Guzmán (erick.varela@keyinstitute.edu.sv)</p>
+</td></tr>
+</table>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
