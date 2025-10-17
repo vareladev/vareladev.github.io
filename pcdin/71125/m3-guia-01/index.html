@@ -1,0 +1,237 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Análisis de datos básico con Power BI</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="m3-guia-01"
+                  title="Análisis de datos básico con Power BI"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Presentación" duration="1">
+        <p class="image-container"><img alt="logo uca" src="img\\10663c8c2add680a.png"></p>
+<h2 is-upgraded>Postgrado en Ciencia de Datos e Inteligencia de Negocios</h2>
+<h2 is-upgraded>Módulo 7. Visualización y análisis en Power BI</h2>
+<h2 is-upgraded>Guía de aprendizaje 1. Análisis de datos básico con Power BI</h2>
+<h3 is-upgraded>Indicaciones.</h3>
+<p>Seguir los pasos y resolver los desafíos presentados en esta guía de aprendizaje. Asegurarse de guardar los avances realizados en cada paso. Al finalizar, se debe subir los recursos solicitados en la plataforma e-campus.</p>
+<h3 is-upgraded>Objetivos de aprendizaje.</h3>
+<p>Que el estudiante pueda:</p>
+<ol type="1">
+<li>Familiarizarse con el entorno de Power BI.</li>
+<li>Aprender a utilizar las herramientas de visualización básicas que se encuentran disponibles en Power BI, para crear gráficos que permitan mostrar los datos de forma eficiente.</li>
+<li>Desarrollar la capacidad lógica necesaria para poder responder interrogantes que permitan tomar decisiones relevantes.</li>
+</ol>
+<h3 is-upgraded>Formato de entrega de la actividad</h3>
+<p>Para que la entrega de esta actividad sea catalogada como válida, se deben seguir las siguientes indicaciones.</p>
+<ol type="1">
+<li><strong>Entregar el archivo de power BI.</strong> Archivo en formato .pbix que contiene todas las visualizaciones construidas.</li>
+<li><strong>Construir una memoria de trabajo.</strong> Documento en formato .pdf que incluye todas las preguntas (desde la pregunta 1 a las pregunta 7, incluyendo las preguntas secundarias), con su respectiva respuesta. Se sugiere incluir una captura de pantalla con la visualización (gráfico) utilizada para realizar el análisis que ha permitido responder a cada pregunta. En la evaluación se valorará el formato y la formalidad en la memoria de trabajo.</li>
+<li><strong>Entrega.</strong> Una vez finalizada la actividad, se deberá subir a la platanforma e-campus los productos solicitados.</li>
+<li><strong>Modalidad de trabajo.</strong> Esta actividad esta planificada para poder realizar en formato individual, sin embargo, esta permitido trabajar en equipos de 2-3 personas. En este caso, un representante del equipo subirá los productos solicitados a la plataforma e-campus.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalar Power BI" duration="10">
+        <p>Power BI es un servicio de análisis empresarial de Microsoft que permite conectar y visualizar datos de forma interactiva a través de una plataforma unificada. Es una de las herramientas de modelado de datos más utilizadas en la actualidad. De hecho, el uso de Power BI, especialmente la versión de escritorio Power BI o Power BI Desktop, permite crear modelos de datos e informes efectivos con los distintos servicios de Power BI gracias a sus opciones de soporte de autoservicio.</p>
+<h2 is-upgraded>Requerimientos</h2>
+<p>En la lista siguiente, se proporcionan los requisitos mínimos para ejecutar Power BI Desktop:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Requerimiento</p>
+</td><td colspan="1" rowspan="1"><p>Descripción</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Sistema operativo</p>
+</td><td colspan="1" rowspan="1"><p>Windows 10, 11, Windows Server 2016 R2 o posterior.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Memoria RAM</p>
+</td><td colspan="1" rowspan="1"><p>Al menos 2 GB disponible; se recomienda 4 GB o más.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Pantalla</p>
+</td><td colspan="1" rowspan="1"><p>Se necesita al menos 1440x900 o 1600x900 (16:9). No se admiten resoluciones inferiores a 1024x768 o 1280x800, ya que ciertos controles (por ejemplo, para cerrar las pantallas de inicio) solo se muestran con resoluciones superiores a estas.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>CPU</p>
+</td><td colspan="1" rowspan="1"><p>Se recomienda un procesador de 64 bits (x64) a 1 gigahercio (GHz) o superior.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Otras configuraciones de Windows</p>
+</td><td colspan="1" rowspan="1"><p>Si configura la pantalla para cambiar el tamaño del texto, las aplicaciones u otros elementos en más del 100 %, no verá algunos cuadros de diálogo con los que debe interactuar para seguir usando Power BI Desktop. Si se produce este problema, compruebe la configuración de la pantalla en Configuración&gt;Sistema&gt;Pantalla en Windows y use el control deslizante para devolver la configuración de pantalla al 100 %.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Otro software necesario</p>
+</td><td colspan="1" rowspan="1"><p>Se requiere de WebView2, que se suele instalar junto con Power BI. <br>.NET 4.7.2 o posterior.</p>
+</td></tr>
+</table>
+<p>En el siguiente video se muestra el proceso para poder descargar e instalar Power BI.</p>
+<h2 is-upgraded>Instalando Power BI</h2>
+<p><strong>1.</strong> Ir al sitio oficial de Power BI: <a href="https://www.microsoft.com/es-es/power-platform/products/power-bi/downloads" target="_blank"><strong>Descargar Power BI</strong></a></p>
+<p><strong>2.</strong> Ubicar la sección de &#34;Microsoft Power BI Desktop&#34; y hacer clic en &#34;Descargar&#34;.</p>
+<p class="image-container"><img alt="Sitio web power BI" src="img\\6401df9de24aed7e.png"></p>
+<p><strong>3.</strong> Aceptar el mensaje que comunica que se abrirá la aplicación de Microsoft Store.</p>
+<p class="image-container"><img alt="Abriendo Microsoft Store" src="img\\85cda2f432c4f75d.png"></p>
+<p><strong>4.</strong> En Microsoft Store, hacer clic en &#34;Obtener&#34; y esperar a que la descarga finalice. (Se descargarán aproximadamente 750MB). <strong>Nota:</strong> En este paso, Microsoft Store solicitará iniciar sesión con una cuenta de correo de outlook o hotmail.</p>
+<p class="image-container"><img alt="Descargando Power BI" src="img\\f3360582dd346ece.png"></p>
+<p><strong>5.</strong> Una vez que el software se ha descargado, se instalará y si no surgen problemas en el proceso, Power BI Desktop estará disponible en nuestra computadora.</p>
+<p class="image-container"><img alt="Finalizando el proceso de instalacion" src="img\\e2c7357764adce09.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contextualización del caso" duration="2">
+        <p>El equipo que dirige la tienda de conveniencia para la que usted trabaja espera preparar un plan para aprovechar las fiestas de fin de año y maximizar las ventas en el segundo semestre. Por esta razón se le ha solicitado que analice un extracto de las ventas del primer semestre de este año, con el fin de preparar un tablero que luego será utilizado para analizar el banco de datos completo.</p>
+<p>Por el momento, es importante identificar información que permita dar respuesta a las siguientes preguntas:</p>
+<p><strong>1.</strong> ¿Cuál fue el mes con la mayor cantidad de ventas utilizando como criterio las unidades de productos vendidas?</p>
+<p><strong>2.</strong> ¿En qué mes se logró realizar la mayor cantidad de ventas?</p>
+<p><strong>3.</strong> ¿Cuáles son los 6 productos con la mayor cantidad de unidades vendidas durante el periodo analizado?</p>
+<p><strong>4.</strong> En el mes de junio, ¿Cuantas unidades del producto &#34;pan fino&#34; se vendieron?</p>
+<p><strong>5.</strong> En el mes de junio, ¿Qué porcentaje representa las unidades vendidas del producto &#34;pan fino&#34; con respecto a los demás productos?</p>
+<p><strong>6.</strong> ¿Cuáles han sido las categorías con más beneficios durante el periodo analizado?</p>
+<p><strong>7.</strong> ¿Qué tendencia muestra la facturación de productos de la categoría &#34;Bebidas&#34; durante el periodo analizado?</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Importar datos y aplicando formato" duration="5">
+        <p><strong>1.</strong>	Descargar el siguiente banco de datos para realizar las pruebas: <a href="https://github.com/vareladev/diplomado-ciencia-de-datos/raw/main/modulo3/G1.Banco_de_datos.Registro_de_ventas_2024.xlsx" target="_blank"><strong>Descargar banco de datos</strong></a></p>
+<p><strong>2.</strong>	Abrir Power BI Desktop y en el entorno, abrir un informe en blanco.</p>
+<p><strong>3.</strong>	En la cinta de opciones, ir a inicio, clic en &#34;Obtener datos&#34;, ubicar la opción &#34;Libro de Excel&#34; y hacer clic en &#34;Conectar&#34;.</p>
+<p class="image-container"><img alt="importando datos" src="img\\1717fd7acd346f22.png"></p>
+<p><strong>4.</strong>	Ubicar el archivo descargado en el paso 1 en el directorio del sistema operativo y abrir.</p>
+<p><strong>5.</strong>	Seleccionar la hoja disponible en el asistente, verificar rápidamente los datos y hacer clic en &#34;Cargar&#34;.</p>
+<p class="image-container"><img alt="cargando datos" src="img\\7909e1b437a27798.png"></p>
+<p><strong>6.</strong>	Esperar un momento para que los datos sean cargados.</p>
+<p><strong>7.</strong>	Una vez que se han cargado los datos, las columnas de banco de datos deberían aparecer listados en la sección &#34;Datos&#34; en el panel izquierdo.</p>
+<p class="image-container"><img alt="datos importados" src="img\\d684b7af9e9b6b9.png"></p>
+<aside class="special"><p> En este punto guardar el archivo con el título &#34;APELLIDO-guia1&#34;. Ejemplo: Varela-guia01.pbix. Asegurarse de guardar los cambios y avances realizados en este archivo, porque será solicitado como parte de los entregables. </p>
+</aside>
+<p>Antes de iniciar el proceso de análisis de datos, existen pasos importantes que deben ser gestionados de forma correcta para minimizar posibles errores e inconsistencias. Uno de ellos es dar el formato adecuado a los datos.</p>
+<p><strong>8.</strong>	Ir al panel &#34;vista de tabla&#34;, ubicado en la barra de herramientas lateral izquierda y esperar a que se carguen los datos en formato de tabla.</p>
+<p class="image-container"><img alt="vista de tabla" src="img\\74e0e2cc85e62ec7.png"></p>
+<p><strong>9.</strong>	Seleccionar la columna &#34;fecha&#34;. En la barra de herramientas se habilitará la sección &#34;Herramientas de columna&#34;. Seleccionar esta opción y ubicar la sección formato. En esta opción cambiar el formato de la fecha a &#34;(d/m/yyyy)&#34;.</p>
+<p class="image-container"><img alt="Aplicando formato a fecha" src="img\\7cb718de081f4a55.png"></p>
+<p><strong>10.</strong>	Cambiar el formato de las columnas &#34;PrecioUnitario&#34; y &#34;TotalVentas&#34; a &#34;Moneda&#34;. Si es necesario, cambiar el símbolo de moneda en las opciones que aparecen en la sección de formato. En este ejemplo se utilizará el símbolo &#34;$&#34;.</p>
+<p><strong>11.</strong>	Los datos deberían mostrarse de la siguiente forma.</p>
+<p class="image-container"><img alt="Aplicando formato" src="img\\fb1f0e31b1f250e7.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Proceso de análisis" duration="20">
+        <h2 is-upgraded>Pregunta 1. ¿Cuál fue el mes con la mayor cantidad de ventas utilizando como criterio las unidades de productos vendidas?</h2>
+<p>Para poder realizar el análisis, se sugiere identificar las entidades que se esperan relacionar. En primer lugar, para definir si tenemos disponible los datos necesarios para responder a las interrogantes, y, en segundo lugar, si los datos tienen el formato adecuado o habrá necesidad de hacer algún proceso de transformación. Para la pregunta 1, se solicitan dos entidades: el tiempo (porque se pregunta por un mes), y las unidades de productos vendidas. Si se observa el banco de datos, se encuentran disponibles ambas variables. Por lo que se procede a crear una visualización de los datos adecuada que permita responder a la pregunta inicial.</p>
+<p><strong>1.</strong>	Ir al panel &#34;vista de informe&#34;, ubicado en la barra de herramientas lateral izquierda.</p>
+<p><strong>2.</strong>	Seleccionar un gráfico de líneas. <strong>Nota.</strong> El grafico de líneas es ideal para analizar datos continuos, por ejemplo, la variable tiempo.</p>
+<p class="image-container"><img alt="Agregando nueva visualización" src="img\\154916f1325504ed.png"></p>
+<p><strong>3.</strong>	Asegurarse de que el gráfico de líneas este seleccionado, ubicar en el panel de visualizaciones a los campos &#34;Eje X&#34; y &#34;Eje Y&#34;.</p>
+<p><strong>4.</strong>	Seleccionar la columna &#34;Fecha&#34; del banco de datos y arrastrar hasta el eje X.</p>
+<p class="image-container"><img alt="Configurando eje X del grafico de lineas" src="img\\a4b81c63097449c1.png"></p>
+<p><strong>5.</strong>	Seleccionar la columna &#34;CantidadVendida&#34; del banco de datos y arrastrar hasta el eje Y.</p>
+<p class="image-container"><img alt="Configurando eje Y del grafico de lineas" src="img\\4a7263d8166a86dd.png"></p>
+<p><strong>6.</strong>	El gráfico de líneas debería aparecer mostrando los años, pero no es muy representativo, por lo que se debe ir al siguiente nivel de jerarquía de fechas. Para ello, hacer clic en el botón &#34;Ir al siguiente nivel de jerarquía&#34; para visualizar los datos a nivel de trimestres. Si se hace clic nuevamente, se podrán visualizar los datos a nivel de meses.</p>
+<p class="image-container"><img alt="Cambiando jerarquia" src="img\\192dc8e21221d3d6.png"></p>
+<p><strong>7.</strong>	Ahora que se dispone de la visualización adecuada, es posible responder a la primera pregunta.</p>
+<h3 is-upgraded>Respondiendo a la pregunta 1:</h3>
+<ul>
+<li><strong>p1.</strong> ¿Cuál fue el mes con la mayor cantidad de ventas utilizando como criterio las unidades de productosvendidas? ____________________________________________</li>
+<li><strong>p1.1.</strong> Complementando a la pregunta principal, ¿Cuál fue el mes con la menor cantidad de ventas utilizando el mismo criterio? ____________________________________________</li>
+<li><strong>p1.2.</strong> Complementando a la pregunta principal, con los datos disponibles, ¿Es posible deducir cual fue la razón por el aumento y disminución de las ventas de unidades en los meses identificados con mayor y menor ventas respectivamente? ____________________________________________</li>
+</ul>
+<h2 is-upgraded>Pregunta 2. ¿En qué mes se logró realizar la mayor cantidad de ventas?</h2>
+<p><strong>1.</strong>	En el panel &#34;vista de informe&#34;, agregar al tablero un gráfico de líneas.</p>
+<p><strong>2.</strong>	Asegurarse de que el gráfico de líneas este seleccionado, ubicar en el panel de visualizaciones a los campos &#34;Eje X&#34; y &#34;Eje Y&#34;.</p>
+<p><strong>3.</strong>	Seleccionar la columna &#34;Fecha&#34; del banco de datos y arrastrar hasta el eje X.</p>
+<p><strong>4.</strong>	Seleccionar la columna &#34;TotalVenta&#34; del banco de datos y arrastrar hasta el eje Y.</p>
+<p class="image-container"><img alt="Configurando eje Y del grafico de lineas" src="img\\383649eed00d25d9.png"></p>
+<p><strong>5.</strong>	Cambiar el nivel de jerarquía hasta representar la visualización a nivel de meses.</p>
+<h3 is-upgraded>Respondiendo a la pregunta 2:</h3>
+<ul>
+<li><strong>p2.</strong> ¿En qué mes se logró realizar la mayor cantidad de ventas? ____________________________________________</li>
+<li><strong>p2.1.</strong> Complementando a la pregunta principal, ¿Cuál fue el mes con menor cantidad de ventas? ____________________________________________</li>
+<li><strong>p2.2.</strong> Complementando a la pregunta principal, de acuerdo con los datos disponibles, ¿Cómo es la relación entre la cantidad de productos vendidos (pregunta 1) y las ventas realizadas (pregunta 2)? ____________________________________________</li>
+</ul>
+<h2 is-upgraded>Pregunta 3. ¿Cuáles son los 6 productos con la mayor cantidad de unidades vendidas durante el periodo analizado?</h2>
+<p><strong>1.</strong>	En el panel &#34;vista de informe&#34;, seleccionar un gráfico de barras apiladas. <strong>Nota.</strong> El gráfico de barras apiladas y el gráfico de columnas apiladas son ideales para analizar datos como categorías o tipos.</p>
+<p><strong>2.</strong>	Asegurarse de que el gráfico de barras apiladas este seleccionado, ubicar en el panel de visualizaciones a los campos &#34;Eje X&#34; y &#34;Eje Y&#34;.</p>
+<p><strong>3.</strong>	Del panel de datos, seleccionar la columna &#34;Producto&#34; y arrastrar hasta el eje Y. Además, seleccionar la columna &#34;CantidadVendida&#34; y arrastrar hasta el eje X.</p>
+<h3 is-upgraded>Respondiendo a la pregunta 3:</h3>
+<ul>
+<li><strong>p3.</strong> ¿Cuáles son los 6 productos con la mayor cantidad de unidades vendidas durante el periodo analizado? ____________________________________________</li>
+<li><strong>p3.1.</strong> Complementando a la pregunta principal, ¿Cuántas unidades se vendieron de los 6 productos más vendidos? (Colocar el puntero sobre cada barra del gráfico de barras apiladas para poder ver el dato requerido). ____________________________________________</li>
+</ul>
+<h2 is-upgraded>Pregunta 4. En el mes de junio, ¿Cuantas unidades del producto &#34;pan fino&#34; se vendieron?</h2>
+<p><strong>1.</strong>	En el panel &#34;vista de informe&#34;, seleccionar una visualización de segmentación de datos.</p>
+<p class="image-container"><img alt="Agregando segmentador de datos" src="img\\795669066cf9dba8.png"></p>
+<p><strong>2.</strong>	Asegurarse de que la visualización de segmentación de datos este seleccionada y ubicar en el panel de visualizaciones al valor &#34;campo&#34;.</p>
+<p><strong>3.</strong>	Del panel de datos, seleccionar la columna &#34;Fecha&#34; y arrastrar hasta el valor &#34;campo&#34;.</p>
+<p><strong>4.</strong>	El segmentador de datos puede aparecer en distintos formatos. El formato ideal debería ser el que se muestra en la siguiente imagen.</p>
+<p class="image-container"><img alt="Ejemplo segmentador de datos" src="img\\7d8b1143f8fd1921.png"></p>
+<p><strong>5.</strong>	Si el segmentador de datos no tiene el formato anterior, asegurarse que el segmentador este seleccionado, luego, ir formato -&gt; configuración de la segmentación -&gt; opciones, y seleccionar la opción &#34;entre&#34;.</p>
+<p class="image-container"><img alt="Aplicar formato a segmentador de datos" src="img\\d83a9a0a0c0c75f5.png"></p>
+<p><strong>6.</strong>	En el segmentador de datos seleccionar las fechas entre el 1 de junio de 2024 al 30 de junio de 2024. El segmentador provoca que los datos disponibles en las demás visualizaciones se actualicen para el periodo seleccionado.</p>
+<p><strong>7.</strong>	Ubicar los datos disponibles en el gráfico de barras apiladas construido para responder a la pregunta 3, y verificar cuantas unidades de &#34;pan fino&#34; se vendió en junio de 2024.</p>
+<h3 is-upgraded>Respondiendo a la pregunta 4:</h3>
+<ul>
+<li><strong>p4.</strong> En el mes de junio, ¿Cuantas unidades del producto &#34;pan fino&#34; se vendieron? ____________________________________________</li>
+</ul>
+<h2 is-upgraded>Pregunta 5. En el mes de junio, ¿Qué porcentaje representa las unidades vendidas del producto &#34;pan fino&#34; con respecto a los demás productos?</h2>
+<p><strong>1.</strong>	Aplicar un filtro de fechas entre el 1 y 30 de junio de 2024 con el segmentador construido para responder a la pregunta 4.</p>
+<p><strong>2.</strong>	Ubicar el gráfico de barras apiladas construido para responder a la pregunta 3, y seleccionarlo.</p>
+<p><strong>3.</strong>	Con el gráfico de barras apiladas seleccionado, ir al panel de visualizaciones y seleccionar un gráfico de anillo.</p>
+<p class="image-container"><img alt="Cambiando tipo de gráfico" src="img\\1f9a7e96f69f6bc5.png"></p>
+<p><strong>4.</strong>	El gráfico de barras apiladas debería cambiar por un gráfico de anillo, mostrando el porcentaje de unidades vendidas por cada producto.</p>
+<h3 is-upgraded>Respondiendo a la pregunta 5:</h3>
+<ul>
+<li><strong>p5.</strong> En el mes de junio, ¿Qué porcentaje representa las unidades vendidas del producto &#34;pan fino&#34; con respecto a los demás productos?</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Trabajo autónomo y formato de entrega." duration="15">
+        <h3 is-upgraded>Trabajo autónomo</h3>
+<p>Como actividad de trabajo autónomo, se requiere que las/los estudiantes apliquen el conocimiento adquirido para responder a las siguientes preguntas.</p>
+<p><strong>Pregunta 6.</strong> ¿Cuáles han sido las categorías con más beneficios durante el periodo analizado (De enero a junio de 2024)?</p>
+<p><strong>Pregunta 7.</strong> ¿Qué tendencia muestra la facturación de productos de la categoría &#34;Bebidas&#34; durante el periodo analizado (De enero a junio de 2024)?</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <h2 is-upgraded>Autores:</h2>
+<p><strong>Versión 1:</strong> Erick Varela Guzmán</p>
+<p><strong>Contacto: </strong><a href="mailto:evarela@uca.edu.sv" target="_blank">evarela@uca.edu.sv</a></p>
+<p>Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1, 2024.</p>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
