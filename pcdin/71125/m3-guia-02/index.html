@@ -1,0 +1,166 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Técnicas de limpieza y transformación de datos</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="m3-guia-02"
+                  title="Técnicas de limpieza y transformación de datos"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Presentación" duration="4">
+        <p class="image-container"><img alt="logo uca" src="img\\10663c8c2add680a.png"></p>
+<h2 is-upgraded>Postgrado en Ciencia de Datos e Inteligencia de Negocios</h2>
+<h2 is-upgraded>Módulo 7. Visualización y análisis en Power BI, octubre 2025</h2>
+<h2 is-upgraded>Guía de aprendizaje 2. Técnicas de limpieza y transformación de datos.</h2>
+<h3 is-upgraded>Indicaciones.</h3>
+<p>Seguir los pasos y resolver los desafíos presentados en esta guía de aprendizaje. Asegurarse de guardar los avances realizados. Al finalizar, el estudiante debe subir los siguientes productos en la plataforma e-campus.</p>
+<ul>
+<li><strong>Archivo de Power BI con formato .pbix</strong>, utilizado para realizar la práctica guiada.</li>
+<li><strong>Archivo de Power BI con formato .pbix</strong>, utilizado para realizar la actividad de trabajo autónomo.</li>
+<li><strong>Archivo en formato .pdf</strong>, que documenta detalladamente el proceso realizado para cumplir con la actividad de trabajo autónomo. Debe incluir capturas de pantalla y una explicación de cada paso aplicado. En la evaluación se valorará el formato y la formalidad aplicada en el documento.</li>
+<li><strong>Modalidad de trabajo.</strong> Esta actividad esta planificada para poder realizar en formato individual, sin embargo, está permitido trabajar en equipos de 2-3 personas. En este caso, un representante del equipo subirá los productos solicitados a la plataforma e-campus.</li>
+</ul>
+<h3 is-upgraded>Objetivos de aprendizaje.</h3>
+<p>Que el estudiante pueda:</p>
+<p><strong>1.</strong> Familiarizarse con el entorno de Power Query.</p>
+<p><strong>2.</strong> Aplicar las principales técnicas y buenas prácticas para el procesamiento, limpieza y transformación de datos.</p>
+<p><strong>3.</strong> Desarrollar la capacidad lógica necesaria para comprender los conceptos revisados, interiorizarlos y poder aplicarlos en el entorno empresarial.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Importar datos y aplicando formato" duration="5">
+        <p><strong>1.</strong>	Descargar el siguiente banco de datos para realizar las pruebas: <a href="https://github.com/vareladev/diplomado-ciencia-de-datos/raw/main/modulo3/G2.Operaciones.xlsx" target="_blank"><strong>Descargar banco de datos</strong></a></p>
+<p><strong>2.</strong>	Abrir Power BI Desktop y en el entorno, abrir un informe en blanco</p>
+<p><strong>3.</strong>	En la cinta de opciones, ir a inicio, clic en &#34;Obtener datos&#34;, ubicar la opción &#34;Libro de Excel&#34; y cargar el banco de datos que se descargó en el paso 1.</p>
+<p><strong>4.</strong>	Esperar un momento para que los datos sean cargados.</p>
+<p><strong>5.</strong>	En el asistente, seleccionar la hoja disponible, y hacer clic en transformar datos.</p>
+<p class="image-container"><img alt="importando datos" src="img\\fb2c1184daa61b2b.png"></p>
+<aside class="special"><p> La opción transformar datos, carga los datos, pero redirige las acciones directamente a Power Query. Si los datos se cargan directamente a Power Bi, probablemente haya problemas debido a errores de datos contenidos en el archivo. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Realizar un diagnóstico inicial de los datos" duration="5">
+        <p>Inicialmente, los datos cargados en Power Query deberían verse como en la siguiente figura.</p>
+<p class="image-container"><img alt="estado inicial de los datos" src="img\\efd9d97e4ca9090.png"></p>
+<p>Con los datos cargados, el primer paso un buen analista de datos debería aplicar es dedicar un poco de tiempo para comprender el contexto de los datos. Se pueden hacer preguntas como las siguientes:</p>
+<p><strong>1.</strong>	¿Cómo puedo describir de forma general el banco de datos?</p>
+<p><strong>2.</strong>	¿Cuáles son las columnas o filas necesarias que se logran identificar en el conjunto de datos?</p>
+<p><strong>3.</strong>	¿Cómo puedo corregir valores nulos?</p>
+<p><strong>4.</strong>	¿Existen errores en los datos?</p>
+<p>Para responder a estas preguntas, se sugiere que se revisen los datos en Power Query. Las respuestas a las preguntas anteriores son:</p>
+<p><strong>1.</strong>	Aunque se tienen dificultades para interpretar el contenido el archivo, el banco de datos parece ser de un registro de órdenes. El sentido del archivo parece ser horizontal, es decir, para interpretarlo se debe leer de izquierda a derecha, en lugar de arriba hacia abajo como es usual.</p>
+<p><strong>2.</strong>	En un principio, los campos que se identifican son: Segment, Ship mode, y Order ID.</p>
+<p><strong>3.</strong>	Al verificar el sentido del archivo previamente, con probabilidad, habrá de hacer un ajuste para poder analizar como eliminar los valores nulos.</p>
+<p><strong>4.</strong>	No parece haber errores, es decir, campos con valor &#34;#VALUE!&#34;.</p>
+<p>Ahora que se ha explorado el contexto de los datos, es posible profundizar en el proceso de limpieza y transformación de los datos.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Proceso de limpieza de los datos" duration="30">
+        <p><strong>1.</strong>	Por defecto, Power Query intenta hacer una interpretación inicial de los datos, y en este caso, podría interpretar la primera fila como la cabecera de cada columna, si este es el caso, será necesario eliminar los pasos aplicados automáticamente por Power Query.</p>
+<p class="image-container"><img alt="eliminado pasos automaticos" src="img\\887c11d7a7be3cc3.png"></p>
+<p><strong>2.</strong>	Como resultado de la exploración inicial, se ha concluido que el sentido de los datos parece ser horizontal, es decir, para interpretar el contenido se debe leer de izquierda a derecha, por lo que la primera estrategia será realizar un procedimiento de transposición de los datos.</p>
+<p><strong>3.</strong>	En la cinta de opciones, ir a la pestaña &#34;Transformar&#34;, en la sección &#34;Tabla&#34;, buscar la opción &#34;Transponer&#34;.</p>
+<p class="image-container"><img alt="opcion transponer" src="img\\c0eb82c2eecdbfb4.png"></p>
+<p><strong>4.</strong>	El resultado debería verse como en la siguiente imagen.</p>
+<p class="image-container"><img alt="opcion transponer aplicada" src="img\\930bd6e027693f36.png"></p>
+<p><strong>5.</strong>	Ahora que los datos están transpuestos, la interpretación ha cambiado, por lo que se opta por continuar con el proceso de transformación en este formato.</p>
+<p><strong>6.</strong>	En el botón que intercepta las filas de las columnas, hacer clic y buscar la opción &#34;Usar la primera fila como encabezado&#34;.</p>
+<p class="image-container"><img alt="definiendo encabezados" src="img\\fb2dcb7f08b22434.png"></p>
+<p>Ahora la primera fila que contiene los campos &#34;Segment&#34;, &#34;Ship mode&#34;, y &#34;Order ID&#34;. Además, todos los valores de &#34;Order ID&#34; se han convertido en una cabecera de la tabla.</p>
+<p class="image-container"><img alt="encabezados actuales" src="img\\e2cf17a0712446b0.png"></p>
+<p>Por el cambio provocado en la transposición, la columna &#34;Order ID&#34; ha quedado sin valores, por lo que ha perdido su utilidad, por esta razón, se puede eliminar (Más adelante se volverá a construir porque es necesaria).</p>
+<p><strong>7.</strong>	Hacer clic derecho en la columna &#34;Order ID&#34;, y en el menú emergente, ubicar la opción &#34;Quitar&#34;. Este procedimiento eliminará la columna.</p>
+<p class="image-container"><img alt="eliminando columna" src="img\\9b562cbb2f49a02a.png"></p>
+<p>Luego del proceso de transposición, los campos &#34;Segment&#34;, &#34;Ship mode&#34; han mejorado su formato, sin embargo, mantener los valores de la columna eliminada &#34;Order ID&#34; como cabeceras de columna no es adecuado, porque son parte de nuestro conjunto de datos para analizar. Por lo que para todas estas columnas es necesario revertir la transposición de la tabla. El procedimiento que se realizará se denomina &#34;Anulación de dinamización de columnas&#34; o en la jerga de analistas, &#34;aplanar los datos&#34;, para colocarlos en un formato de matriz de modo que todos los valores similares estén en una columna. Esto es necesario, por ejemplo, para crear un gráfico o un informe. La siguiente imagen ilustra un ejemplo del proceso:</p>
+<p class="image-container"><img alt="ejemplo" src="img\\68c4a75a7093596c.png"></p>
+<p>Al anular la dinamización, desempaqueta los pares de atributo-valor que representan un punto de intersección de las nuevas columnas y vuelva a orientarlos en columnas aplanadas. Continuando con la guía de aprendizaje, para aplanar los datos, se deben seleccionar todas las columnas que aplican, pero al ser demasiadas, se realizará un procedimiento alternativo por comodidad de analista, que consiste en seleccionar las columnas que no serán aplanadas y aplicar el procedimiento a las columnas que no están seleccionadas.</p>
+<p><strong>8.</strong>	Con la tecla &#34;Shift&#34; presionada, seleccionar las columnas &#34;Segment&#34; y &#34;Ship mode&#34;. Deberían mostrarse ambas columnas seleccionadas.</p>
+<p class="image-container"><img alt="seleccionando dos columnas" src="img\\bd80799e469bee6e.png"></p>
+<p><strong>9.</strong>	En la cinta de opciones, ir a &#34;Transformar&#34;, ubicar la sección &#34;Cualquier columna&#34;, y expandir las opciones del botón &#34;Anular dinamización de columnas&#34; (unpivot columns), en las opciones del menú emergente, seleccionar la opción &#34;Anulación de dinamización de otras columnas&#34; (unpivot other columns).</p>
+<p class="image-container"><img alt="anulando dinamizacion" src="img\\34be35e21d510a13.png"></p>
+<p><strong>10.</strong>	Luego de aplicar la transformación, el conjunto de datos debería verse de la siguiente manera:</p>
+<p class="image-container"><img alt="proceso aplicado" src="img\\77da0d6242701591.png"></p>
+<p>Ahora, es posible ver que los datos están adquiriendo una estructura que facilita su comprensión. Llegados a un punto en el que se ha logrado cierta estructura en los datos, es una buena práctica realizar revisión de los datos para verificar la consistencia. Normalmente, los bancos de datos orientados al análisis son bastante extensos, por lo que realizar una revisión manual para detectar estas inconsistencias es ineficiente y habilita la posibilidad de errores. Por esta razón es preferible utilizar las herramientas disponibles en Power Query, y en caso de detectar alguna anomalía se podrá contar con un criterio para poder corregir las inconsistencias.</p>
+<p><strong>11.</strong>	En la cinta de opciones, ir a la pestaña &#34;Vista&#34;, ubicar la sección &#34;Vista previa de los datos&#34;, habilitar las opciones &#34;Monoespaciado&#34; y &#34;Calidad de columnas&#34;.</p>
+<aside class="special"><p> Nota: la opción &#34;Monoespaciado&#34; permite que todos los símbolos alfanuméricos disponibles en los datos utilicen el mismo espacio. Esta opción es útil para detectar diferencias de longitud en datos que deberían tener la misma cantidad de caracteres, como un código o un identificador. </p>
+</aside>
+<p class="image-container"><img alt="aplicando vistas" src="img\\da65d013a802700b.png"></p>
+<p><strong>12.</strong>	En la información mostrada en cada columna, ahora es posible observa que en las columnas &#34;Segment&#34; y &#34;Ship mode&#34; existe un 44% de valores nulos. (Si se realiza un scroll un poco extenso, se podrán encontrar estos valores).</p>
+<p><strong>13.</strong>	Seleccionar la columna &#34;Atributo&#34; (Attribute), y hacer clic en la opción &#34;Quitar duplicados&#34;.</p>
+<p class="image-container"><img alt="eliminando valores duplicados" src="img\\2cd068f09f0eca78.png"></p>
+<p>Luego de aplicar la transformación del paso 13, los valores nulos de la columna &#34;Ship mode&#34; fueron eliminados. Sin embargo, con este procedimiento los valores nulos en la columna &#34;Segment&#34; se mantienen (de hecho, ¡aumentaron!). Al realizar un análisis de la columna &#34;Segment&#34;, es posible interpretar que se trata de un catálogo con las opciones &#34;Consumer&#34;, &#34;Producer&#34; y &#34;Home office&#34;. Para verificar esto, seleccionar la columna &#34;Segment&#34;, ir a la pestaña &#34;Vista&#34; de la cinta de opciones, y habilitar la opción de &#34;Perfil de columna&#34;.</p>
+<p class="image-container"><img alt="perfil de columna" src="img\\889745843cd76d9e.png"></p>
+<p>En estos casos, normalmente la opción es eliminar todos los nulos, sin embargo, existen ocasiones en las que realizar este procedimiento elimina muchos datos importantes que están contenidos en las demás columnas. Por lo que una alternativa es rellenar los valores faltantes. La operación de relleno hacia abajo toma una columna y recorre los valores que contiene para rellenar los valores nulos de las filas siguientes hasta que encuentra un nuevo valor. Este proceso continúa fila por fila hasta que no hay más valores en esa columna. Para avanzar en el proceso de transformación de los datos, se aplicará la operación de relleno hacia abajo.</p>
+<p><strong>14.</strong>	Hacer clic derecho sobre la columna &#34;Segment&#34;, en el menú emergente, ubicar la opción &#34;Rellenar&#34;, en las subopciones, hacer clic en la opción &#34;Abajo&#34;.</p>
+<p class="image-container"><img alt="rellenar abajo" src="img\\4d01b92fa0b9027a.png"></p>
+<p>Ahora los datos deberían ser 100% válidos.</p>
+<p class="image-container"><img alt="datos correctos" src="img\\b19ffaad744e1768.png"></p>
+<ol type="1" start="15">
+<li>Antes de finalizar el proceso de transformación, es renombrar la columna &#34;Atributo&#34; por &#34;Order Id&#34;. Hacer clic derecho sobre la columna &#34;Atributo&#34;, en el menú emergente buscar la opción &#34;Cambiar nombre&#34;. Renombrar la columna como &#34;Order Id&#34;.</li>
+</ol>
+<p class="image-container"><img alt="renonmbrar columna" src="img\\76eee1a8f9514da.png"></p>
+<p><strong>16.</strong>	Ahora es posible retornar a Power BI, para iniciar el proceso de análisis de datos. En la cinta de opciones, ir a la pestaña &#34;Inicio&#34; y hacer clic en la opción &#34;Cerrar y aplicar&#34;.</p>
+<p class="image-container"><img alt="aplicando cambios" src="img\\55caa6253a0a6814.png"></p>
+<p><strong>17.</strong>	¡El proceso de limpieza y transformación de datos ha finalizado! :D</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Trabajo autónomo" duration="15">
+        <h3 is-upgraded>Trabajo autónomo</h3>
+<p><strong>1.</strong>	Para realizar el trabajo autónomo, debe descargar el siguiente banco de datos: <a href="https://github.com/vareladev/diplomado-ciencia-de-datos/raw/main/modulo3/G2.Ventas-mayo-2024.xlsx" target="_blank"><strong>Descargar banco de datos trabajo autonomo</strong></a></p>
+<p><strong>2.</strong>	Los datos tienen el siguiente formato:</p>
+<p class="image-container"><img alt="vista previa datos" src="img\\d5a2aa5c133cf35e.png"></p>
+<p><strong>3.</strong>	Como puede observar, hay filas y campos en blanco, valores con formato incorrecto, una fila duplicada, un encabezado que no es necesario y algunos errores. Por lo que es necesario transformar los datos antes de poder trabajar con ellos en Power BI.</p>
+<p><strong>4.</strong>	La actividad de trabajo autónomo consiste en realizar un proceso de limpieza y transformación de los datos para poder ser analizados en Power BI.</p>
+<p><strong>5.</strong>	En la sección de presentación de esta guía de aprendizaje se cuentran los detalles e indicaciones de la entrega.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <h2 is-upgraded>Autores:</h2>
+<p><strong>Versión 1:</strong> Erick Varela Guzmán</p>
+<p><strong>Contacto: </strong><a href="mailto:evarela@uca.edu.sv" target="_blank">evarela@uca.edu.sv</a></p>
+<p>Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1, 2024.</p>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
