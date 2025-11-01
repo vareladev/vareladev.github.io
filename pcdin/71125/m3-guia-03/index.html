@@ -1,0 +1,278 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Expresiones de análisis de datos con DAX</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="m3-guia-03"
+                  title="Expresiones de análisis de datos con DAX"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Presentación y contextualización" duration="10">
+        <p class="image-container"><img alt="logo uca" src="img\\10663c8c2add680a.png"></p>
+<h2 is-upgraded>Postgrado en Ciencia de Datos e Inteligencia de Negocios</h2>
+<h2 is-upgraded>Módulo 7. Visualización y análisis en Power BI</h2>
+<h2 is-upgraded>Guía de aprendizaje 3. Expresiones de análisis de datos con DAX.</h2>
+<h3 is-upgraded>Indicaciones.</h3>
+<p>Seguir los pasos y resolver los desafíos presentados en esta guía de aprendizaje. Asegurarse de guardar los avances realizados. Al finalizar, el estudiante debe subir los siguientes productos en la plataforma e-campus.</p>
+<ul>
+<li><strong>Archivo de Power BI con formato .pbix</strong>, utilizado para realizar la práctica guiada.</li>
+<li><strong>Modalidad de trabajo.</strong> Esta actividad esta planificada para poder realizar en formato individual, sin embargo, está permitido trabajar en equipos de 2-3 personas. En este caso, un representante del equipo subirá los productos solicitados a la plataforma e-campus.</li>
+</ul>
+<h3 is-upgraded>Objetivos de aprendizaje.</h3>
+<p>Que el estudiante pueda:</p>
+<p><strong>1.</strong> Familiarizarse con el uso de DAX en el entorno de Power BI.</p>
+<p><strong>2.</strong> Comprender los conceptos básicos y la sintaxis de DAX para crear reportes y tableros profesionales, que mejoran significativamente la experiencia del usuario final.</p>
+<p><strong>3.</strong> Explorar y aplicar funciones DAX para resolver problemas específicos.</p>
+<h3 is-upgraded>Contextualización</h3>
+<p>Esta guía de trabajo se ha diseñado para realizar una exploración introductoria a DAX en el entorno de Power BI, en donde se analiza la información de una empresa que fabrica productos y los distribuye a nivel internacional. El encargado de la administración de la base de datos ha compartido un banco de datos de los últimos cuatro años de las operaciones comerciales diarias. Lo que se busca, es responder a las siguientes preguntas comerciales solicitadas por el grupo de gerencia:</p>
+<p><strong>1.</strong> ¿Cuál es la tendencia de los ingresos por ventas mensuales? ¿Cuál ha sido el mes con el pico de ventas más alto del todo el periodo analizado?</p>
+<p><strong>2.</strong> Para el periodo analizado, ¿Qué porcentaje de los ingresos obtenidos representan las ventas online?</p>
+<p><strong>3.</strong> Para el periodo analizado, ¿Cuál es la tendencia despues de &#34;suavizar los datos&#34; al haber aplicado la técnica del &#34;promedio móvil de los últimos 3 meses&#34; para realizar un pronóstico de la demanda?</p>
+<p><strong>4.</strong> Para el periodo analizado, ¿Cómo contribuyen algunas categorías específicas de productos a las ventas totales?</p>
+<p>Mientras se explora el proceso para responder a las preguntas anteriores, se revisarán las siguientes técnicas y funciones DAX:</p>
+<ul>
+<li>Creación de columnas calculadas.</li>
+<li>Creación de medidas.</li>
+<li>Creación de tablas calculadas</li>
+<li>SUM</li>
+<li>CALCULATE</li>
+<li>IF</li>
+<li>ISBLANK</li>
+<li>BLANK</li>
+<li>DATESINPERIOD</li>
+<li>LASTDATE</li>
+<li>MAX</li>
+<li>YEAR</li>
+<li>MONTH</li>
+<li>ALL</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Importar datos y aplicando formato" duration="8">
+        <p><strong>1.</strong>	Descargar el siguiente banco de datos para realizar las pruebas: <a href="https://github.com/vareladev/diplomado-ciencia-de-datos/raw/main/modulo3/G3.Sales_2021-2024.xlsx" target="_blank"><strong>Descargar banco de datos</strong></a></p>
+<p><strong>2.</strong>	Abrir Power BI Desktop y en el entorno, abrir un informe en blanco</p>
+<p><strong>3.</strong>	En la cinta de opciones, ir a inicio, clic en &#34;Obtener datos&#34;, ubicar la opción &#34;Libro de Excel&#34; y cargar el banco de datos que se descargó en el paso 1.</p>
+<p><strong>4.</strong>	Esperar un momento para que los datos sean cargados.</p>
+<p><strong>5.</strong>	En el asistente, seleccionar todas las hojas disponibles, y hacer clic en cargar datos.</p>
+<p class="image-container"><img alt="importando datos" src="img\\25c6caba4fcfc2f6.png"></p>
+<p><strong>6.</strong>	Una vez cargados los datos, ir a la vista de modelo. La tabla &#34;Category&#34; contiene datos sobre categorías y subcategorías de productos. Por otro lado, la tabla &#34;Sales&#34; contiene información sobre transacciones de ventas. Las tablas deberían estar relacionadas con una relación de tipo 1 a muchos, desde la tabla &#34;Category&#34;, hacia la tabla la tabla &#34;Sales&#34;.</p>
+<p class="image-container"><img alt="modelo" src="img\\daaf227e35750342.png"></p>
+<aside class="special"><p> Si las tablas no están relacionadas, arrastrar el campo &#34;CategoryId&#34; de la tabla &#34;Category&#34; y arrastrar hacia el campo &#34;CategoryId&#34; de la tabla &#34;Sales&#34;.  </p>
+</aside>
+<p><strong>7.</strong>	En la vista de modelo, en la cinta de opciones, en la pestaña inicio, ubicar la sección cálculos, y hacer clic en &#34;Nueva tabla&#34;.</p>
+<p class="image-container"><img alt="nueva tabla" src="img\\f5192fde21bf7a9b.png"></p>
+<p><strong>8.</strong>	Crear una función DAX llamada &#34;Calendar&#34;. La idea es crear una tabla que contenga un catálogo de fechas desde el 1 de enero de 2021 hasta el 31 de diciembre de 2024. Luego de crear la función DAX, en la vista de tabla se podrá realizar una exploración general de los datos generados en la tabla &#34;Calendar&#34;.</p>
+<aside class="special"><p> Para definir el bloque de DAX con saltos de línea, presionar simultáneamente las teclas &#34;ALT&#34; y &#34;ENTER&#34;. Deberá aparece un número de línea en la parte derecha del editor de funciones de DAX. </p>
+</aside>
+<p class="image-container"><img alt="nueva tabla dax" src="img\\884fb36e1a37d354.png"></p>
+<p><strong>9.</strong>	Ir a la vista de tablas, y seleccionar la tabla &#34;Sales&#34;. Para poder relacionar los datos, con la tabla &#34;Calendar&#34;, será necesario cambiar el formato de presentación de las fechas en la columna &#34;OrderDate&#34;. Esta tarea es sencilla de realizar a través de Power Query. <strong>Se sugiere revisar la grabación de la clase asíncrona para ver los pasos de transformación.</strong> El resultado deberá verse así:</p>
+<p class="image-container"><img alt="formato fecha" src="img\\6176fdeef279ed63.png"></p>
+<p><strong>10.</strong>	Regresar a la vista de modelo y relacionar la columna &#34;Date&#34; de la tabla &#34;Calendar&#34; con la columna &#34;OrderDate&#34; de la tabla &#34;Sales&#34;. La relación que se debe generar es 1 a varios.</p>
+<p class="image-container"><img alt="relacionando tablas" src="img\\7668bf326c52aa5e.png"></p>
+<p><strong>11.</strong>	Llegados a este punto, estamos listos para comenzar la etapa de análisis de los datos.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de una columna calculada" duration="5">
+        <p>Los ingresos por ventas son un factor determinante de la rentabilidad de una empresa. Sin embargo, esta información no está disponible en el modelo de datos. Tenemos las columnas &#34;UnitPrice&#34;, &#34;UnitPriceDiscount&#34;, y &#34;ProductQuantity&#34; en la tabla &#34;Sales&#34;. Por lo tanto, será conveniente crear una columna calculada para ampliar la información disponible en la tabla utilizando DAX. Para calcular los ingresos por ventas, multiplicamos el número de productos vendidos por el precio unitario. Como existen ocasiones en que la empresa aplica un descuento al precio, será necesario utilizar la siguiente fórmula para calcular los ingresos por ventas:</p>
+<pre><code>Ingresos por ventas = Unidades vendidas * (1 - Descuento) * Precio de venta
+</code></pre>
+<p><strong>1.</strong>	En power BI, ir a la vista de tabla, seleccionar la tabla &#34;Sales&#34; y hacer clic en la opción &#34;Nueva columna&#34; de la cinta de opciones.</p>
+<p class="image-container"><img alt="nueva columna" src="img\\3a735866e2aa48f8.png"></p>
+<p><strong>2.</strong>	Se habilitará el editor de DAX, a continuación, se debe definir la estructura de la nueva columna.</p>
+<p class="image-container"><img alt="dax total" src="img\\892c18650c5b9932.png"></p>
+<p><strong>3.</strong>	Luego de crear la columna, si se ordena el conjunto de datos con respecto a la columna &#34;OrderId&#34;, el resultado debería verse como el siguiente:</p>
+<p class="image-container"><img alt="ejemplo nueva columna" src="img\\e989728e56806589.png"></p>
+<p><strong>4.</strong>	Como buena práctica es adecuado cambiar el formato de la columna recién creada. Seleccionar la columna &#34;Total&#34;, luego, en la cinta de opciones, en la pestaña de &#34;Herramientas de columna&#34;, cambiar el formato a moneda y el definir 2 decimales. Repetir el procedimiento con la columna &#34;UnitPrice&#34;.</p>
+<p class="image-container"><img alt="formato tabla" src="img\\b4019cc5bd7d900.png"></p>
+<p>A continuación, es conveniente crear una medida que calcule los ingresos totales. Esta medida nos ayudará a responder la primera pregunta comercial. Para lograr este objetivo, la función SUM suma todos los valores numéricos de una columna y devuelve el resultado del cálculo. Esta es la sintaxis para usar la función:</p>
+<pre><code>Medida = SUM (Tabla[columna])
+</code></pre>
+<p><strong>5.</strong>	En la vista de tabla, seleccionar la tabla &#34;Sales&#34;, y en la cinta de herramientas, hacer clic en &#34;Nueva medida&#34;, y definir la medida &#34;Total Sales Revenue&#34;</p>
+<p class="image-container"><img alt="Total Sales Revenue" src="img\\354296ae41c350a6.png"></p>
+<p><strong>6.</strong>	Con los nuevos recursos calculados, es posible responder a la primera pregunta comercial, ir a la vista de informe, nombrar a la &#34;Pagina 1&#34; como &#34;Pregunta 1&#34;.</p>
+<p><strong>7.</strong>	Crear un gráfico de líneas.</p>
+<p><strong>8.</strong>	Arrastrar la columna &#34;Date&#34; de la tabla &#34;Calendar&#34; hacia el Eje X del gráfico de líneas.</p>
+<p><strong>9.</strong>	Arrastrar la medida &#34;Total Sales Revenue&#34; hacia el Eje Y del gráfico de líneas.</p>
+<p class="image-container"><img alt="grafico lineas" src="img\\84d2e9ddb407f42d.png"></p>
+<p><strong>10.</strong>	Navegar por la jerarquía de fechas hasta el nivel de meses.</p>
+<h2 is-upgraded>Respondiendo a la pregunta 1:</h2>
+<ul>
+<li><strong>p1.</strong> ¿Cuál es la tendencia de los ingresos por ventas mensuales?  ____________________________________________</li>
+<li><strong>p1.1.</strong> ¿Cuál es la tendencia de los ingresos por ventas mensuales?  ____________________________________________</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Manipulando el contexto de filtro" duration="15">
+        <p>Podemos utilizar de forma implícita las herramientas gráficas disponibles en Power BI como la selección de filas, columnas, segmentadores de datos y filtros para crear un contexto de filtro. Como alternativa, en DAX, la función CALCULATE puede crear un contexto de filtro explícito. La función CALCULATE es posiblemente una de las funciones DAX más importantes, ya que permite el control del contexto de filtro que modifican a los objetivos visuales de Power BI. La sintaxis de la función es la siguiente:</p>
+<pre><code>Measure = CALCULATE(&lt;expression&gt;[, &lt;filter1&gt; [, &lt;filter2&gt; [, ...]]])
+</code></pre>
+<p>El primer argumento, es obligatorio. Opcionalmente, la función puede tomar uno o más argumentos de filtro. Todos los filtros se evalúan juntos y su orden no importa. Podemos usar estos filtros para anular el efecto de todos los filtros implícitos existentes o complementarlos con otros filtros. A continuación, se creará una medida que permita responder a la pregunta comercial 2.</p>
+<p><strong>1.</strong>	En la vista de informe, crear una nueva página, y nombrarla &#34;Pregunta 2&#34;.</p>
+<p><strong>2.</strong>	Hacer clic en la tabla &#34;Sales&#34;, luego, en la cinta de herramientas, seleccionar la opción &#34;Nueva medida&#34;.</p>
+<p class="image-container"><img alt="nueva medida" src="img\\39cdedc79774ddec.png"></p>
+<p><strong>3.</strong>	Crear la medida &#34;Total Online Sales Revenue&#34;.</p>
+<p class="image-container"><img alt="online sales" src="img\\f783111e364ce835.png"></p>
+<p><strong>4.</strong>	Crear una matriz, arrastrar la columna &#34;Date&#34; de la tabla &#34;Calendar&#34; al campo &#34;filas&#34;, luego, arrastrar la medida &#34;Total Sales Revenue&#34; al campo &#34;valores&#34;. También, arrastrar la medida &#34;Total Online Sales Revenue&#34; al campo &#34;valores&#34;.</p>
+<p class="image-container"><img alt="comparacion online onsite" src="img\\a7a2cb510ad82c3c.png"></p>
+<p><strong>5.</strong>	A continuación, crear una nueva medida llamada &#34;Online sales percentage&#34;. Que utilizará las medidas creadas anteriormente para poder responder a la pregunta comercial 2.</p>
+<p class="image-container"><img alt="online onsite percentage" src="img\\105d734ab49a294e.png"></p>
+<p><strong>6.</strong>	Agregar la nueva medida a la matriz disponible en la página 2. Aplicar le formato correspondiente a las columnas de la matriz bajo el siguiente criterio:</p>
+<ul>
+<li>Total Sales Revenue: dinero con 2 decimales</li>
+<li>Total Online Sales Revenue: dinero con 2 decimales</li>
+<li>Online sales percentage: Porcentaje con 2 decimales</li>
+</ul>
+<p>Para cambiar el formato de las columnas generadas con medidas, se debe hacer clic sobre la medida, luego en la cinta de herramientas, en la pestaña &#34;Herramientas de medición&#34;, ubicar la sección &#34;Formato&#34;.</p>
+<p class="image-container"><img alt="formato medidas" src="img\\33750fc6ac3b09ed.png"></p>
+<p>En este punto, se ha conseguido generar información valiosa sobre el comportamiento de las ventas en los años analizados, sin embargo, aún existen algunas situaciones que deben gestionarse para mejorar la calidad de los análisis que se están generando. Por ejemplo, ¿Cómo debe comportarse la visualización en el caso de que exista un periodo en el que no hubo ventas online? Podríamos pensar que el valor que de debería mostrar es $0.0, sin embargo, al no existir datos que cumplan con la condición de la función CALCULATE, el valor resultante en realidad es NULO, o en el contexto de DAX, el valor es BLANK. Es posible encontrar algunos ejemplos de esta situación, si se navega en la jerarquía de la matriz y visualizar los datos de junio de 2021.</p>
+<p class="image-container"><img alt="formato mejorable" src="img\\b57f89c878c3b219.png"></p>
+<p>Esta situación provoca que otras columnas que dependen de la medida, se comporten de forma semejante. Por esta razón, una mejora a la visualización es mostrar en este caso el valor de $0.0 y no un campo vacío. Es posible utilizar las funciones <strong>IF</strong> e <strong>ISBLANK</strong> para controlar esta situación. La función <strong>IF</strong> comprueba una condición y devuelve el primer valor cuando la condición es VERDADERA; de lo contrario, la función devuelve el segundo valor. La sintaxis es similar a la siguiente:</p>
+<pre><code>IF(&lt;logical_test&gt;, &lt;value_if_true&gt;[, &lt;value_if_false&gt;])
+</code></pre>
+<p>Por otra parte, La función <strong>ISBLANK</strong> comprueba si un valor es nulo y devuelve VERDADERO si es así, o FALSO en el caso contrario.</p>
+<p><strong>7.</strong>	Editar la medida &#34;Total Online Sales Revenue&#34; para evitar que se muestren espacios nulos en la visualización.</p>
+<p class="image-container"><img alt="Online sales 2" src="img\\e7090264e7725c7.png"></p>
+<p>Notar como al utilizar la operación se ha vuelto repetitiva porque se utiliza el mismo cálculo tanto para validar el valor nulo, como para mostrar el resultado, el código de la medida ha crecido bastante, y esto puede ser ineficiente. Por lo que aplicar variables puede ayudar a mejorar esta situación. El uso de variables en un bloque DAX permite mejorar el rendimiento, la fiabilidad y la legibilidad, y reducir la complejidad. La sintaxis básica de una variable en DAX es la siguiente:</p>
+<pre><code>VAR VariableName = DAX Operation
+</code></pre>
+<p><strong>8.</strong>	Editar la medida &#34;Total Online Sales Revenue&#34; con el objetivo de optimizar su estructura, esto a través del uso de variables.</p>
+<p class="image-container"><img alt="uso de variables" src="img\\4ee34836558c8136.png"></p>
+<p>Al revisar la matriz, los campos nulos que se tenían deberían aparecer con el valor &#34;$0.00&#34;. Sin embargo, si somos observadores notaremos que la tabla se comporta diferente: ahora muestra periodos en los que no hay ventas registradas, por ejemplo, el primer cuatrimestre de 2021, el tercer y cuarto cuatrimestre del 2024.</p>
+<p class="image-container"><img alt="efecto indeseado" src="img\\d4b9c72d09e6198.png"></p>
+<p>Esto sucede porque la condición que se ha colocado en la medida &#34;Total Online Sales Revenue&#34; evalúa todas las fechas disponibles en la tabla &#34;Calendar&#34;, y al no encontrar ventas online en los periodos antes mencionados, se coloca el valor de &#34;$0.00&#34;, forzando así, que se muestren esas filas. Es posible corregir este comportamiento agregando una condición más al <strong>IF</strong>: queremos que el cálculo de la medida &#34;Total Online Sales Revenue&#34; se realice considerando que la medida &#34;Total Sales Revenue&#34; contenga un valor distinto de BLANK (Nulo). Para lograr este objetivo, es necesario preguntar que el resultado de la medida &#34;Total Sales Revenue&#34; NO sea nulo. No existe una función en DAX que realice esta tarea, sin embargo, en informática es usual realizar una operación que de como resultado falso o verdadero, es decir, una operación booleana y luego negarla. De esta forma, para consultar que el resultado de la medida &#34;Total Sales Revenue&#34; NO sea nulo, es posible preguntar si es nulo y luego negarlo:</p>
+<pre><code>IF(
+	ISBLANK(OnlineSale) &amp;&amp; NOT(ISBLANK([Total Sales Revenue])),
+	0,
+	OnlineSale
+)
+</code></pre>
+<p>El operador &#34;&amp;&amp;&#34; es un AND lógico, y requiere que ambas condiciones sean verdaderas para poder aplicar el valor de $0.00. En resumen, al condición se puede leer: &#34;Si la variable OnlineSale es nula, y la medida Total Sales Revenue no es nula, entonces, aplicar el valor de $0.00. Si no se cumple la condición, aplicar el valor OnlineSale&#34;.</p>
+<p><strong>9.</strong>	Editar la medida &#34;Total Online Sales Revenue&#34; con el objetivo de mejorar la condición aplicada en la sentencia IF.</p>
+<p class="image-container"><img alt="segunda validacion" src="img\\3866bd6f18c0134d.png"></p>
+<h2 is-upgraded>Respondiendo a la pregunta 2:</h2>
+<ul>
+<li><strong>p2.</strong> Para el periodo analizado, ¿Qué porcentaje de los ingresos obtenidos representan las ventas online?    ____________________________________________</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Evaluar expresiones de filtro de tabla" duration="15">
+        <p>El filtro de tabla implementa una tabla como filtro. El filtro puede ser una referencia a una tabla del modelo, también puede ser una función DAX que devuelve una tabla. Además, podemos utilizar la función FILTER para aplicar condiciones de filtro complejas que una expresión de filtro booleana no puede definir. En la pregunta 3, tenemos como requerimiento implementar la técnica del &#34;promedio móvil de los últimos 3 meses&#34; para suavizar una serie de puntos de datos y revelar las tendencias subyacentes. Para lograr esto, calculamos una media dividiendo la suma de los valores de los datos de un conjunto de datos por el tamaño del conjunto de datos. Para &#34;mover&#34; la media, eliminamos el primer elemento del conjunto de datos, añadimos un elemento nuevo y, a continuación, calculamos la media del conjunto de datos. Cuando calculamos medias móviles para una serie temporal, las medias forman una nueva serie temporal. La nueva serie temporal se vuelve plana porque el cálculo elimina las fluctuaciones rápidas. <a href="https://www.matematica.uns.edu.ar/uma2016/material/Introduccion_a_los_Modelos_de_Pronosticos.pdf" target="_blank"><strong> Clic aquí para leer más sobre modelos de pronósticos.</strong></a> (Enlace externo). Utilizamos la función DATESINPERIOD para construir una tabla que contenga una columna de datos en un período definido. Esta es la sintaxis de la función:</p>
+<pre><code>DATESINPERIOD(&lt;dates&gt;, &lt;start_date&gt;, &lt;number_of_intervals&gt;, &lt;interval&gt;)
+</code></pre>
+<p>También necesitamos utilizar la función LASTDATE que devuelve la última fecha en el contexto actual. La sintaxis debería ser similar a la siguiente:</p>
+<pre><code>LASTDATE(&lt;dates&gt;)
+</code></pre>
+<p>De esta forma, la siguiente expresión devuelve una tabla que contiene una columna de fechas de los últimos tres meses:</p>
+<pre><code>DATESINPERIOD(&#39;Calendar&#39;[date],LASTDATE(&#39;Calendar&#39;[date]),-3,Month)
+</code></pre>
+<p>A continuación, se creará una medida que permita responder a la pregunta 3.</p>
+<p><strong>1.</strong>	En la vista de informe, crear una nueva página, y nombrarla &#34;Pregunta 3&#34;.</p>
+<p><strong>2.</strong>	Hacer clic en la tabla &#34;Sales&#34;, luego, en la cinta de herramientas, seleccionar la opción &#34;Nueva medida&#34;.</p>
+<p><strong>3.</strong>	Crear la medida &#34;SMA 3 month&#34;.</p>
+<p class="image-container"><img alt="sma" src="img\\b0574ef23669d187.png"></p>
+<p>Sin embargo, en este punto podemos asumir que la disponibilidad de los datos, los dos primeros promedios correspondientes a mayo y junio de 2021 son incorrectos. La fórmula siempre divide los ingresos totales por ventas por tres. Sin embargo, no podemos calcular el promedio móvil de tres meses para los dos primeros meses porque no hay datos disponibles.</p>
+<p class="image-container"><img alt="sma erroneo" src="img\\668c75e81a238858.png"></p>
+<p>Aunque no es una buena práctica escribir condiciones fijas en DAX, y asumiendo que no podemos conseguir los datos del mes que hace falta para que la formula funcione bien. Por simplificación, es procederá a validar con condiciones fijas en la fórmula DAX para ocultar los dos primeros valores. Para poder seguir avanzando con la solución, será necesario crear algunas columnas más en la tabla Calendar.</p>
+<p><strong>4.</strong>	Hacer clic en la tabla Calendar y crear una nueva columna y aplicar la siguiente función DAX, que calcula el mes de cada una de las fechas en la tabla.</p>
+<p class="image-container"><img alt="nueva columna mes" src="img\\2c49437c9a8141c9.png"></p>
+<p><strong>5.</strong>	Nuevamente, hacer clic en la tabla Calendar y crear una nueva columna y aplicar la siguiente función DAX, que calcula el año de cada una de las fechas en la tabla.</p>
+<p class="image-container"><img alt="nueva columna annio" src="img\\4e01ba6bd1817ba9.png"></p>
+<p><strong>6.</strong>	Ir a la vista de tabla y verificar que la tabla Calendar, se vea como la siguiente figura.</p>
+<p class="image-container"><img alt="ejemplo mes annio" src="img\\5602e67b4e0ea037.png"></p>
+<p><strong>7.</strong>	Regresar a la vista de informe, y editar la medida &#34;SMA 3 month&#34;.</p>
+<p class="image-container"><img alt="smv version 2" src="img\\5d4564763d9c8087.png"></p>
+<p><strong>8.</strong>	Con este cambio, los valores de mayo y junio de 2021 deberían ser omitidos para realizar el análisis.</p>
+<p class="image-container"><img alt="resultado version 2" src="img\\cfef81b738753b28.png"></p>
+<p><strong>9.</strong>	Crear un gráfico de líneas, arrastrar la columna &#34;Date&#34; de la tabla &#34;Calendar&#34; al eje X; luego, arrastrar la columna &#34;Total&#34; de la tabla &#34;Sales&#34; al eje Y.</p>
+<p><strong>10.</strong>	En el gráfico de líneas, navegar en la jerarquía de fechas hasta el nivel de meses.</p>
+<p><strong>11.</strong>	En el gráfico de líneas, arrastrar la medida &#34;SMA 3 month&#34; al eje Y secundario.</p>
+<p>La línea SMA debería ser más suave que la línea de las ventas mensuales, es decir, la variación es menor a lo largo del tiempo, lo que simplifica el proceso de análisis de tendencias.</p>
+<h2 is-upgraded>Respondiendo a la pregunta 3:</h2>
+<ul>
+<li><strong>p3.</strong> Para el periodo analizado, ¿Cuál es la tendencia despues de &#34;suavizar los datos&#34; al haber aplicado la técnica del &#34;promedio móvil de los últimos 3 meses&#34; para realizar un pronóstico de la demanda?    ____________________________________________</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Funciones modificadoras de filtros" duration="10">
+        <p>En DAX, las funciones modificadoras de filtro nos brindan control adicional sobre el contexto del filtro. A menudo, las siguientes funciones se usan para eliminar los filtros aplicados, por ejemplo, desde un segmentador de datos o filtros aplicados por el usuario en la interfaz de Power BI.</p>
+<ul>
+<li>ALL: ignora los filtros de una tabla o de las columnas especificadas; por lo tanto, devuelve todas las filas de la tabla o todos los valores de las columnas.</li>
+<li>ALLEXCEPT: elimina todos los filtros de contexto de la tabla, excepto los de las columnas especificadas. A continuación, se creará un procedimiento que permita responder a la pregunta 4.</li>
+</ul>
+<p><strong>1.</strong>	En la vista de informe, crear una nueva página, y nombrarla &#34;Pregunta 4&#34;.</p>
+<p><strong>2.</strong>	Agregar una matriz, y arrastrar la columna &#34;Date&#34; de la tabla &#34;Calendar&#34; al campo &#34;Filas&#34; de la matriz. Luego, arrastrar la medida &#34;Total Sales Revenue&#34;, al campo &#34;Valores de la matriz.</p>
+<p><strong>3.</strong>	Agregar a la página un segmentador de datos. Luego, arrastrar la columna &#34;Category&#34; de la tabla &#34;Category&#34; al campo &#34;Campo&#34; del segmentador de datos. El formato de visualización del segmentador es indiferente. Aunque por la naturaleza de los datos, se sugiere la vista de lista, de tarjetas, o de mosaico.</p>
+<p>Con la configuración aplicada, los usuarios pueden ver los ingresos por ventas pudiendo filtrar por categorías específicas. Notar que cuando se selecciona una o más categorias del segmentador, los datos de la matriz se actualizan, representando los ingresos por ventas de las categorías seleccionadas en el segmentador.</p>
+<aside class="special"><p> Es posible seleccionar más de una categoría haciendo clic en las categorías deseadas mientras se mantiene presionada la tecla CTRL. </p>
+</aside>
+<p>Ahora, se desea agregar una nueva columna junto a la columna &#34;Total Sales Revenue&#34;. La nueva columna proporciona los ingresos por ventas totales independientemente de las categorías seleccionadas en el segmentador. La idea es comparar ambas columnas y poder verificar el aporte que hacen las categorías seleccionadas en el segmentador con las ganancias totales. Para lograr este objetivo, es posible utilizar la función <strong>ALL</strong> para ignorar la selección de categoría.</p>
+<p><strong>4.</strong>	En la vista de informe, seleccionar la tabla &#34;Sales&#34; y crear una nueva medida. Asegurarse de aplicar el formato de moneda con 2 decimales.</p>
+<p class="image-container"><img alt="total sin filtro" src="img\\9c23a1c4a985800c.png"></p>
+<p>La fórmula DAX utiliza la función para ignorar el filtro de la selección de categoría y calcular los ingresos por ventas total. Esta medida no será afectada por el filtro aplicado por el segmentador de datos.</p>
+<p><strong>5.</strong>	Arrastrar la medida &#34;Total Sales&#34; al campo &#34;Valores&#34; de la matriz. Inicialmente, si no se tiene seleccionada ninguna categoría en el segmentador, las columnas &#34;Total Sales Revenue&#34; y &#34;Total Sales&#34; deberían mostrar el mismo valor.</p>
+<p><strong>7.</strong>	Seleccionar una o más categorías en el segmentador de datos. Cuando seleccionamos diferentes categorías en la segmentación de categorías, los valores de la columna &#34;Total Sales Revenue&#34; cambian en consecuencia, pero los de la columna &#34;Total Sales&#34; no. De esta manera, podemos determinar cuánto han contribuido las categorías de productos seleccionadas a los ingresos por ventas.</p>
+<p><strong>8.</strong>	Seleccionar la tabla &#34;Sales&#34; y crear una nueva medida llamada &#34;Category contribution&#34;. Asegurarse de aplicar el formato de porcentaje con 2 decimales.</p>
+<p class="image-container"><img alt="contribucion categoria" src="img\\5671da02dbc9838f.png"></p>
+<p><strong>9.</strong>	Arrastrar la medida &#34;Category contribution&#34; al campo &#34;Valores&#34; de la matriz. Inicialmente, si no se tiene seleccionada ninguna categoría en el segmentador, la columna &#34;Category contribution&#34; debería mostrar un aporte de 100%.</p>
+<h2 is-upgraded>Respondiendo a la pregunta 4:</h2>
+<ul>
+<li><strong>p4.</strong> Para el periodo analizado, ¿Cómo contribuyen algunas categorías específicas de productos a las ventas totales?     ____________________________________________</li>
+<li><strong>p4.1.</strong> Aporte de la categoría &#34;Games&#34;: ________________________________________________</li>
+<li><strong>p4.2</strong> Aporte en conjunto de las categorías &#34;Computer hardware&#34; y &#34;Computer software&#34;: ________________________________________________</li>
+<li><strong>p4.3.</strong> Aporte en conjunto de las categorías que inician con la palabra &#34;Outdoor&#34; : ________________________________________________</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="1">
+        <h2 is-upgraded>Autores:</h2>
+<p><strong>Versión 1:</strong> Erick Varela Guzmán</p>
+<p><strong>Contacto: </strong><a href="mailto:evarela@uca.edu.sv" target="_blank">evarela@uca.edu.sv</a></p>
+<p>Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1, 2024.</p>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
