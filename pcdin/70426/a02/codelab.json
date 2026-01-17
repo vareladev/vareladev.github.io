@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-07-12T14:51:49-06:00",
+  "id": "m3-guia-02",
+  "duration": 60,
+  "title": "Técnicas de limpieza y transformación de datos",
+  "summary": "Guía de aprendizaje 2",
+  "source": ".\\guia02.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "basesdedatos"
+  ],
+  "feedback": "mailto:evarela@uca.edu.sv",
+  "url": "m3-guia-02"
+}
