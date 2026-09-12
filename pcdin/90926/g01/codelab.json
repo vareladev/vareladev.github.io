@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-07-04T17:06:21-06:00",
+  "id": "m3-guia-01",
+  "duration": 54,
+  "title": "Análisis de datos básico con Power BI",
+  "summary": "Guía de aprendizaje 1",
+  "source": ".\\guia01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "basesdedatos"
+  ],
+  "feedback": "mailto:evarela@uca.edu.sv",
+  "url": "m3-guia-01"
+}
